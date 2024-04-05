@@ -1,0 +1,20 @@
+Address, device_name, node_type, panid, protocol
+0x3990, Philips Hue Bridge, Coordinator, 0x8fbd, zigbee
+0x02b0, Philips Hue White, Operator, 0x8fbd, zigbee
+0xe28a, Philips Hue White, Operator, 0x8fbd, zigbee
+0x0001, Philips Hue Bridge, Coordinator, 0x1101, zigbee
+0x0002, SmartThings Smart Bulb, Operator, 0x1101, zigbee
+0x0005, SmartThings Smart Bulb, Operator, 0x1101, zigbee
+0x0000, SmartThings Hub, Coordinator, 0x8c9a, zigbee
+0x16e2, AeoTec Button, Operator, 0x8c9a, zigbee
+0x72db, AeoTec Motion Sensor, Sensor, 0x8c9a, zigbee
+0x6214, AeoTec Multipurpose Sensor, Sensor, 0x8c9a, zigbee
+0xde1d, AeoTec Water Leak Sensor, Sensor, 0x8c9a, zigbee
+0x0a5b, Sengled Smart Plug, Operator, 0x8c9a, zigbee
+0xe4ff, Sengled Smart Plug, Operator, 0x8c9a, zigbee
+0x33bc, SmartThings Button, Operator, 0x8c9a, zigbee
+0x2c0a, SmartThings Smart Bulb, Operator, 0x8c9a, zigbee
+0x1c67, SmartThings Smart Bulb, Operator, 0x8c9a, zigbee
+0x93d7, SmartThings Smart Bulb, Operator, 0x8c9a, zigbee
+0x42e0, Sonoff Smart Plug, Sensor, 0x8c9a, zigbee
+0x3331, Sonoff Smart Plug, Sensor, 0x8c9a, zigbee

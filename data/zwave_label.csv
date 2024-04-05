@@ -1,0 +1,19 @@
+Address, device_name, node_type, homeid, protocol
+001, Fibaro Home Center Lite, Coordinator, d8120fc5, zwave
+015, Fibaro Door/Window Sensor, Sensor, d8120fc5, zwave
+025, Fibaro Door/Window Sensor, Sensor, d8120fc5, zwave
+016, Fibaro Flood Sensor, Sensor, d8120fc5, zwave
+032, Fibaro Flood Sensor, Sensor, d8120fc5, zwave
+017, Fibaro Motion Sensor, Sensor, d8120fc5, zwave
+018, Fibaro Motion Sensor, Sensor, d8120fc5, zwave
+023, Fibaro Wall Plug, Operator, d8120fc5, zwave
+024, Fibaro Wall Plug, Operator, d8120fc5, zwave
+001, AeoTec Smart Home Hub, Coordinator, d68de6f2, zwave
+007, AeoTec TriSensor, Sensor, d68de6f2, zwave
+008, AeoTec Doorbell 6, Operator, d68de6f2, zwave
+009, AeoTec Indoor Siren, Operator, d68de6f2, zwave
+010, AeoTec Smart Switch 7, Operator, d68de6f2, zwave
+006, AeoTec Water Sensor 6, Sensor, d68de6f2, zwave
+011, AeoTec NanoMote Quad, Operator, d68de6f2, zwave
+013, AeoTec Door/Window Sensor 7 Pro, Sensor, d68de6f2, zwave
+012, AeoTec Temperature and Humidity Sensor, Sensor, d68de6f2, zwave
