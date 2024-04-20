@@ -5,17 +5,23 @@ import numpy as np
 import pyshark
 from datetime import datetime
 
+from label import Label
+
+class Session:
+    def __init__(self, metadata, body, label):
+        self.metadata = metadata
+        self.body = body
+        self.label = label
+
 class Sessions:
     def __init__(self):
         self.sessions_path = "./sessions/"
         self.zigbee_raw_path = "./raw/zigbee/"
         self.cnc_raw_path = "./raw/cnc/"
         self.sessions = {
-            "metadata": [],
-            "body": [],
+            "session": [],
             "train": [],
-            "test": [],
-            "label": []
+            "test": []
         }
 
     def reset(self):
@@ -35,6 +41,9 @@ class Sessions:
 
     def make(self):
         # Zigbee
+        label = Label()
+        label.load()
+
         for file in os.listdir(self.zigbee_raw_path):
             if file.endswith(".pcapng") or file.endswith(".pcap"):
                 print("Processing " + file + "...")
@@ -53,17 +62,29 @@ class Sessions:
                         "remarks": metadata["remarks"]
                     }
 
-                    if metadata not in self.sessions["metadata"] and reverse_metadata not in self.sessions["metadata"]:
-                        self.sessions["metadata"].append(metadata)
-                        self.sessions["body"].append([bodydata])
-                    elif metadata in self.sessions["metadata"]:
-                        index = self.sessions["metadata"].index(metadata)
-                        self.sessions["body"][index].append(bodydata)
-                    elif reverse_metadata in self.sessions["metadata"]:
-                        index = self.sessions["metadata"].index(reverse_metadata)
-                        self.sessions["body"][index].append(bodydata)
+                    for i in range(len(self.sessions["session"])):
+                        if metadata == self.sessions["session"][i].metadata or reverse_metadata == self.sessions["session"][i].metadata:
+                            self.sessions["session"][i].body.append(bodydata)
+                            break
                     else:
-                        raise Exception("Invalid metadata.")
+                        # map labels
+                        srcId = metadata["srcId"]
+                        dstId = metadata["dstId"]
+                        protocol = metadata["protocol"]
+                        remarks = metadata["remarks"]
+                        l = None
+
+                        for j in range(len(label.label["id"])):
+                            if srcId == label.label["id"][j] and protocol == label.label["protocol"][j] and remarks == label.label["remarks"][j]:
+                                l = label.label["label"][j]
+                                break
+                            elif dstId == label.label["id"][j] and protocol == label.label["protocol"][j] and remarks == label.label["remarks"][j]:
+                                l = label.label["label"][j]
+                                break
+                        else:
+                            raise Exception("Invalid metadata.")
+                        
+                        self.sessions["session"].append(Session(metadata, [bodydata], l))
         
         # CNC
         for file in os.listdir(self.cnc_raw_path):
@@ -73,47 +94,30 @@ class Sessions:
                 with open(os.path.join(self.cnc_raw_path, file)) as f:
                     metadatas, statisticsDatas, packetDatas = self.get_cnc_data(f)
                     for i, metadata in enumerate(metadatas):
-                        try:
-                            reverse_metadata = {
-                                "srcId": metadata["dstId"],
-                                "dstId": metadata["srcId"],
-                                "protocol": metadata["protocol"],
-                                "remarks": metadata["remarks"]
-                            }
-                        except:
-                            print("Error in file " + file + " at line " + str(i) + ".")
-                            print("Metadata: " + str(metadata))
-                            for key in metadata:
-                                print(key + ": " + str(metadata[key]))
-                            raise Exception("Invalid metadata.")
+                        reverse_metadata = {
+                            "srcId": metadata["dstId"],
+                            "dstId": metadata["srcId"],
+                            "protocol": metadata["protocol"],
+                            "remarks": metadata["remarks"]
+                        }
 
-                        if metadata not in self.sessions["metadata"] and reverse_metadata not in self.sessions["metadata"]:
-                            self.sessions["metadata"].append(metadata)
-                            self.sessions["body"].append([(statisticsDatas[i], packetDatas[i])])
+                        for j in range(len(self.sessions["session"])):
+                            if metadata == self.sessions["session"][j].metadata or reverse_metadata == self.sessions["session"][j].metadata:
+                                self.sessions["session"][j].body.append((statisticsDatas[i], packetDatas[i]))
+                                break
+                        else:
                             if "benign" in file:
-                                self.sessions["label"].append("benign")
+                                l = "benign"
                             elif "mirai" in file:
-                                self.sessions["label"].append("mirai")
+                                l = "mirai"
                             elif "qbot" in file:
-                                self.sessions["label"].append("qbot")
+                                l = "qbot"
                             elif "kaiten" in file:
-                                self.sessions["label"].append("kaiten")
+                                l = "kaiten"
                             else:
                                 raise Exception("Invalid file name")
-                        elif metadata in self.sessions["metadata"]:
-                            index = self.sessions["metadata"].index(metadata)
-                            self.sessions["body"][index].append((statisticsDatas[i], packetDatas[i]))
-                        elif reverse_metadata in self.sessions["metadata"]:
-                            index = self.sessions["metadata"].index(reverse_metadata)
-                            self.sessions["body"][index].append((statisticsDatas[i], packetDatas[i]))
-                        else:
-                            raise Exception("Invalid metadata.")
-    
-        print("Length of Metadata: ", len(self.sessions["metadata"]))
-        print("Length of Labels: ", len(self.sessions["label"]))
-        for i, metadata in enumerate(self.sessions["metadata"]):
-            print(" >> Metadata " + str(i) + ": " + str(metadata))
-            print(" >> Length of Body " + str(i) + ": " + str(len(self.sessions["body"][i])))
+                            
+                            self.sessions["session"].append(Session(metadata, [(statisticsDatas[i], packetDatas[i])], l))
                     
     def save(self):
         with open(os.path.join(self.sessions_path, "sessions.json"), "w") as f:
@@ -443,12 +447,3 @@ class Sessions:
             y_test.append(self.sessions["label"][i])
 
         return x_train, y_train, x_test, y_test
-    
-    def map_labels(self, label):
-        for i, metadata in enumerate(self.sessions["metadata"]):
-            if metadata["protocol"] == "Zigbee":
-                for j, id in enumerate(label["id"]):
-                    if metadata["srcId"] == id or metadata["dstId"] == id:
-                        if label["remarks"][j] == metadata["remarks"] and label["protocol"][j] == metadata["protocol"]:
-                            self.sessions["label"].append(label["label"][j])
-                            break

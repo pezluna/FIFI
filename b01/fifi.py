@@ -18,15 +18,6 @@ try:
     if isReset:
         sessions.reset()
 
-        # Initialize label
-        label = Label()
-        try:
-            label.load()
-        except:
-            raise Exception("Label file not found.")
-
-        sessions.map_labels(label.label)
-
         sessions.save()
     else:
         sessions.load()
