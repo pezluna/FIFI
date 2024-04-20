@@ -39,7 +39,6 @@ class Sessions:
             if file.endswith(".pcapng") or file.endswith(".pcap"):
                 print("Processing " + file + "...")
                 with pyshark.FileCapture(os.path.join(self.zigbee_raw_path, file), include_raw=True, use_json=True) as pcap:
-                    pcap.set_debug()
                     metadata = self.get_zigbee_metadata(pcap)
                     if metadata is None:
                         continue
