@@ -19,14 +19,15 @@ class PacketModel:
         
     def normalize(self, X):
         X = X[1]
-        try:
-            raw_length_normalized = np.minimum(np.array(X["rawLength"]) * 0.001, 1)
-            captured_length_normalized = np.minimum(np.array(X["capturedLength"]) * 0.001, 1)
-            direction_normalized = np.where(np.array(X["direction"]) == -1, 0, 1)
-            delta_time_normalized = np.minimum(np.array(X["deltaTime"]) * 0.5, 2)
-            protocol_normalized = np.where(np.array(X["protocol"]) == "TCP/IP", 0, 1)
-        except:
-            raise Exception("Invalid data.")
+
+        print(X)
+
+        raw_length_normalized = np.minimum(np.array(X["rawLength"]) * 0.001, 1)
+        captured_length_normalized = np.minimum(np.array(X["capturedLength"]) * 0.001, 1)
+        direction_normalized = np.where(np.array(X["direction"]) == -1, 0, 1)
+        delta_time_normalized = np.minimum(np.array(X["deltaTime"]) * 0.5, 2)
+        protocol_normalized = np.where(np.array(X["protocol"]) == "TCP/IP", 0, 1)
+
 
         return {
             "rawLength": raw_length_normalized,
