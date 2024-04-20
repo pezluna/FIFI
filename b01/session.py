@@ -404,35 +404,42 @@ class Sessions:
         for i, session in enumerate(self.sessions["session"]):
             # print("Processing session " + str(i) + "...")
 
-            try:
-                metadata = session["metadata"]
-                body = session["body"]
-                label = session["label"]
-            except:
-                print("Invalid session data.")
-                print("Session: ", session)
-                raise Exception("Invalid session data.")
+            metadata = session["metadata"]
+            body = session["body"]
+            label = session["label"]
 
-            idxs = []
+            if metadata["protocol"] == "TCP/IP":
+                idxs = []
 
-            if label not in labels:
-                labels.append(label)
+                if label not in labels:
+                    labels.append(label)
 
-                for j, s in enumerate(self.sessions["session"]):
-                    if s["label"] == label:
-                        idxs.append(j)
+                    for j, s in enumerate(self.sessions["session"]):
+                        if s["label"] == label:
+                            idxs.append(j)
 
+                    train_idxs = np.random.choice(idxs, round(len(idxs)*0.6), replace=False)
+                    test_idxs = [j for j in idxs if j not in train_idxs]
+
+                    for idx in train_idxs:
+                        train["body"].append(self.sessions["session"][idx]["body"])
+                        train["label"].append(label)
+                    for idx in test_idxs:
+                        test["body"].append(self.sessions["session"][idx]["body"])
+                        test["label"].append(label)
+                else:
+                    continue
+            else:
+                idxs = [i for i in range(len(body))]
                 train_idxs = np.random.choice(idxs, round(len(idxs)*0.6), replace=False)
-                test_idxs = [j for j in idxs if j not in train_idxs]
+                test_idxs = [i for i in idxs if i not in train_idxs]
 
                 for idx in train_idxs:
-                    train["body"].append(self.sessions["session"][idx]["body"])
+                    train["body"].append(self.sessions["session"][i]["body"][idx])
                     train["label"].append(label)
                 for idx in test_idxs:
-                    test["body"].append(self.sessions["session"][idx]["body"])
+                    test["body"].append(self.sessions["session"][i]["body"][idx])
                     test["label"].append(label)
-            else:
-                continue
 
         self.sessions["train"] = train
         self.sessions["test"] = test
