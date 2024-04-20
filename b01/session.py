@@ -169,7 +169,7 @@ class Sessions:
             "capturedLength": [],
             "direction": [],
             "deltaTime": [],
-            "protocol": "Zigbee"
+            "protocol": []
         }
         last_sTime = None
         last_rTime = None
@@ -194,6 +194,7 @@ class Sessions:
                 packetData["payload"].append(pkt.get_raw_packet().decode("utf-8", errors="replace"))
                 packetData["capturedLength"].append(pkt.captured_length) if pkt.captured_length is not None else packetData["capturedLength"].append(pkt.length)
                 packetData["direction"].append(direction)
+                packetData["protocol"].append("Zigbee")
 
                 if direction == 0:
                     s_lengths.append(pkt.length)
@@ -303,7 +304,7 @@ class Sessions:
 
             metadata["dstId"] = line[0].strip()
             metadata["srcId"] = line[1].strip()
-            metadata["protocol"] = "IEEE 802.15.4"
+            metadata["protocol"] = "TCP/IP"
             metadata["remarks"] = (line[11].strip(), line[12].strip())
 
             sBytes = int(line[2].strip())
@@ -357,7 +358,7 @@ class Sessions:
                 packetData["capturedLength"].append(length)
                 packetData["direction"].append(direction)
                 packetData["payload"].append(None)
-                packetData["protocol"].append("IEEE 802.15.4")
+                packetData["protocol"].append("TCP/IP")
 
             statisticsData["sMinSize"] = min(s_lengths) if s_lengths else None
             statisticsData["rMinSize"] = min(r_lengths) if r_lengths else None
