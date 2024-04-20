@@ -28,19 +28,8 @@ except:
     
 # Split sessions into train and test
 sessions.split_train_test()
+X_train, y_train, X_test, y_test = sessions.get_train_test_data()
 print("Train and test data split completed.")
-print("Length of Train: ", len(sessions.sessions["train"]["body"]))
-print("Length of Test: ", len(sessions.sessions["test"]["body"]))
-print("Train Label: ", set(sessions.sessions["train"]["label"]))
-print("Test Label: ", set(sessions.sessions["test"]["label"]))
-
-for i in range(len(sessions.sessions["train"]["body"])):
-    print("Label: ", sessions.sessions["train"]["label"][i], end=" ")
-    print("Length of Body: ", len(sessions.sessions["train"]["body"][i]))
-
-for i in range(len(sessions.sessions["test"]["body"])):
-    print("Label: ", sessions.sessions["test"]["label"][i], end=" ")
-    print("Length of Body: ", len(sessions.sessions["test"]["body"][i]))
 
 # Train the model
 print("Training the model...")
@@ -51,12 +40,12 @@ branch_2 = StatsModel()
 # Ensemble Model
 # Need to implement the ensemble model
 ensemble_model = EnsembleModel(branch_1, branch_2)
+pred_y = ensemble_model.train(sessions)
 
-# Save the model
-print("Saving the model...")
+print("Model trained.")
 
-branch_1.save()
-branch_2.save()
-ensemble_model.save()
-
-print("Model training and testing completed.")
+# evaluate the model
+print("Evaluating the model...")
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(y_test, pred_y)
+print("Accuracy: ", accuracy)

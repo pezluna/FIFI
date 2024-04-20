@@ -450,10 +450,12 @@ class Sessions:
         x_test = []
         y_test = []
 
-        for i in range(len(self.sessions["metadata"])):
-            x_train.append(self.sessions["train"][i])
-            y_train.append(self.sessions["label"][i])
-            x_test.append(self.sessions["test"][i])
-            y_test.append(self.sessions["label"][i])
+        for i, body in enumerate(self.sessions["train"]["body"]):
+            x_train.append(body)
+            y_train.append(self.sessions["train"]["label"][i])
+
+        for i, body in enumerate(self.sessions["test"]["body"]):
+            x_test.append(body)
+            y_test.append(self.sessions["test"]["label"][i])
 
         return x_train, y_train, x_test, y_test
