@@ -22,15 +22,18 @@ try:
     else:
         sessions.load()
         print("Sessions loaded.")
-        print("Length of Metadata: ", len(sessions.sessions["metadata"]))
-        print("Length of Labels: ", len(sessions.sessions["label"]))
+        print("Length of Metadata: ", len(sessions.sessions["session"].metadata))
+        print("Length of Label: ", len(sessions.sessions["session"].label))
 except:
     raise Exception("Sessions file or raw files are not found or corrupted.")
 
 # Split sessions into train and test
 sessions.split_train_test()
 print("Train and test data split completed.")
-print()
+print("Length of Train: ", len(sessions.sessions["train"]["metadata"]))
+print("Length of Test: ", len(sessions.sessions["test"]["metadata"]))
+print("Train Label: ", set(sessions.sessions["train"]["label"]))
+print("Test Label: ", set(sessions.sessions["test"]["label"]))
 
 # Train the model
 print("Training the model...")
