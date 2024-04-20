@@ -404,9 +404,14 @@ class Sessions:
         for i, session in enumerate(self.sessions["session"]):
             print("Processing session " + str(i) + "...")
 
-            metadata = session["session"].metadata
-            body = session["session"].body
-            label = session["session"].label
+            try:
+                metadata = session["session"].metadata
+                body = session["session"].body
+                label = session["session"].label
+            except:
+                print("Invalid session data.")
+                print("Session: ", session)
+                raise Exception("Invalid session data.")
 
             idxs = []
 
