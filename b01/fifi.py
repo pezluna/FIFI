@@ -1,7 +1,6 @@
 import sys
 from session import Sessions
-from label import Label
-from model import HeaderModel, StatsModel, EnsembleModel
+from model import PacketModel, StatsModel
 
 isReset = False
 try:
@@ -28,23 +27,14 @@ except:
     
 # Split sessions into train and test
 sessions.split_train_test()
+X_train, y_train, X_test, y_test = sessions.get_train_test_data()
 print("Train and test data split completed.")
 
 # Train the model
 print("Training the model...")
 
-branch_1 = HeaderModel()
-branch_2 = StatsModel()
+# Packet model
+packet_model = PacketModel()
 
-# Ensemble Model
-# Need to implement the ensemble model
-ensemble_model = EnsembleModel(branch_1, branch_2)
-pred_y = ensemble_model.train(sessions)
-
-print("Model trained.")
-
-# evaluate the model
-print("Evaluating the model...")
-from sklearn.metrics import accuracy_score
-accuracy = accuracy_score(y_test, pred_y)
-print("Accuracy: ", accuracy)
+pred_y = packet_model.train(X_train, y_train, X_test)
+print("Packet model trained.")
