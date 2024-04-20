@@ -1,0 +1,17 @@
+label, id, remark, protocol
+Philips Hue White, 0x02b0, 0x8fbd, Zigbee
+Philips Hue White, 0xe28a, 0x8fbd, Zigbee
+SmartThings Smart Bulb, 0x0002, 0x1101, Zigbee
+SmartThings Smart Bulb, 0x0005, 0x1101, Zigbee
+Aeotec Button, 0x16e2, 0x8c9a, Zigbee
+AeoTec Motion Sensor, 0x72db, 0x8c9a, Zigbee
+AeoTec Multipurpose Sensor, 0x6214, 0x8c9a, Zigbee
+AeoTec Water Leak Sensor, 0xde1d, 0x8c9a, Zigbee
+Sengled Smart Plug, 0x0a5b, 0x8c9a, Zigbee
+Sengled Smart Plug, 0xe4ff, 0x8c9a, Zigbee
+SmartThings Button, 0x33bc, 0x8c9a, Zigbee
+SmartThings Smart Bulb, 0x2c0a, 0x8c9a, Zigbee
+SmartThings Smart Bulb, 0x1c67, 0x8c9a, Zigbee
+SmartThings Smart Bulb, 0x93d7, 0x8c9a, Zigbee
+Sonoff Smart Plug, 0x42e0, 0x8c9a, Zigbee
+Sonoff Smart Plug, 0x3331, 0x8c9a, Zigbee

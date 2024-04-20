@@ -162,4 +162,9 @@ cython_debug/
 doc/
 
 # dataset
+<<<<<<< Updated upstream
 dataset/
+=======
+dataset/
+b01/raw/
+>>>>>>> Stashed changes
