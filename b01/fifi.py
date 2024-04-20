@@ -35,11 +35,11 @@ print("Train Label: ", set(sessions.sessions["train"]["label"]))
 print("Test Label: ", set(sessions.sessions["test"]["label"]))
 
 for i in range(len(sessions.sessions["train"]["body"])):
-    print("Label: ", sessions.sessions["train"]["label"][i], ends=" ")
+    print("Label: ", sessions.sessions["train"]["label"][i], end=" ")
     print("Length of Body: ", len(sessions.sessions["train"]["body"][i]))
 
 for i in range(len(sessions.sessions["test"]["body"])):
-    print("Label: ", sessions.sessions["test"]["label"][i], ends=" ")
+    print("Label: ", sessions.sessions["test"]["label"][i], end=" ")
     print("Length of Body: ", len(sessions.sessions["test"]["body"][i]))
 
 # Train the model
