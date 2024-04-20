@@ -18,8 +18,10 @@ class PacketModel:
             raise Exception("Invalid model type.")
         
     def normalize(self, X):
-        X = X[1]
-
+        tmp = []
+        for x in X:
+            tmp.append(x[1])
+        X = tmp
         print(X)
 
         raw_length_normalized = np.minimum(np.array(X["rawLength"]) * 0.001, 1)
@@ -33,7 +35,7 @@ class PacketModel:
             "rawLength": raw_length_normalized,
             "capturedLength": captured_length_normalized,
             "direction": direction_normalized,
-            "deltaTime": np.array(0) + delta_time_normalized,
+            "deltaTime": delta_time_normalized,
             "protocol": protocol_normalized
         }
     
