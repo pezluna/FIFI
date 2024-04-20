@@ -398,11 +398,9 @@ class Sessions:
                 if label_count == 1:
                     tmp = [t for t in range(len(self.sessions["body"][i]))]
                     print("label: " + cur_label + ", count: " + str(len(tmp)) + ", tmp: " + str(tmp))
+                    print(self.sessions["body"][i])
                     train_idxs = np.random.choice(tmp, round(len(self.sessions["body"][i])*0.6), replace=False)
                     test_idxs = [t for t in tmp if t not in train_idxs]
-
-                    print("train_idxs: " + str(train_idxs))
-                    print("test_idxs: " + str(test_idxs))
 
                     for idx in train_idxs:
                         train["body"].append(self.sessions["body"][idx])
