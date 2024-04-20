@@ -404,9 +404,9 @@ class Sessions:
         for i, session in enumerate(self.sessions["session"]):
             # print("Processing session " + str(i) + "...")
 
-            metadata = session.metadata
-            body = session.body
-            label = session.label
+            metadata = session["metadata"]
+            body = session["body"]
+            label = session["label"]
 
             if metadata["protocol"] == "TCP/IP":
                 idxs = []
