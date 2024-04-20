@@ -29,9 +29,9 @@ except:
 # Split sessions into train and test
 sessions.split_train_test()
 print("Train and test data split completed.")
-print("Length of Train: ", len(sessions.sessions["train"]["metadata"]))
-print("Length of Test: ", len(sessions.sessions["test"]["metadata"]))
-print("Train Label: ", set(sessions.sessions["train"]["label"]))
+print("Length of Train: ", len(sessions.sessions["train"]["body"]))
+print("Length of Test: ", len(sessions.sessions["test"]["label"]))
+print("Train Label: ", set(sessions.sessions["train"]["body"]))
 print("Test Label: ", set(sessions.sessions["test"]["label"]))
 
 # Train the model

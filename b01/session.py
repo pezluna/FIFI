@@ -415,9 +415,6 @@ class Sessions:
 
             idxs = []
 
-            print("Metadata: ", metadata)
-            print("Label: ", label)
-
             if label not in labels:
                 labels.append(label)
 
