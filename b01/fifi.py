@@ -26,6 +26,15 @@ try:
 except:
     raise Exception("Sessions file or raw files are not found or corrupted.")
 
+for session in sessions.sessions["session"]:
+    metadata = session["metadata"]
+    body = session["body"]
+    label = session["label"]
+
+    print("Label: ", label)
+    print("Metadata: ", metadata)
+    print("Length of Body: ", len(body))
+    
 # Split sessions into train and test
 sessions.split_train_test()
 print("Train and test data split completed.")
