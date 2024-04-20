@@ -435,11 +435,18 @@ class Sessions:
                 test_idxs = [i for i in idxs if i not in train_idxs]
 
                 for idx in train_idxs:
-                    train["body"].append(self.sessions["session"][i]["body"][idx])
+                    train["body"].append(body[idx])
                     train["label"].append(label)
                 for idx in test_idxs:
-                    test["body"].append(self.sessions["session"][i]["body"][idx])
+                    test["body"].append(body[idx])
                     test["label"].append(label)
+
+                # for idx in train_idxs:
+                #     train["body"].append(self.sessions["session"][i]["body"][idx])
+                #     train["label"].append(label)
+                # for idx in test_idxs:
+                #     test["body"].append(self.sessions["session"][i]["body"][idx])
+                #     test["label"].append(label)
 
         self.sessions["train"] = train
         self.sessions["test"] = test
