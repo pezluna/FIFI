@@ -405,9 +405,9 @@ class Sessions:
             print("Processing session " + str(i) + "...")
 
             try:
-                metadata = session["session"].metadata
-                body = session["session"].body
-                label = session["session"].label
+                metadata = session["metadata"]
+                body = session["body"]
+                label = session["label"]
             except:
                 print("Invalid session data.")
                 print("Session: ", session)
