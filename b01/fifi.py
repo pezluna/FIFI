@@ -25,15 +25,6 @@ try:
         print("Length of Session: ", len(sessions.sessions["session"]))
 except:
     raise Exception("Sessions file or raw files are not found or corrupted.")
-
-for session in sessions.sessions["session"]:
-    metadata = session["metadata"]
-    body = session["body"]
-    label = session["label"]
-
-    print("Label: ", label)
-    print("Metadata: ", metadata)
-    print("Length of Body: ", len(body))
     
 # Split sessions into train and test
 sessions.split_train_test()
@@ -42,6 +33,14 @@ print("Length of Train: ", len(sessions.sessions["train"]["body"]))
 print("Length of Test: ", len(sessions.sessions["test"]["body"]))
 print("Train Label: ", set(sessions.sessions["train"]["label"]))
 print("Test Label: ", set(sessions.sessions["test"]["label"]))
+
+for i in range(len(sessions.sessions["train"]["body"])):
+    print("Label: ", sessions.sessions["train"]["label"][i])
+    print("Length of Body: ", len(sessions.sessions["train"]["body"][i]))
+
+for i in range(len(sessions.sessions["test"]["body"])):
+    print("Label: ", sessions.sessions["test"]["label"][i])
+    print("Length of Body: ", len(sessions.sessions["test"]["body"][i]))
 
 # Train the model
 print("Training the model...")
