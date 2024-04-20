@@ -44,7 +44,7 @@ class Sessions:
                         continue
                     bodydata = self.get_zigbee_bodydata(pcap)
                     if bodydata is None:
-                        continue
+                        raise Exception("Invalid body data.")
 
                     reverse_metadata = {
                         "srcId": metadata["dstId"],
@@ -108,6 +108,12 @@ class Sessions:
                             self.sessions["body"][index].append((statisticsDatas[i], packetDatas[i]))
                         else:
                             raise Exception("Invalid metadata.")
+    
+        print("Length of Metadata: ", len(self.sessions["metadata"]))
+        print("Length of Labels: ", len(self.sessions["label"]))
+        for i, metadata in enumerate(self.sessions["metadata"]):
+            print(" >> Metadata " + str(i) + ": " + str(metadata))
+            print(" >> Length of Body " + str(i) + ": " + str(len(self.sessions["body"][i])))
                     
     def save(self):
         with open(os.path.join(self.sessions_path, "sessions.json"), "w") as f:
@@ -162,7 +168,8 @@ class Sessions:
             "payload": [],
             "capturedLength": [],
             "direction": [],
-            "deltaTime": []
+            "deltaTime": [],
+            "protocol": "Zigbee"
         }
         last_sTime = None
         last_rTime = None
@@ -257,7 +264,8 @@ class Sessions:
                 "payload": [],
                 "capturedLength": [],
                 "direction": [],
-                "deltaTime": []
+                "deltaTime": [],
+                "protocol": []
             }
             statisticsData = {
                 "sPackets": None,
@@ -349,6 +357,7 @@ class Sessions:
                 packetData["capturedLength"].append(length)
                 packetData["direction"].append(direction)
                 packetData["payload"].append(None)
+                packetData["protocol"].append("IEEE 802.15.4")
 
             statisticsData["sMinSize"] = min(s_lengths) if s_lengths else None
             statisticsData["rMinSize"] = min(r_lengths) if r_lengths else None
@@ -418,26 +427,6 @@ class Sessions:
                         test["label"].append(cur_label)
             else:
                 continue
-            # if self.sessions["label"][i] not in label:
-            #     label.append(self.sessions["label"][i])
-            #     label_count = self.sessions["label"].count(self.sessions["label"][i])
-            #     train_count = int(label_count * 0.6)
-            #     test_count = label_count - train_count
-
-            #     label_idxs = [j for j, x in enumerate(self.sessions["label"]) if x == self.sessions["label"][i]]
-                
-            #     # randomly select 60% of the label indices
-            #     train_idxs = np.random.choice(label_idxs, train_count, replace=False)
-            #     test_idxs = [j for j in label_idxs if j not in train_idxs]
-
-            #     for idx in train_idxs:
-            #         train["body"].append(self.sessions["body"][idx])
-            #         train["label"].append(self.sessions["label"][idx])
-            #     for idx in test_idxs:
-            #         test["body"].append(self.sessions["body"][idx])
-            #         test["label"].append(self.sessions["label"][idx])
-            # else:
-            #     continue
 
         self.sessions["train"] = train
         self.sessions["test"] = test
