@@ -422,17 +422,17 @@ class Sessions:
                 labels.append(label)
 
                 for j, s in enumerate(self.sessions["session"]):
-                    if s.label == label:
+                    if s["label"] == label:
                         idxs.append(j)
 
                 train_idxs = np.random.choice(idxs, round(len(idxs)*0.6), replace=False)
                 test_idxs = [j for j in idxs if j not in train_idxs]
 
                 for idx in train_idxs:
-                    train["body"].append(body)
+                    train["body"].append(self.sessions["session"][idx]["body"])
                     train["label"].append(label)
                 for idx in test_idxs:
-                    test["body"].append(body)
+                    test["body"].append(self.sessions["session"][idx]["body"])
                     test["label"].append(label)
             else:
                 continue
