@@ -22,8 +22,7 @@ try:
     else:
         sessions.load()
         print("Sessions loaded.")
-        print("Length of Metadata: ", len(sessions.sessions["session"].metadata))
-        print("Length of Label: ", len(sessions.sessions["session"].label))
+        print("Length of Session: ", len(sessions.sessions["session"]))
 except:
     raise Exception("Sessions file or raw files are not found or corrupted.")
 
