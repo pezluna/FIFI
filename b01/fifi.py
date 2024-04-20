@@ -30,11 +30,7 @@ except:
 # Split sessions into train and test
 sessions.split_train_test()
 print("Train and test data split completed.")
-print("Length of Train Data: ", len(sessions.sessions["train"]["body"]))
-print("Length of Test Data: ", len(sessions.sessions["test"]["body"]))
-
-print("Label in Train Data: ", set(sessions.sessions["train"]["label"]))
-print("Label in Test Data: ", set(sessions.sessions["test"]["label"]))
+print()
 
 # Train the model
 print("Training the model...")

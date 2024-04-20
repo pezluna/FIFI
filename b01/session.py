@@ -396,51 +396,89 @@ class Sessions:
         return metadatas, statisticsDatas, packetDatas
     
     def split_train_test(self):
-        # Splitting the data into train and test, 60% train and 40% test per each label
+        # Splitting the data into train and test, 60% train and 40% test
         train = {"body": [], "label": []}
         test = {"body": [], "label": []}
-        label = []
-        for i, metadata in enumerate(self.sessions["metadata"]):
-            cur_label = self.sessions["label"][i]
+        labels = []
 
-            if cur_label not in label:
-                print("Processing label " + cur_label + "...")
-                label.append(cur_label)
-                label_count = self.sessions["label"].count(cur_label)
-                
-                if label_count == 1:
-                    tmp = [t for t in range(len(self.sessions["body"][i]))]
-                    print("label: " + cur_label + ", count: " + str(len(tmp)) + ", tmp: " + str(tmp))
-                    print(self.sessions["body"][i])
-                    train_idxs = np.random.choice(tmp, round(len(self.sessions["body"][i])*0.6), replace=False)
-                    test_idxs = [t for t in tmp if t not in train_idxs]
+        for i, session in enumerate(self.sessions["session"]):
+            print("Processing session " + str(i) + "...")
 
-                    for idx in train_idxs:
-                        train["body"].append(self.sessions["body"][idx])
-                        train["label"].append(cur_label)
-                    for idx in test_idxs:
-                        test["body"].append(self.sessions["body"][idx])
-                        test["label"].append(cur_label)
-                else:
-                    train_count = int(label_count * 0.6)
-                    test_count = label_count - train_count
+            metadata = session.metadata
+            body = session.body
+            label = session.label
 
-                    label_idxs = [j for j, x in enumerate(self.sessions["label"]) if x == cur_label]
+            idxs = []
 
-                    train_idxs = np.random.choice(label_idxs, train_count, replace=False)
-                    test_idxs = [j for j in label_idxs if j not in train_idxs]
+            print("Metadata: ", metadata)
+            print("Label: ", label)
 
-                    for idx in train_idxs:
-                        train["body"].append(self.sessions["body"][idx])
-                        train["label"].append(cur_label)
-                    for idx in test_idxs:
-                        test["body"].append(self.sessions["body"][idx])
-                        test["label"].append(cur_label)
+            if label not in labels:
+                labels.append(label)
+
+                for j, s in enumerate(self.sessions["session"]):
+                    if s.label == label:
+                        idxs.append(j)
+
+                train_idxs = np.random.choice(idxs, round(len(idxs)*0.6), replace=False)
+                test_idxs = [j for j in idxs if j not in train_idxs]
+
+                for idx in train_idxs:
+                    train["body"].append(body)
+                    train["label"].append(label)
+                for idx in test_idxs:
+                    test["body"].append(body)
+                    test["label"].append(label)
             else:
                 continue
 
         self.sessions["train"] = train
         self.sessions["test"] = test
+        # # Splitting the data into train and test, 60% train and 40% test per each label
+        # train = {"body": [], "label": []}
+        # test = {"body": [], "label": []}
+        # label = []
+        # for i, metadata in enumerate(self.sessions["metadata"]):
+        #     cur_label = self.sessions["label"][i]
+
+        #     if cur_label not in label:
+        #         print("Processing label " + cur_label + "...")
+        #         label.append(cur_label)
+        #         label_count = self.sessions["label"].count(cur_label)
+                
+        #         if label_count == 1:
+        #             tmp = [t for t in range(len(self.sessions["body"][i]))]
+        #             print("label: " + cur_label + ", count: " + str(len(tmp)) + ", tmp: " + str(tmp))
+        #             print(self.sessions["body"][i])
+        #             train_idxs = np.random.choice(tmp, round(len(self.sessions["body"][i])*0.6), replace=False)
+        #             test_idxs = [t for t in tmp if t not in train_idxs]
+
+        #             for idx in train_idxs:
+        #                 train["body"].append(self.sessions["body"][idx])
+        #                 train["label"].append(cur_label)
+        #             for idx in test_idxs:
+        #                 test["body"].append(self.sessions["body"][idx])
+        #                 test["label"].append(cur_label)
+        #         else:
+        #             train_count = int(label_count * 0.6)
+        #             test_count = label_count - train_count
+
+        #             label_idxs = [j for j, x in enumerate(self.sessions["label"]) if x == cur_label]
+
+        #             train_idxs = np.random.choice(label_idxs, train_count, replace=False)
+        #             test_idxs = [j for j in label_idxs if j not in train_idxs]
+
+        #             for idx in train_idxs:
+        #                 train["body"].append(self.sessions["body"][idx])
+        #                 train["label"].append(cur_label)
+        #             for idx in test_idxs:
+        #                 test["body"].append(self.sessions["body"][idx])
+        #                 test["label"].append(cur_label)
+        #     else:
+        #         continue
+
+        # self.sessions["train"] = train
+        # self.sessions["test"] = test
 
     def get_train_test_data(self):
         x_train = []
