@@ -126,9 +126,9 @@ class Sessions:
                             
                             self.sessions["session"].append(Session(metadata, [(statisticsDatas[i], packetDatas[i])], l))
                     
-    def save(self):
+    def save(self, filename="sessions.json"):
         session_data = [session.to_dict() for session in self.sessions["session"]]
-        with open(os.path.join(self.sessions_path, "sessions.json"), "w") as f:
+        with open(os.path.join(self.sessions_path, filename), "w") as f:
             json.dump({"session": session_data, "train":self.sessions["train"], "test":self.sessions["test"]}, f, indent=4)
 
     def get_zigbee_metadata(self, pcap):
@@ -201,19 +201,21 @@ class Sessions:
                 currentTime = float(pkt.sniff_timestamp)
                 direction = 0 if srcId == pkt.wpan.src16 else 1
 
-                packetData["rawTime"].append(currentTime)
-                packetData["rawLength"].append(pkt.length)
-                packetData["payload"].append(pkt.get_raw_packet().decode("utf-8", errors="replace"))
-                packetData["capturedLength"].append(pkt.captured_length) if pkt.captured_length is not None else packetData["capturedLength"].append(pkt.length)
-                packetData["direction"].append(direction)
-                packetData["protocol"].append("Zigbee")
+                if i < 8:
+                    packetData["rawTime"].append(currentTime)
+                    packetData["rawLength"].append(pkt.length)
+                    packetData["payload"].append(pkt.get_raw_packet().decode("utf-8", errors="replace"))
+                    packetData["capturedLength"].append(pkt.captured_length) if pkt.captured_length is not None else packetData["capturedLength"].append(pkt.length)
+                    packetData["direction"].append(direction)
+                    packetData["protocol"].append("Zigbee")
 
                 if direction == 0:
                     s_lengths.append(pkt.length)
                     if last_sTime is not None:
                         interval = currentTime - last_sTime
                         s_intervals.append(interval)
-                        packetData["deltaTime"].append(interval)
+                        if i < 8:
+                            packetData["deltaTime"].append(interval)
                     else:
                         pass
                     last_sTime = currentTime
@@ -222,10 +224,19 @@ class Sessions:
                     if last_rTime is not None:
                         interval = currentTime - last_rTime
                         r_intervals.append(interval)
-                        packetData["deltaTime"].append(interval)
+                        if i < 8:
+                            packetData["deltaTime"].append(interval)
                     else:
                         pass
                     last_rTime = currentTime
+
+        packetData["deltaTime"] = [0] + packetData["deltaTime"]            
+        if i < 8:
+            packetData["deltaTime"].extend([0] * (8 - len(packetData["deltaTime"])))
+            packetData["direction"].extend([1] * (8 - len(packetData["direction"])))
+            packetData["protocol"].extend(["Zigbee"] * (8 - len(packetData["protocol"])))
+            packetData["rawLength"].extend([0] * (8 - len(packetData["rawLength"])))
+            packetData["capturedLength"].extend([0] * (8 - len(packetData["capturedLength"])))
 
         # Calculating statistics
         statisticsData["sPackets"] = len(s_lengths)
@@ -440,13 +451,6 @@ class Sessions:
                 for idx in test_idxs:
                     test["body"].append(body[idx])
                     test["label"].append(label)
-
-                # for idx in train_idxs:
-                #     train["body"].append(self.sessions["session"][i]["body"][idx])
-                #     train["label"].append(label)
-                # for idx in test_idxs:
-                #     test["body"].append(self.sessions["session"][i]["body"][idx])
-                #     test["label"].append(label)
 
         self.sessions["train"] = train
         self.sessions["test"] = test
