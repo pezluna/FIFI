@@ -12,6 +12,13 @@ class Session:
         self.metadata = metadata
         self.body = body
         self.label = label
+    
+    def to_dict(self):
+        return {
+            "metadata": self.metadata,
+            "body": self.body,
+            "label": self.label
+        }
 
 class Sessions:
     def __init__(self):
@@ -120,8 +127,9 @@ class Sessions:
                             self.sessions["session"].append(Session(metadata, [(statisticsDatas[i], packetDatas[i])], l))
                     
     def save(self):
+        session_data = [session.to_dict() for session in self.sessions["session"]]
         with open(os.path.join(self.sessions_path, "sessions.json"), "w") as f:
-            json.dump(self.sessions, f)
+            json.dump({"session": session_data, "train":self.sessions["train"], "test":self.sessions["test"]}, f, indent=4)
 
     def get_zigbee_metadata(self, pcap):
         metadata = {}

@@ -42,9 +42,6 @@ print("Training the model...")
 branch_1 = HeaderModel()
 branch_2 = StatsModel()
 
-branch_1.train(sessions.sessions, label.labels)
-branch_2.train(sessions.sessions, label.labels)
-
 # Ensemble Model
 # Need to implement the ensemble model
 ensemble_model = EnsembleModel(branch_1, branch_2)
@@ -55,9 +52,5 @@ print("Saving the model...")
 branch_1.save()
 branch_2.save()
 ensemble_model.save()
-
-# Test the model
-branch_1.test(sessions.sessions, label.labels)
-branch_2.test(sessions.sessions, label.labels)
 
 print("Model training and testing completed.")
