@@ -404,9 +404,9 @@ class Sessions:
         for i, session in enumerate(self.sessions["session"]):
             print("Processing session " + str(i) + "...")
 
-            metadata = session.metadata
-            body = session.body
-            label = session.label
+            metadata = session["session"].metadata
+            body = session["session"].body
+            label = session["session"].label
 
             idxs = []
 
