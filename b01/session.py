@@ -400,6 +400,20 @@ class Sessions:
             statisticsData["sVarInterval"] = np.var(s_intervals) if s_intervals else None
             statisticsData["rVarInterval"] = np.var(r_intervals) if r_intervals else None
 
+            packetData["deltaTime"] = [0] + packetData["deltaTime"]
+            packetData["direction"] = packetData[:8]
+            packetData["protocol"] = packetData[:8]
+            packetData["rawLength"] = packetData[:8]
+            packetData["capturedLength"] = packetData[:8]
+            packetData["deltaTime"] = packetData[:8]
+
+            if len(packetData["protocol"]) < 8:
+                packetData["direction"].extend([1] * (8 - len(packetData["direction"])))
+                packetData["protocol"].extend(["TCP/IP"] * (8 - len(packetData["protocol"])))
+                packetData["rawLength"].extend([0] * (8 - len(packetData["rawLength"])))
+                packetData["capturedLength"].extend([0] * (8 - len(packetData["capturedLength"])))
+                packetData["deltaTime"].extend([0] * (8 - len(packetData["deltaTime"])))
+
             metadatas.append(metadata)
             statisticsDatas.append(statisticsData)
             packetDatas.append(packetData)
