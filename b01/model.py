@@ -33,25 +33,19 @@ class PacketModel:
     def __init__(self, mode, model='cnn'):
         self.mode = mode
         if model == 'cnn':
-            if mode == 'fingerprint':
-                self.model = Sequential([
-                    Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(8, 5)),
-                    BatchNormalization(),
-                    MaxPooling1D(pool_size=2),
-                    Flatten(),
-                    Dropout(0.4),
-                    Dense(10, activation='softmax')
-                ])
-            else:
-                self.model = Sequential([
-                    Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(8, 5)),
-                    BatchNormalization(),
-                    MaxPooling1D(pool_size=2),
-                    Flatten(),
-                    Dense(10, activation='relu'),
-                    Dropout(0.4),
-                    Dense(4, activation='softmax')
-                ])
+            num_classes = 4 if mode == 'botnet' else 10
+            self.model = Sequential([
+                Conv1D(32, 3, activation='relu', input_shape=(8, 5)),
+                BatchNormalization(),
+                MaxPooling1D(2),
+                Conv1D(64, 3, activation='relu'),
+                BatchNormalization(),
+                MaxPooling1D(2),
+                Flatten(),
+                Dense(128, activation='relu'),
+                Dropout(0.5),
+                Dense(num_classes, activation='softmax')
+            ])
         else:
             raise Exception("Invalid model type.")
 
