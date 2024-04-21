@@ -45,7 +45,7 @@ class PacketModel:
                 Flatten(),
                 Dense(64, activation='relu'),
                 Dense(16, activation='relu'),
-                Dropout(0.5),
+                Dropout(0.2),
                 Dense(num_classes, activation='softmax')
             ])
             self.model.compile(
