@@ -60,7 +60,7 @@ packet_keras_model = KerasClassifier(
 ensemble = EnsembleClassifier(models={
     'packet': packet_model.model,
     'stats': stats_model.model
-})
+}, mode=mode)
 
 ensemble.fit(
     {

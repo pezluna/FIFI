@@ -220,8 +220,10 @@ class StatsModel:
         return X_train_final, y_train_filtered, X_test_final
     
 class EnsembleClassifier(BaseEstimator, ClassifierMixin):
-    def __init__(self, models):
+    def __init__(self, models, mode):
         self.models = models
+        self.mode = mode
+        self.num_classes = 4 if mode == 'botnet' else 10
     
     def fit(self, X, y):
         # 각 모델에 대한 데이터와 타깃을 받아 모델 별로 학습을 수행
