@@ -43,7 +43,6 @@ class PacketModel:
                 Flatten(),
                 Dense(64, activation='relu'),
                 Dense(32, activation='relu'),
-                Dropout(0.2),
                 Dense(16, activation='relu'),
                 Dropout(0.2),
                 Dense(num_classes, activation='softmax')
@@ -212,7 +211,7 @@ class StatsModel:
         indices = []
         for i, x in enumerate(protocol):
             if tmp in x:
-                indices.append(i)
+                indices.extend([i] * len(x))
 
         X_test_filtered = {key: X_test_normalized[key][indices] for key in X_test_normalized}
 
