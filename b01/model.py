@@ -1,7 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.base import BaseEstimator, ClassifierMixin
 from keras.models import Sequential
-from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
+from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization, LSTM
 from xgboost import XGBClassifier
 import numpy as np
 
@@ -53,8 +53,18 @@ class PacketModel:
                 loss='sparse_categorical_crossentropy',
                 metrics=['accuracy']
             )
-        else:
-            raise Exception("Invalid model type.")
+        elif model == 'lstm':
+            num_classes = 4 if mode == 'botnet' else 13
+            self.model = Sequential([
+                LSTM(32, input_shape=(8, 5)),
+                Dense(16, activation='relu'),
+                Dense(num_classes, activation='softmax')
+            ])
+            self.model.compile(
+                optimizer='adam',
+                loss='sparse_categorical_crossentropy',
+                metrics=['accuracy']
+            )
 
     def rearrange(self, X):
         tmp = []
