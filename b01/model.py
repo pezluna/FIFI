@@ -174,6 +174,7 @@ class StatsModel:
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
             print(indices)
+            print(protocol)
             print(tmp)
             return
 
