@@ -165,8 +165,6 @@ class StatsModel:
         indices = []
         tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
 
-        print(protocol)
-
         for i, x in enumerate(protocol):
             if x[0] == tmp:
                 indices.append(i)
@@ -180,10 +178,10 @@ class StatsModel:
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
             return
-
-        X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
-        X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
-
+        
+        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
+        X_test_final = np.array([X_test_normalized[key] for key in X_test_normalized]).transpose()
+        
         self.model.fit(X_train_final, y_train_filtered)
         
         return self.model.predict(X_test_final)
