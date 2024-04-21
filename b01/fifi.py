@@ -44,3 +44,9 @@ packet_model = PacketModel(mode=mode, model='cnn')
 
 pred_y = packet_model.train(X_train, y_train, X_test)
 print("Packet model trained.")
+
+# Stats model
+stats_model = StatsModel(model='rf')
+
+pred_y = stats_model.train(X_train, y_train, X_test)
+print("Stats model trained.")

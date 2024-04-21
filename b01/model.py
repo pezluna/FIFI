@@ -101,10 +101,60 @@ class PacketModel:
         return self.model.predict(X_test_final)
 
 class StatsModel:
-    def __init__(self, model = 'rf'):
+    def __init__(self, mode, model='rf'):
+        self.mode = mode
         if model == 'rf':
             self.model = RandomForestClassifier()
         elif model == 'xgb':
             self.model = XGBClassifier()
         else:
             raise Exception("Invalid model type.")
+        
+    def preprocess(self, X):
+        tmp = []
+        for x in X:
+            try:
+                tmp.append(x[0][1])
+            except:
+                tmp.append(x[1])
+        X = tmp
+
+        return X
+    
+    def normalize(self, X):
+        X = transpose(X)
+        return {
+            "rawLength": np.minimum(np.array(X["rawLength"]) * 0.001, 1),
+            "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.001, 1),
+            "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
+            "deltaTime": np.minimum(np.array(X["deltaTime"]) * 0.5, 1),
+            "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
+        }
+    
+    def train(self, X_train, y_train, X_test):
+        X_train_preprocessed = self.preprocess(X_train)
+        X_test_preprocessed = self.preprocess(X_test)
+
+        X_train_normalized = self.normalize(X_train_preprocessed)
+        X_test_normalized = self.normalize(X_test_preprocessed)
+
+        indices = []
+        tmp = 1 if self.mode == 'botnet' else 0
+
+        for i, x in enumerate(X_train_normalized["protocol"]):
+            if x.all() == tmp:
+                indices.append(i)
+
+        X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
+        y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
+
+        if len(y_train_filtered) == 0:
+            print("No data found for the given mode. Check the mode and data.")
+            return
+
+        X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+        X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+
+        self.model.fit(X_train_final, y_train_filtered)
+        
+        return self.model.predict(X_test_final)
