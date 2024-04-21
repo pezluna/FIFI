@@ -148,50 +148,58 @@ class StatsModel:
         }
     
     def train(self, X_train, y_train, X_test):
-        X_train_preprocessed = self.preprocess(X_train)
-        X_test_preprocessed = self.preprocess(X_test)
-
-        protocol = []
+        # 결측치 확인
         for x in X_train:
-            try:
-                protocol.append(x[0][1]["protocol"])
-            except:
-                protocol.append(x[1]["protocol"])
+            for key in x:
+                if None in x[key]:
+                    print(f"Missing value in {key} for {x}")
+                    return
+    
+    # def train(self, X_train, y_train, X_test):
+    #     X_train_preprocessed = self.preprocess(X_train)
+    #     X_test_preprocessed = self.preprocess(X_test)
 
-        X_train_normalized = self.normalize(X_train_preprocessed)
-        X_test_normalized = self.normalize(X_test_preprocessed)
+    #     protocol = []
+    #     for x in X_train:
+    #         try:
+    #             protocol.append(x[0][1]["protocol"])
+    #         except:
+    #             protocol.append(x[1]["protocol"])
 
-        indices = []
-        tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
+    #     X_train_normalized = self.normalize(X_train_preprocessed)
+    #     X_test_normalized = self.normalize(X_test_preprocessed)
+
+    #     indices = []
+    #     tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
         
-        for i, x in enumerate(protocol):
-            if tmp in x:
-                indices.append(i)
+    #     for i, x in enumerate(protocol):
+    #         if tmp in x:
+    #             indices.append(i)
 
-        X_train_filtered = {key: np.array(X_train_normalized[key])[indices] for key in X_train_normalized}
-        X_test_filtered = {key: np.array(X_test_normalized[key])[indices] for key in X_test_normalized}
+    #     X_train_filtered = {key: np.array(X_train_normalized[key])[indices] for key in X_train_normalized}
+    #     X_test_filtered = {key: np.array(X_test_normalized[key])[indices] for key in X_test_normalized}
 
-        # 차원 추가 및 확인
-        for key in X_train_filtered:
-            if X_train_filtered[key].ndim == 1:
-                X_train_filtered[key] = np.expand_dims(X_train_filtered[key], axis=1)
-            if X_test_filtered[key].ndim == 1:
-                X_test_filtered[key] = np.expand_dims(X_test_filtered[key], axis=1)
-            print(f"{key} train shape: {X_train_filtered[key].shape}, test shape: {X_test_filtered[key].shape}")
+    #     # 차원 추가 및 확인
+    #     for key in X_train_filtered:
+    #         if X_train_filtered[key].ndim == 1:
+    #             X_train_filtered[key] = np.expand_dims(X_train_filtered[key], axis=1)
+    #         if X_test_filtered[key].ndim == 1:
+    #             X_test_filtered[key] = np.expand_dims(X_test_filtered[key], axis=1)
+    #         print(f"{key} train shape: {X_train_filtered[key].shape}, test shape: {X_test_filtered[key].shape}")
 
-        y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
+    #     y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
 
-        if len(y_train_filtered) == 0:
-            print("No data found for the given mode. Check the mode and data.")
-            return
+    #     if len(y_train_filtered) == 0:
+    #         print("No data found for the given mode. Check the mode and data.")
+    #         return
 
-        # 데이터 연결
-        try:
-            X_train_final = np.concatenate([X_train_filtered[key] for key in X_train_filtered], axis=1)
-            X_test_final = np.concatenate([X_test_filtered[key] for key in X_test_filtered], axis=1)
-        except Exception as e:
-            print(f"Error in concatenation: {str(e)}")
-            return
+    #     # 데이터 연결
+    #     try:
+    #         X_train_final = np.concatenate([X_train_filtered[key] for key in X_train_filtered], axis=1)
+    #         X_test_final = np.concatenate([X_test_filtered[key] for key in X_test_filtered], axis=1)
+    #     except Exception as e:
+    #         print(f"Error in concatenation: {str(e)}")
+    #         return
 
-        self.model.fit(X_train_final, y_train_filtered)
-        return self.model.predict(X_test_final)
+    #     self.model.fit(X_train_final, y_train_filtered)
+    #     return self.model.predict(X_test_final)
