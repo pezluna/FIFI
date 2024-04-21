@@ -44,12 +44,12 @@ print("Training the model...")
 # Packet model
 packet_model = PacketModel(mode=mode, model='cnn')
 packet_X_train, packet_y_train, packet_X_test = packet_model.preprocess(X_train, y_train, X_test)
+packet_y_train = np.array(packet_y_train)
 
 # Stats model
 stats_model = StatsModel(mode=mode, model='rf')
 stats_X_train, stats_y_train, stats_X_test = stats_model.preprocess(X_train, y_train, X_test)
-
-print(set(packet_y_train))
+stats_y_train = np.array(stats_y_train)
 
 packet_keras_model = KerasClassifier(
     build_fn=lambda: packet_model.model,

@@ -113,8 +113,8 @@ class PacketModel:
 
         X_test_filtered = {key: X_test_normalized[key][indices] for key in X_test_normalized}
         
-        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
-        X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered]).transpose()
+        X_train_final = np.stack([np.array(X_train_filtered[key]) for key in X_train_filtered], axis=-1)
+        X_test_final = np.stack([np.array(X_test_filtered[key]) for key in X_test_filtered], axis=-1)
         
         return X_train_final, y_train_filtered, X_test_final
 
@@ -232,8 +232,8 @@ class StatsModel:
             print("No data found for the given mode. Check the mode and data.")
             return
         
-        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered])
-        X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered])
+        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
+        X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered]).transpose()
 
         return X_train_final, y_train_filtered, X_test_final
     
@@ -247,7 +247,7 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         # 각 모델에 대한 데이터와 타깃을 받아 모델 별로 학습을 수행
         print("Packet data shape:", X['packet'].shape)
         print("Stats data shape:", X['stats'].shape)
-
+        
         self.models['packet'].fit(X['packet'], y)
         self.models['stats'].fit(X['stats'], y)
         return self
