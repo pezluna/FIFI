@@ -200,8 +200,7 @@ class Sessions:
         r_intervals = []
         srcId = None
 
-        if i == 0:
-            return None
+        i = 0
 
         for i, pkt in enumerate(pcap):
             if 'ZBEE_NWK' in pkt.highest_layer:
