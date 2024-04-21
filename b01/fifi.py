@@ -49,6 +49,8 @@ packet_X_train, packet_y_train, packet_X_test = packet_model.preprocess(X_train,
 stats_model = StatsModel(mode=mode, model='rf')
 stats_X_train, stats_y_train, stats_X_test = stats_model.preprocess(X_train, y_train, X_test)
 
+print(set(packet_y_train))
+
 packet_keras_model = KerasClassifier(
     build_fn=lambda: packet_model.model,
     epochs = 50,

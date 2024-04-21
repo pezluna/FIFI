@@ -192,7 +192,6 @@ class StatsModel:
             if tmp in x:
                 indices.append(i)
 
-
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
 
