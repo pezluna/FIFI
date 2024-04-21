@@ -29,9 +29,10 @@ def transpose(X):
     return transposed_data
 
 class PacketModel:
-    def __init__(self, purpose, model='cnn'):
+    def __init__(self, mode, model='cnn'):
+        self.mode = mode
         if model == 'cnn':
-            if purpose == 'fingerprint':
+            if mode == 'fingerprint':
                 self.model = Sequential([
                     Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(8, 5)),
                     MaxPooling1D(pool_size=2),
@@ -80,6 +81,21 @@ class PacketModel:
         }
     
     def train(self, X_train, y_train, X_test):
+        train_indices = []
+        test_indices = []
+
+        if self.mode == 'fingerprint':
+            train_indices = [i for i, x in enumerate(X_train) if x['protocol'] == 'Zigbee']
+            test_indices = [i for i, x in enumerate(X_test) if x['protocol'] == 'Zigbee']
+        else:
+            train_indices = [i for i, x in enumerate(X_train) if x['protocol'] == 'TCP/IP']
+            test_indices = [i for i, x in enumerate(X_test) if x['protocol'] == 'TCP/IP']
+
+        X_train = [X_train[i] for i in train_indices]
+        y_train = [y_train[i] for i in train_indices]
+
+        X_test = [X_test[i] for i in test_indices]
+
         X_train_normalized = self.normalize(X_train)
         X_test_normalized = self.normalize(X_test)
 

@@ -3,10 +3,15 @@ from session import Sessions
 from model import PacketModel, StatsModel
 
 isReset = False
+mode = None
 try:
     if len(sys.argv) == 2:
         if sys.argv[1] == "R" or sys.argv[1] == "r":
             isReset = True
+        elif sys.argv[1] == "F" or sys.argv[1] == "f":
+            mode = "fingerprint"
+        elif sys.argv[1] == "B" or sys.argv[1] == "b":
+            mode = "botnet"
 except:
     raise Exception("Invalid argument. Please provide a valid argument.")
 
@@ -35,7 +40,7 @@ print("Train and test data split completed.")
 print("Training the model...")
 
 # Packet model
-packet_model = PacketModel(purpose='fingerprint', model='cnn')
+packet_model = PacketModel(purpose=mode, model='cnn')
 
 pred_y = packet_model.train(X_train, y_train, X_test)
 print("Packet model trained.")
