@@ -15,10 +15,10 @@ embedding = {
     "SmartThings Button": 7,
     "SmartThings Smart Bulb": 8,
     "Sonoff Smart Plug": 9,
-    "benign": 10,
-    "mirai": 11,
-    "qbot": 12,
-    "kaiten": 13
+    "benign": 0,
+    "mirai": 1,
+    "qbot": 2,
+    "kaiten": 3
 }
 
 def transpose(X):
