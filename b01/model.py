@@ -115,7 +115,7 @@ class PacketModel:
         
         X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
         X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered]).transpose()
-
+        
         return X_train_final, y_train_filtered, X_test_final
 
 class StatsModel:
@@ -270,16 +270,24 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         print("Packet predictions shape:", packet_predictions.shape)
         print("Stats predictions shape:", stats_predictions.shape)
 
-        # 동일한 샘플 수인지 확인
-        if len(packet_predictions) != len(stats_predictions):
-            raise ValueError("Different number of samples in packet and stats data.")
+        final_predictions = self.calculate_final_predictions(packet_predictions, stats_predictions)
+        return final_predictions
+    
+    def calculate_final_predictions(self, packet_probs, stats_probs):
+        final_predictions = []
+        for packet_prob, stats_prob in zip(packet_probs, stats_probs):
+            packet_label = np.argmax(packet_prob)
+            stats_label = np.argmax(stats_prob)
+            packet_max_prob = packet_prob[packet_label]
+            stats_max_prob = stats_prob[stats_label]
 
-        # 확률 벡터가 올바른 차원인지 확인하고 조정
-        if packet_predictions.ndim > 2:
-            packet_predictions = packet_predictions.mean(axis=1)
-        
-        # 평균 확률 계산
-        average_predictions = np.mean([packet_predictions, stats_predictions], axis=0)
-        
-        # 최종 예측
-        return np.argmax(average_predictions, axis=1)
+            if packet_label == stats_label:
+                # 같은 레이블일 경우 평균 확률 사용
+                final_prob = (packet_max_prob + stats_max_prob) / 2
+            else:
+                # 다른 레이블일 경우
+                cross_prob = (packet_prob[stats_label] + stats_max_prob) / 2
+                final_prob = max(packet_max_prob, cross_prob)
+
+            final_predictions.append(np.argmax([final_prob]))
+        return final_predictions
