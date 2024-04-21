@@ -152,7 +152,6 @@ class StatsModel:
         X_test_preprocessed = self.preprocess(X_test)
 
         protocol = []
-
         for x in X_train:
             try:
                 protocol.append(x[0][1]["protocol"])
@@ -166,19 +165,60 @@ class StatsModel:
         tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
         
         for i, x in enumerate(protocol):
-            if x[0] == tmp:
+            if x == tmp:
                 indices.append(i)
 
-        X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
+        X_train_filtered = {key: np.array(X_train_normalized[key])[indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
 
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
             return
 
-        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose((1, 2, 0))
-        X_test_final = np.array([X_test_normalized[key] for key in X_test_normalized]).transpose((1, 2, 0))
+        # 각 키에 해당하는 배열이 실제로 2차원인지 확인 후 조정
+        if all(len(data.shape) == 2 for data in X_train_filtered.values()):
+            X_train_final = np.stack([X_train_filtered[key] for key in X_train_filtered], axis=-1)
+            X_test_final = np.stack([X_test_normalized[key] for key in X_test_normalized], axis=-1)
+        else:
+            print("Data dimension error: expected 2D arrays for stacking.")
+            return
 
         self.model.fit(X_train_final, y_train_filtered)
         
         return self.model.predict(X_test_final)
+
+    # def train(self, X_train, y_train, X_test):
+    #     X_train_preprocessed = self.preprocess(X_train)
+    #     X_test_preprocessed = self.preprocess(X_test)
+
+    #     protocol = []
+
+    #     for x in X_train:
+    #         try:
+    #             protocol.append(x[0][1]["protocol"])
+    #         except:
+    #             protocol.append(x[1]["protocol"])
+
+    #     X_train_normalized = self.normalize(X_train_preprocessed)
+    #     X_test_normalized = self.normalize(X_test_preprocessed)
+
+    #     indices = []
+    #     tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
+        
+    #     for i, x in enumerate(protocol):
+    #         if x[0] == tmp:
+    #             indices.append(i)
+
+    #     X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
+    #     y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
+
+    #     if len(y_train_filtered) == 0:
+    #         print("No data found for the given mode. Check the mode and data.")
+    #         return
+
+    #     X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose((1, 2, 0))
+    #     X_test_final = np.array([X_test_normalized[key] for key in X_test_normalized]).transpose((1, 2, 0))
+
+    #     self.model.fit(X_train_final, y_train_filtered)
+        
+    #     return self.model.predict(X_test_final)
