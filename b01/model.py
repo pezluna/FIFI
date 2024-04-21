@@ -165,7 +165,7 @@ class StatsModel:
         tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
         
         for i, x in enumerate(protocol):
-            if x == tmp:
+            if tmp in x:
                 indices.append(i)
 
         X_train_filtered = {key: np.array(X_train_normalized[key])[indices] for key in X_train_normalized}
