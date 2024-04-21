@@ -173,6 +173,8 @@ class StatsModel:
 
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
+            print(indices)
+            print(tmp)
             return
 
         # 각 키에 해당하는 배열이 실제로 2차원인지 확인 후 조정
