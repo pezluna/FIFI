@@ -40,7 +40,7 @@ print("Train and test data split completed.")
 print("Training the model...")
 
 # Packet model
-packet_model = PacketModel(purpose=mode, model='cnn')
+packet_model = PacketModel(mode=mode, model='cnn')
 
 pred_y = packet_model.train(X_train, y_train, X_test)
 print("Packet model trained.")
