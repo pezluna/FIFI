@@ -148,9 +148,6 @@ class StatsModel:
         }
     
     def check_NaN(self, X):
-        print("Type of X: ", type(X))
-        print(X)
-
         for x in X:
             for key, value in x.items():
                 if value is None:
@@ -176,14 +173,30 @@ class StatsModel:
         tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
         indices = []
 
-        for i, x in enumerate(X_train_normalized["protocol"]):
+        protocol = []
+        for x in X_train:
+            try:
+                protocol.append(x[0][1]["protocol"])
+            except:
+                protocol.append(x[1]["protocol"])
+
+        for i, x in enumerate(protocol):
             if tmp in x:
                 indices.append(i)
+
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
 
-        for i, x in enumerate(X_test_normalized["protocol"]):
+        protocol = []
+        for x in X_test:
+            try:
+                protocol.append(x[0][1]["protocol"])
+            except:
+                protocol.append(x[1]["protocol"])
+
+        indices = []
+        for i, x in enumerate(protocol):
             if tmp in x:
                 indices.append(i)
 
