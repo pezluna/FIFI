@@ -102,7 +102,8 @@ class PacketModel:
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
             return
-        
+
+        indices = []        
         for i, x in enumerate(X_test_normalized["protocol"]):
             if x.all() == tmp:
                 indices.append(i)
