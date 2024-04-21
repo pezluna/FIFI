@@ -165,6 +165,8 @@ class StatsModel:
         indices = []
         tmp = 1 if self.mode == 'botnet' else 0
 
+        print(protocol)
+
         for i, x in enumerate(protocol):
             if x == tmp:
                 indices.append(i)
