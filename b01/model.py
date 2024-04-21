@@ -1,6 +1,6 @@
 from sklearn.ensemble import VotingClassifier, RandomForestClassifier
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten
+from tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
 from xgboost import XGBClassifier
 import numpy as np
 from collections import Counter
@@ -36,17 +36,20 @@ class PacketModel:
             if mode == 'fingerprint':
                 self.model = Sequential([
                     Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(8, 5)),
+                    BatchNormalization(),
                     MaxPooling1D(pool_size=2),
                     Flatten(),
-                    Dense(10, activation='relu'),
+                    Dropout(0.2),
                     Dense(10, activation='softmax')
                 ])
             else:
                 self.model = Sequential([
                     Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(8, 5)),
+                    BatchNormalization(),
                     MaxPooling1D(pool_size=2),
                     Flatten(),
                     Dense(10, activation='relu'),
+                    Dropout(0.2),
                     Dense(4, activation='softmax')
                 ])
         else:
