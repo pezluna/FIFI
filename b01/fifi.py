@@ -57,10 +57,10 @@ packet_keras_model = KerasClassifier(
 )
 
 # Ensemble classifier
-ensemble = EnsembleClassifier(
+ensemble = EnsembleClassifier(models={
     packet_model.model,
     stats_model.model
-)
+})
 
 ensemble.fit(
     {
