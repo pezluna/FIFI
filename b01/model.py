@@ -244,6 +244,12 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         return self
     
     def predict(self, X):
+        # 차원 확인
+        print("Packet data shape:", X['packet'].shape)
+        print("Stats data shape:", X['stats'].shape)
+        if len(X['packet']) != len(X['stats']):
+            raise ValueError("Different number of samples in packet and stats data.")
+
         # 각 모델에서 확률 예측을 수행
         packet_predictions = self.models['packet'].predict(X['packet'])
         stats_predictions = self.models['stats'].predict_proba(X['stats'])
