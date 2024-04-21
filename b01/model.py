@@ -260,7 +260,7 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
             raise ValueError("Different number of samples in packet and stats data.")
 
         # 각 모델에서 확률 예측을 수행
-        packet_predictions = self.models['packet'].predict_proba(X['packet'])
+        packet_predictions = self.models['packet'].predict(X['packet'])
         stats_predictions = self.models['stats'].predict_proba(X['stats'])
 
         # 차원 확인
