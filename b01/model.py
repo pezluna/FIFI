@@ -45,6 +45,11 @@ class PacketModel:
                 Dropout(0.5),
                 Dense(num_classes, activation='softmax')
             ])
+            self.model.compile(
+                optimizer='adam',
+                loss='sparse_categorical_crossentropy',
+                metrics=['accuracy']
+            )
         else:
             raise Exception("Invalid model type.")
 
