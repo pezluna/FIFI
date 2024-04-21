@@ -229,12 +229,18 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         return self
     
     def predict(self, X):
-        # 각 모델의 예측 확률을 받아서 평균을 계산 (소프트 보팅)
-        packet_predictions = self.models['packet'].predict(X['packet'])  # 이제 predict를 사용
+        # 각 모델의 예측 확률을 받아서
+        packet_predictions = self.models['packet'].predict(X['packet'])
         stats_predictions = self.models['stats'].predict_proba(X['stats'])
         
+        # 출력을 확인하기 위한 로그
+        print("Packet Predictions Shape:", packet_predictions.shape)
+        print("Stats Predictions Shape:", stats_predictions.shape)
+        
         # 평균 확률 계산
+        if packet_predictions.ndim == 1:  # 클래스 레이블이 반환되는 경우
+            packet_predictions = np.eye(np.max(packet_predictions)+1)[packet_predictions]
+        
         average_predictions = np.mean([packet_predictions, stats_predictions], axis=0)
         
-        # 가장 높은 확률을 가진 클래스 인덱스를 반환
         return np.argmax(average_predictions, axis=1)
