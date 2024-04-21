@@ -168,21 +168,19 @@ class StatsModel:
             if tmp in x:
                 indices.append(i)
 
-        X_train_filtered = {key: np.array(X_train_normalized[key])[indices] for key in X_train_normalized}
+        X_train_filtered = {key: np.expand_dims(np.array(X_train_normalized[key])[indices], axis=1) for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
 
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
-            print(indices)
-            print(protocol)
-            print(tmp)
             return
 
+        # 이제 모든 데이터 배열은 2차원입니다 (예: (223, 1))
         if all(len(data.shape) == 2 for data in X_train_filtered.values()):
-            X_train_final = np.stack([X_train_filtered[key] for key in X_train_filtered], axis=-1)
-            X_test_final = np.stack([X_test_normalized[key] for key in X_test_normalized], axis=-1)
+            X_train_final = np.concatenate([X_train_filtered[key] for key in X_train_filtered], axis=1)
+            X_test_final = np.concatenate([X_test_normalized[key] for key in X_test_normalized], axis=1)
         else:
-            print("Data dimension error: expected 2D arrays for stacking.")
+            print("Data dimension error: expected 2D arrays for concatenation.")
             for key, data in X_train_filtered.items():
                 print(key, data.shape)
             return
