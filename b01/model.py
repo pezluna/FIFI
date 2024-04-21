@@ -27,9 +27,6 @@ class PacketModel:
     def normalize(self, X):
         tmp = []
         for x in X:
-            print("--------------------")
-            print(x)
-            print(type(x))
             try:
                 tmp.append(x[0][1])
             except:
@@ -37,10 +34,12 @@ class PacketModel:
         X = tmp
         X = transpose(X)
 
+        print(np.array(X["deltaTime"]))
+
         raw_length_normalized = np.minimum(np.array(X["rawLength"]) * 0.001, 1)
         captured_length_normalized = np.minimum(np.array(X["capturedLength"]) * 0.001, 1)
         direction_normalized = np.where(np.array(X["direction"]) == -1, 0, 1)
-        delta_time_normalized = np.minimum(np.array(X["deltaTime"]) * 0.5, 2)
+        delta_time_normalized = np.minimum(np.array(X["deltaTime"]) * 0.5, 1)
         protocol_normalized = np.where(np.array(X["protocol"]) == "TCP/IP", 0, 1)
 
         return {
