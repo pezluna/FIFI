@@ -226,6 +226,12 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         self.num_classes = 4 if mode == 'botnet' else 10
     
     def fit(self, X, y):
+        # X의 개수 확인
+        print("Packet data shape:", X['packet'].shape)
+        print("Stats data shape:", X['stats'].shape)
+        if len(X['packet']) != len(X['stats']):
+            raise ValueError("Different number of samples in packet and stats data.")
+
         # 각 모델에 대한 데이터와 타깃을 받아 모델 별로 학습을 수행
         self.models['packet'].fit(X['packet'], y)
         self.models['stats'].fit(X['stats'], y)
