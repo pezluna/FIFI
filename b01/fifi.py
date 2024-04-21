@@ -109,6 +109,7 @@ print("Accuracy: ", accuracy)
 # CNN
 
 stats_y_pred = stats_model.model.predict(stats_X_test)
+print(set(stats_y_pred))
 
 # Confusion Matrix
 from sklearn.metrics import confusion_matrix
