@@ -60,7 +60,7 @@ class Sessions:
                         continue
                     bodydata = self.get_zigbee_bodydata(pcap)
                     if bodydata is None:
-                        raise Exception("Invalid body data.")
+                        continue
 
                     reverse_metadata = {
                         "srcId": metadata["dstId"],
@@ -191,6 +191,7 @@ class Sessions:
         s_intervals = []
         r_intervals = []
         srcId = None
+        i = 0
 
         for i, pkt in enumerate(pcap):
             if 'ZBEE_NWK' in pkt.highest_layer:
@@ -230,7 +231,11 @@ class Sessions:
                         pass
                     last_rTime = currentTime
 
-        packetData["deltaTime"] = [0] + packetData["deltaTime"]            
+        packetData["deltaTime"] = [0] + packetData["deltaTime"]
+
+        if i == 0:
+            return None
+
         if i < 8:
             packetData["deltaTime"].extend([0] * (8 - len(packetData["deltaTime"])))
             packetData["direction"].extend([1] * (8 - len(packetData["direction"])))
