@@ -2,6 +2,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.base import BaseEstimator, ClassifierMixin
 from keras.models import Sequential
 from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
+from keras.utils import to_categorical
 from xgboost import XGBClassifier
 import numpy as np
 from collections import Counter
@@ -232,15 +233,12 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         # 각 모델의 예측 확률을 받아서
         packet_predictions = self.models['packet'].predict(X['packet'])
         stats_predictions = self.models['stats'].predict_proba(X['stats'])
-        
-        # 출력을 확인하기 위한 로그
-        print("Packet Predictions Shape:", packet_predictions.shape)
-        print("Stats Predictions Shape:", stats_predictions.shape)
-        
+
+        # 예측 결과를 동일한 클래스 수로 조정
+        packet_predictions = to_categorical(packet_predictions, num_classes=self.num_classes)
+        stats_predictions = to_categorical(np.argmax(stats_predictions, axis=1), num_classes=self.num_classes)
+
         # 평균 확률 계산
-        if packet_predictions.ndim == 1:  # 클래스 레이블이 반환되는 경우
-            packet_predictions = np.eye(np.max(packet_predictions)+1)[packet_predictions]
-        
         average_predictions = np.mean([packet_predictions, stats_predictions], axis=0)
         
         return np.argmax(average_predictions, axis=1)
