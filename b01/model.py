@@ -43,7 +43,10 @@ class PacketModel:
                 Conv1D(filters=64, kernel_size=3, activation='relu'),
                 Flatten(),
                 Dense(64, activation='relu'),
-                Dropout(0.5),
+                Dense(32, activation='relu'),
+                Dropout(0.2),
+                Dense(16, activation='relu'),
+                Dropout(0.2),
                 Dense(num_classes, activation='softmax')
             ])
             self.model.compile(
@@ -102,8 +105,6 @@ class PacketModel:
         for i, x in enumerate(X_test_normalized["protocol"]):
             if x.all() == tmp:
                 indices.append(i)
-
-        print("packet length", len(indices))
 
         X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
         X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
@@ -212,8 +213,6 @@ class StatsModel:
         for i, x in enumerate(protocol):
             if tmp in x:
                 indices.append(i)
-        
-        print("stats length", len(indices))
 
         X_test_filtered = {key: X_test_normalized[key][indices] for key in X_test_normalized}
 
@@ -252,6 +251,10 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         # 차원 확인
         print("Packet predictions shape:", packet_predictions.shape)
         print("Stats predictions shape:", stats_predictions.shape)
+
+        # 동일한 샘플 수인지 확인
+        if len(packet_predictions) != len(stats_predictions):
+            raise ValueError("Different number of samples in packet and stats data.")
 
         # 확률 벡터가 올바른 차원인지 확인하고 조정
         if packet_predictions.ndim > 2:
