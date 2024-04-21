@@ -91,6 +91,8 @@ class PacketModel:
         for i, x in enumerate(X_train_normalized["protocol"]):
             if x.all() == tmp:
                 indices.append(i)
+        
+        print("packet length" + len(indices))
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
@@ -165,7 +167,6 @@ class StatsModel:
                         x[key] = 1 if x["sPackets"] > 0 else 0
         
         return X
-
     
     def preprocess(self, X_train, y_train, X_test):
         X_train_preprocessed = self.rearrange(X_train)
@@ -191,6 +192,8 @@ class StatsModel:
         for i, x in enumerate(protocol):
             if tmp in x:
                 indices.append(i)
+        
+        print("stats length" + len(indices))
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
