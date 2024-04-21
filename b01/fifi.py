@@ -136,13 +136,13 @@ if final_y_test.dtype != predictions_rf.dtype:
 
 accuracy_rf = accuracy_score(final_y_test, predictions_rf)
 accuracy_xgb = accuracy_score(final_y_test, predictions_xgb)
+predictions_cnn = np.argmax(predictions_cnn, axis=1)
 accuracy_cnn = accuracy_score(final_y_test, predictions_cnn)
 accuracy_ensemble_rf = accuracy_score(final_y_test, predictions_ensemble_rf)
 accuracy_ensemble_xgb = accuracy_score(final_y_test, predictions_ensemble_xgb)
 
 print("Accuracy RF: ", accuracy_rf)
 print("Accuracy XGB: ", accuracy_xgb)
-predictions_cnn = np.argmax(predictions_cnn, axis=1)
 print("Accuracy CNN: ", accuracy_cnn)
 print("Accuracy Ensemble RF: ", accuracy_ensemble_rf)
 print("Accuracy Ensemble XGB: ", accuracy_ensemble_xgb)
