@@ -163,7 +163,7 @@ class StatsModel:
         X_test_normalized = self.normalize(X_test_preprocessed)
 
         indices = []
-        tmp = 1 if self.mode == 'botnet' else 0
+        tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
 
         print(protocol)
 
