@@ -40,8 +40,8 @@ class PacketModel:
             self.model = Sequential([
                 Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
                 BatchNormalization(),
-                MaxPooling1D(pool_size=2),
-                Dense(16, activation='relu'),
+                Flatten(),
+                Dense(64, activation='relu'),
                 Dropout(0.2),
                 Dense(num_classes, activation='softmax')
             ])
