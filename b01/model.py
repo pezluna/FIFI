@@ -4,6 +4,7 @@ from tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropou
 from xgboost import XGBClassifier
 import numpy as np
 from collections import Counter
+from sklearn.impute import SimpleImputer
 
 embedding = {
     "Philips Hue White": 0,
@@ -60,16 +61,29 @@ class PacketModel:
 
     def normalize(self, X):
         X = transpose(X)
+
+        imputers = {
+            'zero': SimpleImputer(strategy='constant', fill_value=0),
+            'median': SimpleImputer(strategy='median'),
+            'mean': SimpleImputer(strategy='mean')
+        }
+
         for i in range(len(X["deltaTime"])):
             if len(X["deltaTime"][i]) < 8:
                 X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
-        return {
-            "rawLength": np.minimum(np.array(X["rawLength"]) * 0.001, 1),
-            "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.001, 1),
-            "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
-            "deltaTime": np.minimum(np.array(X["deltaTime"]) * 0.5, 1),
-            "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
-        }
+
+        for feature in X.keys():
+            if feature in ['sPackets', 'rPackets', 'sVarSize', 'rVarSize', 'sVarInterval', 'rVarInterval']:
+                imputer = imputers['zero']
+            elif feature in ['sMinSize', 'rMinSize', 'sMaxSize', 'rMaxSize', 'sAvgSize', 'rAvgSize', 'sMinInterval', 'rMinInterval', 'sMaxInterval', 'rMaxInterval', 'sAvgInterval', 'rAvgInterval']:
+                imputer = imputers['median']
+            elif feature in ['sRatio']:
+                imputer = imputers['mean']
+            else:
+                imputer = imputers['mean']
+            X[feature] = imputer.fit_transform(np.array(X[feature]).reshape(-1, 1)).flatten()
+
+        return X
     
     def train(self, X_train, y_train, X_test):
         X_train_preprocessed = self.preprocess(X_train)
@@ -168,9 +182,6 @@ class StatsModel:
         for i, x in enumerate(protocol):
             if x[0] == tmp:
                 indices.append(i)
-        # for i, x in enumerate(X_train_normalized["protocol"]):
-        #     if x.all() == tmp:
-        #         indices.append(i)
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
@@ -181,7 +192,7 @@ class StatsModel:
         
         X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
         X_test_final = np.array([X_test_normalized[key] for key in X_test_normalized]).transpose()
-        
+
         self.model.fit(X_train_final, y_train_filtered)
         
         return self.model.predict(X_test_final)
