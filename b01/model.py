@@ -31,9 +31,9 @@ class PacketModel:
             print(x)
             print(type(x))
             try:
-                tmp.append(x[1])
-            except:
                 tmp.append(x[0][1])
+            except:
+                tmp.append(x[1])
         X = tmp
         X = transpose(X)
 
