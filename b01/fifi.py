@@ -139,6 +139,9 @@ plt.savefig("rf_confusion_matrix.png")
 print(accuracy_score(final_y_test, stats_y_pred))
 
 # Ensemble
+print(set(predictions))
+print(set(final_y_test))
+
 cm = confusion_matrix(final_y_test, predictions)
 plt.figure(figsize=(10, 7))
 sns.heatmap(cm, annot=True, fmt='d')
