@@ -1,6 +1,10 @@
 import sys
 from session import Sessions
-from model import PacketModel, StatsModel
+from model import PacketModel, StatsModel, EnsembleClassifier
+import numpy as np
+
+from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.metrics import accuracy_score
 
 isReset = False
 mode = None
@@ -34,19 +38,65 @@ except:
 sessions.split_train_test()
 X_train, y_train, X_test, y_test = sessions.get_train_test_data()
 print("Train and test data split completed.")
-# sessions.save("split_completed.json")
 
 # Train the model
 print("Training the model...")
-
 # Packet model
 packet_model = PacketModel(mode=mode, model='cnn')
-
-pred_y = packet_model.train(X_train, y_train, X_test)
-print("Packet model trained.")
+packet_X_train, packet_y_train, packet_X_test = packet_model.preprocess(X_train, y_train, X_test)
 
 # Stats model
 stats_model = StatsModel(mode=mode, model='rf')
+stats_X_train, stats_y_train, stats_X_test = stats_model.preprocess(X_train, y_train, X_test)
 
-pred_y = stats_model.train(X_train, y_train, X_test)
-print("Stats model trained.")
+packet_keras_model = KerasClassifier(
+    build_fn=lambda: packet_model.model,
+    epochs = 50,
+    batch_size = 10,
+    verbose = 1
+)
+
+# Ensemble classifier
+ensemble = EnsembleClassifier(
+    packet_model.model,
+    stats_model.model
+)
+
+ensemble.fit(
+    {
+        "packet": packet_X_train,
+        "stats": stats_X_train
+    },
+    packet_y_train
+)
+
+print("Training completed.")
+
+# Evaluate the model
+print("Evaluating the model...")
+predictions = ensemble.predict(
+    {
+        "packet": packet_X_test,
+        "stats": stats_X_test
+    }
+)
+
+final_y_test = []
+if mode == "fingerprint":
+    for y in y_test:
+        if y == "benign" or y == "mirai" or y == "qbot" or y == "kaiten":
+            pass
+        else:
+            final_y_test.append(y)
+else:
+    for y in y_test:
+        if y == "benign" or y == "mirai" or y == "qbot" or y == "kaiten":
+            final_y_test.append(y)
+        else:
+            pass
+
+final_y_test = np.array(final_y_test)
+
+accuracy = accuracy_score(final_y_test, predictions)
+
+print("Accuracy: ", accuracy)

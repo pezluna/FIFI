@@ -1,4 +1,6 @@
-from sklearn.ensemble import VotingClassifier, RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.base import BaseEstimator, ClassifierMixin
+from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
 from xgboost import XGBClassifier
@@ -47,7 +49,7 @@ class PacketModel:
         else:
             raise Exception("Invalid model type.")
 
-    def preprocess(self, X):
+    def rearrange(self, X):
         tmp = []
         for x in X:
             try:
@@ -71,9 +73,9 @@ class PacketModel:
             "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
         }
     
-    def train(self, X_train, y_train, X_test):
-        X_train_preprocessed = self.preprocess(X_train)
-        X_test_preprocessed = self.preprocess(X_test)
+    def preprocess(self, X_train, y_train, X_test):
+        X_train_preprocessed = self.rearrange(X_train)
+        X_test_preprocessed = self.rearrange(X_test)
 
         X_train_normalized = self.normalize(X_train_preprocessed)
         X_test_normalized = self.normalize(X_test_preprocessed)
@@ -95,17 +97,14 @@ class PacketModel:
         X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
         X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
 
-        self.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['categorical_accuracy'])
-        self.model.fit(X_train_final, y_train_filtered, epochs=50)
-        
-        return self.model.predict(X_test_final)
+        return X_train_final, y_train_filtered, X_test_final
 
 class StatsModel:
     def __init__(self, mode, model='rf'):
         self.mode = mode
         if model == 'rf':
             self.model = RandomForestClassifier(
-                n_estimators=100,
+                n_estimators=500,
                 max_depth=10,
                 verbose=1
             )
@@ -114,7 +113,7 @@ class StatsModel:
         else:
             raise Exception("Invalid model type.")
         
-    def preprocess(self, X):
+    def rearrange(self, X):
         tmp = []
         for x in X:
             try:
@@ -163,9 +162,9 @@ class StatsModel:
         return X
 
     
-    def train(self, X_train, y_train, X_test):
-        X_train_preprocessed = self.preprocess(X_train)
-        X_test_preprocessed = self.preprocess(X_test)
+    def preprocess(self, X_train, y_train, X_test):
+        X_train_preprocessed = self.rearrange(X_train)
+        X_test_preprocessed = self.rearrange(X_test)
 
         # 결측치 처리
         X_train_without_NaN = self.check_NaN(X_train_preprocessed)
@@ -213,5 +212,25 @@ class StatsModel:
         X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
         X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered]).transpose()
 
-        self.model.fit(X_train_final, y_train_filtered)
-        return self.model.predict(X_test_final)
+        return X_train_final, y_train_filtered, X_test_final
+    
+class EnsembleClassifier(BaseEstimator, ClassifierMixin):
+    def __init__(self, models):
+        self.models = models
+    
+    def fit(self, X, y):
+        # 각 모델에 대한 데이터와 타깃을 받아 모델 별로 학습을 수행
+        self.models['packet'].fit(X['packet'], y)
+        self.models['stats'].fit(X['stats'], y)
+        return self
+    
+    def predict(self, X):
+        # 각 모델의 예측 확률을 받아서 평균을 계산 (소프트 보팅)
+        packet_predictions = self.models['packet'].predict(X['packet'])  # 이제 predict를 사용
+        stats_predictions = self.models['stats'].predict_proba(X['stats'])
+        
+        # 평균 확률 계산
+        average_predictions = np.mean([packet_predictions, stats_predictions], axis=0)
+        
+        # 가장 높은 확률을 가진 클래스 인덱스를 반환
+        return np.argmax(average_predictions, axis=1)
