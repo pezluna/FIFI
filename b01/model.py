@@ -64,12 +64,9 @@ class PacketModel:
 
     def normalize(self, X):
         X = transpose(X)
-
-        # Check len of deltaTime
         for i in range(len(X["deltaTime"])):
             if len(X["deltaTime"][i]) < 8:
                 X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
-
         return {
             "rawLength": np.minimum(np.array(X["rawLength"]) * 0.001, 1),
             "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.001, 1),
@@ -85,16 +82,16 @@ class PacketModel:
         X_train_normalized = self.normalize(X_train_preprocessed)
         X_test_normalized = self.normalize(X_test_preprocessed)
 
-        # 필터링을 위한 프로토콜 결정
         filter_protocol = 1 if self.mode == 'botnet' else 0
-
-        # 필터 적용
         indices = [i for i, val in enumerate(X_train_preprocessed) if val['protocol'] == filter_protocol]
-        X_train_filtered = X_train_normalized[:, indices]
+
+        X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
 
+        X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+
         self.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['categorical_accuracy'])
-        self.model.fit(X_train_filtered, y_train_filtered, epochs=25)
+        self.model.fit(X_train_final, y_train_filtered, epochs=25)
         
         return self.model.predict(X_test_normalized)
 
