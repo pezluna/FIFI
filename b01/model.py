@@ -82,7 +82,7 @@ class PacketModel:
         tmp = 1 if self.mode == 'botnet' else 0
 
         for i, x in enumerate(X_train_normalized["protocol"]):
-            if x == tmp:
+            if x.all() == tmp:
                 indices.append(i)
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
