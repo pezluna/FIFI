@@ -110,13 +110,14 @@ print("Accuracy: ", accuracy)
 
 stats_y_pred = stats_model.model.predict(stats_X_test)
 print(set(stats_y_pred))
+print(set(final_y_test))
 
 # Confusion Matrix
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-cm = confusion_matrix(final_y_test, predictions)
+cm = confusion_matrix(final_y_test, stats_y_pred)
 plt.figure(figsize=(10, 7))
 sns.heatmap(cm, annot=True, fmt='d')
 plt.xlabel('Predicted')
