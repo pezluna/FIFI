@@ -74,9 +74,14 @@ class PacketModel:
         X_train_normalized = self.normalize(X_train)
         X_test_normalized = self.normalize(X_test)
         
-        X_train_normalized = np.array([list(i) for i in zip(X_train_normalized["rawLength"], X_train_normalized["capturedLength"], X_train_normalized["direction"], X_train_normalized["deltaTime"], X_train_normalized["protocol"])])
-        X_test_normalized = np.array([list(i) for i in zip(X_test_normalized["rawLength"], X_test_normalized["capturedLength"], X_test_normalized["direction"], X_test_normalized["deltaTime"], X_test_normalized["protocol"])])
+        # 데이터 형태를 (샘플 수, 시간 단계 수, 채널 수)로 조정
+        X_train_normalized = np.array([X_train_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+        X_test_normalized = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
 
+        # 채널 차원 추가 (5, 5) -> (5, 5, 1)
+        X_train_normalized = X_train_normalized[..., np.newaxis]
+        X_test_normalized = X_test_normalized[..., np.newaxis]
+        
         for i in range(len(y_train)):
             y_train[i] = embedding[y_train[i]]
         
