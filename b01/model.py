@@ -158,15 +158,15 @@ class StatsModel:
         X_train_normalized = self.normalize(X_train_preprocessed)
         X_test_normalized = self.normalize(X_test_preprocessed)
 
-        indices = []
-        tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
+        # NaN 값 처리를 위한 Imputer 확인
+        imputer = SimpleImputer(strategy='median')  # 대부분의 경우 중앙값 사용
+        for key in X_train_normalized.keys():
+            if np.any(np.isnan(X_train_normalized[key])):
+                print(f"NaN found in {key}, applying imputer.")
+                X_train_normalized[key] = imputer.fit_transform(X_train_normalized[key].reshape(-1, 1)).flatten()
 
-        for i, x in enumerate(protocol):
-            if x[0] == tmp:
-                indices.append(i)
-        # for i, x in enumerate(X_train_normalized["protocol"]):
-        #     if x.all() == tmp:
-        #         indices.append(i)
+        tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
+        indices = [i for i, x in enumerate(protocol) if x == tmp]
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
@@ -174,10 +174,13 @@ class StatsModel:
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
             return
-        
+
         X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
         X_test_final = np.array([X_test_normalized[key] for key in X_test_normalized]).transpose()
 
+        # 데이터에 NaN이 있는지 최종 확인
+        if np.isnan(np.sum(X_train_final)):
+            raise ValueError("NaN values are still present in the training data after imputation.")
+
         self.model.fit(X_train_final, y_train_filtered)
-        
         return self.model.predict(X_test_final)
