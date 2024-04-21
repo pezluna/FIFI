@@ -238,27 +238,16 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         return self
     
     def predict(self, X):
-        # 각 모델의 예측 확률을 받아서
+        # 각 모델에서 확률 예측을 수행
         packet_predictions = self.models['packet'].predict(X['packet'])
         stats_predictions = self.models['stats'].predict_proba(X['stats'])
 
-        # 예측 결과를 동일한 클래스 수로 조정
-        packet_predictions = to_categorical(packet_predictions, num_classes=self.num_classes)
-        stats_predictions = to_categorical(np.argmax(stats_predictions, axis=1), num_classes=self.num_classes)
-
-        # 차원 출력
-        print("Packet predictions shape:", packet_predictions.shape)
-        print("Stats predictions shape:", stats_predictions.shape)
-
-        try:
-            # 평균 확률 계산
-            average_predictions = np.mean([packet_predictions, stats_predictions], axis=0)
-        except:
-            # 두 모델이 확률을 출력한다고 가정:
-            packet_prob_predictions = self.models['packet'].predict(X['packet'])
-            stats_prob_predictions = self.models['stats'].predict_proba(X['stats'])
-
-            # 확률 평균 계산:
-            average_predictions = np.mean([packet_prob_predictions, stats_prob_predictions], axis=0)
-                    
+        # 확률 벡터가 올바른 차원인지 확인하고 조정
+        if packet_predictions.ndim > 2:
+            packet_predictions = packet_predictions.mean(axis=1)
+        
+        # 평균 확률 계산
+        average_predictions = np.mean([packet_predictions, stats_predictions], axis=0)
+        
+        # 최종 예측
         return np.argmax(average_predictions, axis=1)
