@@ -50,8 +50,8 @@ class PacketModel:
                 ])
         else:
             raise Exception("Invalid model type.")
-        
-    def normalize(self, X):
+
+    def preprocess(self, X):
         tmp = []
         for x in X:
             try:
@@ -59,6 +59,10 @@ class PacketModel:
             except:
                 tmp.append(x[1])
         X = tmp
+
+        return X
+
+    def normalize(self, X):
         X = transpose(X)
 
         # Check len of deltaTime
@@ -72,19 +76,6 @@ class PacketModel:
         delta_time_normalized = np.minimum(np.array(X["deltaTime"]) * 0.5, 1)
         protocol_normalized = np.where(np.array(X["protocol"]) == "TCP/IP", 0, 1)
 
-        indices = []
-
-        if self.mode == 'fingerprint':
-            indices = [i for i, x in enumerate(X) if x['protocol'] == 'Zigbee']
-        else:
-            indices = [i for i, x in enumerate(X) if x['protocol'] == 'TCP/IP']
-
-        raw_length_normalized = raw_length_normalized[indices]
-        captured_length_normalized = captured_length_normalized[indices]
-        direction_normalized = direction_normalized[indices]
-        delta_time_normalized = delta_time_normalized[indices]
-        protocol_normalized = protocol_normalized[indices]
-
         return {
             "rawLength": raw_length_normalized,
             "capturedLength": captured_length_normalized,
@@ -97,17 +88,20 @@ class PacketModel:
         train_indices = []
         test_indices = []
 
-        # if self.mode == 'fingerprint':
-        #     train_indices = [i for i, x in enumerate(X_train) if x['protocol'] == 'Zigbee']
-        #     test_indices = [i for i, x in enumerate(X_test) if x['protocol'] == 'Zigbee']
-        # else:
-        #     train_indices = [i for i, x in enumerate(X_train) if x['protocol'] == 'TCP/IP']
-        #     test_indices = [i for i, x in enumerate(X_test) if x['protocol'] == 'TCP/IP']
+        X_train = self.preprocess(X_train)
+        X_test = self.preprocess(X_test)
 
-        # X_train = [X_train[i] for i in train_indices]
-        # y_train = [y_train[i] for i in train_indices]
+        if self.mode == 'fingerprint':
+            train_indices = [i for i, x in enumerate(X_train) if x['protocol'] == 'Zigbee']
+            test_indices = [i for i, x in enumerate(X_test) if x['protocol'] == 'Zigbee']
+        else:
+            train_indices = [i for i, x in enumerate(X_train) if x['protocol'] == 'TCP/IP']
+            test_indices = [i for i, x in enumerate(X_test) if x['protocol'] == 'TCP/IP']
 
-        # X_test = [X_test[i] for i in test_indices]
+        X_train = [X_train[i] for i in train_indices]
+        y_train = [y_train[i] for i in train_indices]
+
+        X_test = [X_test[i] for i in test_indices]
 
         X_train_normalized = self.normalize(X_train)
         X_test_normalized = self.normalize(X_test)
