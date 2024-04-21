@@ -21,9 +21,11 @@ class PacketModel:
         tmp = []
         for x in X:
             print(x)
-            tmp.append(x[1])
+            try:
+                tmp.append(x[1])
+            except:
+                tmp.append(x[0][1])
         X = tmp
-        print(X)
 
         raw_length_normalized = np.minimum(np.array(X["rawLength"]) * 0.001, 1)
         captured_length_normalized = np.minimum(np.array(X["capturedLength"]) * 0.001, 1)
