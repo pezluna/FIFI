@@ -175,9 +175,9 @@ class StatsModel:
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
             return
-        
-        X_train_final = np.array(X_train_normalized.values()).transpose()
-        X_test_final = np.array(X_test_normalized.values()).transpose()
+
+        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose((1, 2, 0))
+        X_test_final = np.array([X_test_normalized[key] for key in X_test_normalized]).transpose((1, 2, 0))
 
         self.model.fit(X_train_final, y_train_filtered)
         
