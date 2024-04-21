@@ -147,13 +147,20 @@ class StatsModel:
             "sRatio": np.array(X["sRatio"]),
         }
     
+    def check_NaN(self, X):
+        print("Type of X: ", type(X))
+
+        for x in X:
+            for key, value in x.items():
+                if np.isnan(value).any():
+                    print(f"NaN found in {key}")
+                    print(f"Index: {x['index']}")
+                    print(f"Value: {value}")
+
+    
     def train(self, X_train, y_train, X_test):
         # 결측치 확인
-        for x in X_train:
-            for key in x:
-                if None in x[key]:
-                    print(f"Missing value in {key} for {x}")
-                    return
+        self.check_NaN(X_train)
     
     # def train(self, X_train, y_train, X_test):
     #     X_train_preprocessed = self.preprocess(X_train)
