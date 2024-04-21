@@ -3,6 +3,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten
 from xgboost import XGBClassifier
 import numpy as np
+from collections import Counter
 
 embedding = {
     "Philips Hue White": 0,
@@ -98,6 +99,9 @@ class PacketModel:
         if len(y_train_filtered) == 0:
             print(indices)
             raise Exception("No data found for the given mode. Please check the mode and try again.")
+        
+        class_distribution = Counter(y_train_filtered)
+        print("Class distribution: ", class_distribution)
 
         X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
 
