@@ -15,3 +15,7 @@ SmartThings Smart Bulb, 0x1c67, 0x8c9a, Zigbee
 SmartThings Smart Bulb, 0x93d7, 0x8c9a, Zigbee
 Sonoff Smart Plug, 0x42e0, 0x8c9a, Zigbee
 Sonoff Smart Plug, 0x3331, 0x8c9a, Zigbee
+Aqara Door Sensor, 0x6822, 0xb454, Zigbee
+Aqara Switch, 0x9a65, 0x6567, Zigbee
+Aqara Temperature/Humidity Sensor, 0xdab7, 0xb454, Zigbee
+SmartThings Multipurpose Sensor, 0x1aa9, 0x6567, Zigbee

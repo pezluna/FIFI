@@ -97,6 +97,10 @@ class Sessions:
                                 l = label.label["label"][j]
                                 break
                         else:
+                            print("srcId: " + srcId)
+                            print("dstId: " + dstId)
+                            print("protocol: " + protocol)
+                            print("remarks: " + remarks)
                             raise Exception("Invalid metadata.")
                         
                         self.sessions["session"].append(Session(metadata, [bodydata], l))
