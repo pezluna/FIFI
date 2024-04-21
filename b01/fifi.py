@@ -107,12 +107,11 @@ accuracy = accuracy_score(final_y_test, predictions)
 print("Accuracy: ", accuracy)
 
 # CNN
-
 stats_y_pred = stats_model.model.predict(stats_X_test)
 print(set(stats_y_pred))
 print(set(final_y_test))
 
-# Confusion Matrix
+## Confusion Matrix
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -122,5 +121,19 @@ plt.figure(figsize=(10, 7))
 sns.heatmap(cm, annot=True, fmt='d')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-plt.savefig("confusion_matrix.png")
+plt.savefig("cnn_confusion_matrix.png")
+print(accuracy_score(final_y_test, stats_y_pred))
+
+# Random Forest
+stats_y_pred = stats_model.model.predict(stats_X_test)
+print(set(stats_y_pred))
+print(set(final_y_test))
+
+## Confusion Matrix
+cm = confusion_matrix(final_y_test, stats_y_pred)
+plt.figure(figsize=(10, 7))
+sns.heatmap(cm, annot=True, fmt='d')
+plt.xlabel('Predicted')
+plt.ylabel('Truth')
+plt.savefig("rf_confusion_matrix.png")
 print(accuracy_score(final_y_test, stats_y_pred))
