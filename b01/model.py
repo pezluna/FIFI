@@ -240,7 +240,19 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         packet_predictions = to_categorical(packet_predictions, num_classes=self.num_classes)
         stats_predictions = to_categorical(np.argmax(stats_predictions, axis=1), num_classes=self.num_classes)
 
-        # 평균 확률 계산
-        average_predictions = np.mean([packet_predictions, stats_predictions], axis=0)
-        
+        # 차원 출력
+        print("Packet predictions shape:", packet_predictions.shape)
+        print("Stats predictions shape:", stats_predictions.shape)
+
+        try:
+            # 평균 확률 계산
+            average_predictions = np.mean([packet_predictions, stats_predictions], axis=0)
+        except:
+            # 두 모델이 확률을 출력한다고 가정:
+            packet_prob_predictions = self.models['packet'].predict(X['packet'])
+            stats_prob_predictions = self.models['stats'].predict_proba(X['stats'])
+
+            # 확률 평균 계산:
+            average_predictions = np.mean([packet_prob_predictions, stats_prob_predictions], axis=0)
+                    
         return np.argmax(average_predictions, axis=1)
