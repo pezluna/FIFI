@@ -2,10 +2,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.base import BaseEstimator, ClassifierMixin
 from keras.models import Sequential
 from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
-from keras.utils import to_categorical
 from xgboost import XGBClassifier
 import numpy as np
-from collections import Counter
 
 embedding = {
     "Philips Hue White": 0,
@@ -42,9 +40,8 @@ class PacketModel:
                 Conv1D(filters=64, kernel_size=3, activation='relu'),
                 Flatten(),
                 Dense(64, activation='relu'),
-                Dense(32, activation='relu'),
                 Dense(16, activation='relu'),
-                Dropout(0.2),
+                Dropout(0.5),
                 Dense(num_classes, activation='softmax')
             ])
             self.model.compile(
@@ -123,7 +120,7 @@ class StatsModel:
         self.mode = mode
         if model == 'rf':
             self.model = RandomForestClassifier(
-                n_estimators=500,
+                n_estimators=300,
                 max_depth=10,
                 verbose=1
             )
