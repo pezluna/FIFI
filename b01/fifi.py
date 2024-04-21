@@ -1,6 +1,6 @@
 import sys
 from session import Sessions
-from model import PacketModel, StatsModel, EnsembleClassifier
+from model import PacketModel, StatsModel, EnsembleClassifier, embedding
 import numpy as np
 
 from scikeras.wrappers import KerasClassifier
@@ -89,11 +89,11 @@ if mode == "fingerprint":
         if y == "benign" or y == "mirai" or y == "qbot" or y == "kaiten":
             pass
         else:
-            final_y_test.append(y)
+            final_y_test.append(embedding[y])
 else:
     for y in y_test:
         if y == "benign" or y == "mirai" or y == "qbot" or y == "kaiten":
-            final_y_test.append(y)
+            final_y_test.append(embedding[y])
         else:
             pass
 
