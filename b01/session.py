@@ -401,11 +401,11 @@ class Sessions:
             statisticsData["rVarInterval"] = np.var(r_intervals) if r_intervals else None
 
             packetData["deltaTime"] = [0] + packetData["deltaTime"]
-            packetData["direction"] = packetData[:8]
-            packetData["protocol"] = packetData[:8]
-            packetData["rawLength"] = packetData[:8]
-            packetData["capturedLength"] = packetData[:8]
-            packetData["deltaTime"] = packetData[:8]
+            packetData["direction"] = packetData["direction"][:8]
+            packetData["protocol"] = packetData["protocol"][:8]
+            packetData["rawLength"] = packetData["rawLength"][:8]
+            packetData["capturedLength"] = packetData["capturedLength"][:8]
+            packetData["deltaTime"] = packetData["deltaTime"][:8]
 
             if len(packetData["protocol"]) < 8:
                 packetData["direction"].extend([1] * (8 - len(packetData["direction"])))
