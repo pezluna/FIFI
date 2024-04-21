@@ -4,6 +4,13 @@ from tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten
 from xgboost import XGBClassifier
 import numpy as np
 
+def transpose(X):
+    transposed_data = {key: [] for key in X[0]}
+    for x in X:
+        for key, value in x.items():
+            transposed_data[key].append(value)
+    return transposed_data
+
 class PacketModel:
     def __init__(self, model = 'cnn'):
         if model == 'cnn':
@@ -25,13 +32,13 @@ class PacketModel:
             except:
                 tmp.append(x[0][1])
         X = tmp
+        X = transpose(X)
 
         raw_length_normalized = np.minimum(np.array(X["rawLength"]) * 0.001, 1)
         captured_length_normalized = np.minimum(np.array(X["capturedLength"]) * 0.001, 1)
         direction_normalized = np.where(np.array(X["direction"]) == -1, 0, 1)
         delta_time_normalized = np.minimum(np.array(X["deltaTime"]) * 0.5, 2)
         protocol_normalized = np.where(np.array(X["protocol"]) == "TCP/IP", 0, 1)
-
 
         return {
             "rawLength": raw_length_normalized,
