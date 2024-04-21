@@ -153,8 +153,11 @@ class StatsModel:
 
     
     def train(self, X_train, y_train, X_test):
+        X_train_preprocessed = self.preprocess(X_train)
+        X_test_preprocessed = self.preprocess(X_test)
+
         # 결측치 확인
-        self.check_NaN(X_train)
+        self.check_NaN(X_train_preprocessed)
     
     # def train(self, X_train, y_train, X_test):
     #     X_train_preprocessed = self.preprocess(X_train)
