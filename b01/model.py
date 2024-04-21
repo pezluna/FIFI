@@ -4,7 +4,6 @@ from tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropou
 from xgboost import XGBClassifier
 import numpy as np
 from collections import Counter
-from sklearn.impute import SimpleImputer
 
 embedding = {
     "Philips Hue White": 0,
@@ -124,24 +123,29 @@ class StatsModel:
     
     def normalize(self, X):
         X = transpose(X)
-        # NaN 값 처리를 위한 SimpleImputer 설정
-        imputers = {
-            'zero': SimpleImputer(strategy='constant', fill_value=0),
-            'median': SimpleImputer(strategy='median'),
-            'mean': SimpleImputer(strategy='mean')
+        return {
+            "sPackets": np.array(X["sPackets"]),
+            "rPackets": np.array(X["rPackets"]),
+            "sTotalSize": np.array(X["sTotalSize"]),
+            "rTotalSize": np.array(X["rTotalSize"]),
+            "sMinSize": np.array(X["sMinSize"]),
+            "rMinSize": np.array(X["rMinSize"]),
+            "sMaxSize": np.array(X["sMaxSize"]),
+            "rMaxSize": np.array(X["rMaxSize"]),
+            "sAvgSize": np.array(X["sAvgSize"]),
+            "rAvgSize": np.array(X["rAvgSize"]),
+            "sVarSize": np.array(X["sVarSize"]),
+            "rVarSize": np.array(X["rVarSize"]),
+            "sMinInterval": np.array(X["sMinInterval"]),
+            "rMinInterval": np.array(X["rMinInterval"]),
+            "sMaxInterval": np.array(X["sMaxInterval"]),
+            "rMaxInterval": np.array(X["rMaxInterval"]),
+            "sAvgInterval": np.array(X["sAvgInterval"]),
+            "rAvgInterval": np.array(X["rAvgInterval"]),
+            "sVarInterval": np.array(X["sVarInterval"]),
+            "rVarInterval": np.array(X["rVarInterval"]),
+            "sRatio": np.array(X["sRatio"]),
         }
-        # 각 특성에 맞는 imputer를 선택하여 적용
-        for feature in X.keys():
-            if feature in ['sPackets', 'rPackets', 'sVarSize', 'rVarSize', 'sVarInterval', 'rVarInterval']:
-                imputer = imputers['zero']
-            elif feature in ['sMinSize', 'rMinSize', 'sMaxSize', 'rMaxSize', 'sAvgSize', 'rAvgSize', 'sMinInterval', 'rMinInterval', 'sMaxInterval', 'rMaxInterval', 'sAvgInterval', 'rAvgInterval']:
-                imputer = imputers['median']
-            elif feature in ['sRatio']:
-                imputer = imputers['mean']
-            else:
-                imputer = imputers['mean']  # Default to mean for any missing configuration
-            X[feature] = imputer.fit_transform(np.array(X[feature]).reshape(-1, 1)).flatten()
-        return X
     
     def train(self, X_train, y_train, X_test):
         X_train_preprocessed = self.preprocess(X_train)
@@ -158,15 +162,12 @@ class StatsModel:
         X_train_normalized = self.normalize(X_train_preprocessed)
         X_test_normalized = self.normalize(X_test_preprocessed)
 
-        # NaN 값 처리를 위한 Imputer 확인
-        imputer = SimpleImputer(strategy='median')  # 대부분의 경우 중앙값 사용
-        for key in X_train_normalized.keys():
-            if np.any(np.isnan(X_train_normalized[key])):
-                print(f"NaN found in {key}, applying imputer.")
-                X_train_normalized[key] = imputer.fit_transform(X_train_normalized[key].reshape(-1, 1)).flatten()
-
+        indices = []
         tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
-        indices = [i for i, x in enumerate(protocol) if x == tmp]
+        
+        for i, x in enumerate(protocol):
+            if x[0] == tmp:
+                indices.append(i)
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
@@ -175,12 +176,9 @@ class StatsModel:
             print("No data found for the given mode. Check the mode and data.")
             return
 
-        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
-        X_test_final = np.array([X_test_normalized[key] for key in X_test_normalized]).transpose()
-
-        # 데이터에 NaN이 있는지 최종 확인
-        if np.isnan(np.sum(X_train_final)):
-            raise ValueError("NaN values are still present in the training data after imputation.")
+        X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+        X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
 
         self.model.fit(X_train_final, y_train_filtered)
+        
         return self.model.predict(X_test_final)
