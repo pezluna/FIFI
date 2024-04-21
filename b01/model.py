@@ -39,7 +39,7 @@ class PacketModel:
                     BatchNormalization(),
                     MaxPooling1D(pool_size=2),
                     Flatten(),
-                    Dropout(0.2),
+                    Dropout(0.4),
                     Dense(10, activation='softmax')
                 ])
             else:
@@ -49,7 +49,7 @@ class PacketModel:
                     MaxPooling1D(pool_size=2),
                     Flatten(),
                     Dense(10, activation='relu'),
-                    Dropout(0.2),
+                    Dropout(0.4),
                     Dense(4, activation='softmax')
                 ])
         else:
