@@ -245,6 +245,9 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
     
     def fit(self, X, y):
         # 각 모델에 대한 데이터와 타깃을 받아 모델 별로 학습을 수행
+        print("Packet data shape:", X['packet'].shape)
+        print("Stats data shape:", X['stats'].shape)
+        
         self.models['packet'].fit(X['packet'], y)
         self.models['stats'].fit(X['stats'], y)
         return self
