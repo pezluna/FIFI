@@ -36,7 +36,8 @@ class PacketModel:
 
         # Check len of deltaTime
         for i in range(len(X["deltaTime"])):
-            print(len(X["deltaTime"][i]))
+            if len(X["deltaTime"][i]) < 8:
+                X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
 
         raw_length_normalized = np.minimum(np.array(X["rawLength"]) * 0.001, 1)
         captured_length_normalized = np.minimum(np.array(X["capturedLength"]) * 0.001, 1)
