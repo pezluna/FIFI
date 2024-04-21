@@ -151,6 +151,11 @@ class StatsModel:
         print("Type of X: ", type(X))
         print(X)
 
+        for x in X:
+            for key, value in x.items():
+                if np.isnan(value).any():
+                    print(f"NaN found in {key} of {x}")
+
     
     def train(self, X_train, y_train, X_test):
         X_train_preprocessed = self.preprocess(X_train)
