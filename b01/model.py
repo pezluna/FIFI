@@ -4,6 +4,23 @@ from tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten
 from xgboost import XGBClassifier
 import numpy as np
 
+embedding = {
+    "Philips Hue White": 0,
+    "SmartThings Smart Bulb": 1,
+    "Aeotec Button": 2,
+    "AeoTec Motion Sensor": 3,
+    "AeoTec Multipurpose Sensor": 4,
+    "AeoTec Water Leak Sensor": 5,
+    "Sengled Smart Plug": 6,
+    "SmartThings Button": 7,
+    "SmartThings Smart Bulb": 8,
+    "Sonoff Smart Plug": 9,
+    "benign": 10,
+    "mirai": 11,
+    "qbot": 12,
+    "kaiten": 13
+}
+
 def transpose(X):
     transposed_data = {key: [] for key in X[0]}
     for x in X:
@@ -59,6 +76,11 @@ class PacketModel:
         
         X_train_normalized = np.array([list(i) for i in zip(X_train_normalized["rawLength"], X_train_normalized["capturedLength"], X_train_normalized["direction"], X_train_normalized["deltaTime"], X_train_normalized["protocol"])])
         X_test_normalized = np.array([list(i) for i in zip(X_test_normalized["rawLength"], X_test_normalized["capturedLength"], X_test_normalized["direction"], X_test_normalized["deltaTime"], X_test_normalized["protocol"])])
+
+        for i in range(len(y_train)):
+            y_train[i] = embedding[y_train[i]]
+        
+        y_train = np.array(y_train)
         
         self.model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
         self.model.fit(X_train_normalized, y_train, epochs=10)
