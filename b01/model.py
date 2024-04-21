@@ -176,8 +176,8 @@ class StatsModel:
             print("No data found for the given mode. Check the mode and data.")
             return
 
-        X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
-        X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+        X_train_final = np.array([X_train_filtered[key] for key in ['sPackets', 'rPackets', 'sTotalSize', 'rTotalSize', 'sMinSize', 'rMinSize', 'sMaxSize', 'rMaxSize', 'sAvgSize', 'rAvgSize', 'sVarSize', 'rVarSize', 'sMinInterval', 'rMinInterval', 'sMaxInterval', 'rMaxInterval', 'sAvgInterval', 'rAvgInterval', 'sVarInterval', 'rVarInterval', 'sRatio']]).transpose((1, 2, 0))
+        X_test_final = np.array([X_test_normalized[key] for key in ['sPackets', 'rPackets', 'sTotalSize', 'rTotalSize', 'sMinSize', 'rMinSize', 'sMaxSize', 'rMaxSize', 'sAvgSize', 'rAvgSize', 'sVarSize', 'rVarSize', 'sMinInterval', 'rMinInterval', 'sMaxInterval', 'rMaxInterval', 'sAvgInterval', 'rAvgInterval', 'sVarInterval', 'rVarInterval', 'sRatio']]).transpose((1, 2, 0))
 
         self.model.fit(X_train_final, y_train_filtered)
         
