@@ -99,6 +99,15 @@ else:
 
 final_y_test = np.array(final_y_test)
 
+print("final_y_test shape", final_y_test.shape)
+print("predictions shape", predictions.shape)
+print()
+print("final_y_test dtype", final_y_test.dtype)
+print("predictions dtype", predictions.dtype)
+
+if final_y_test.dtype != predictions.dtype:
+    final_y_test = final_y_test.astype(predictions.dtype)
+
 accuracy = accuracy_score(final_y_test, predictions)
 
 print("Accuracy: ", accuracy)

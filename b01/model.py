@@ -271,10 +271,6 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
 
         final_predictions = np.array(final_predictions)
 
-        # 차원 확인
-        print("Final predictions shape:", len(final_predictions))
-        print("Final predictions dtype:", final_predictions.dtype)
-
         return final_predictions
     
     def calculate_final_predictions(self, packet_probs, stats_probs):
