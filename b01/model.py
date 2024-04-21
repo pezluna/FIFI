@@ -151,15 +151,26 @@ class StatsModel:
         X_train_preprocessed = self.preprocess(X_train)
         X_test_preprocessed = self.preprocess(X_test)
 
+        protocol = []
+
+        for x in X_train:
+            try:
+                protocol.append(x[0][1]["protocol"])
+            except:
+                protocol.append(x[1]["protocol"])
+
         X_train_normalized = self.normalize(X_train_preprocessed)
         X_test_normalized = self.normalize(X_test_preprocessed)
 
         indices = []
         tmp = 1 if self.mode == 'botnet' else 0
 
-        for i, x in enumerate(X_train_normalized["protocol"]):
-            if x.all() == tmp:
+        for i, x in enumerate(protocol):
+            if x == tmp:
                 indices.append(i)
+        # for i, x in enumerate(X_train_normalized["protocol"]):
+        #     if x.all() == tmp:
+        #         indices.append(i)
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
