@@ -41,9 +41,6 @@ class PacketModel:
                 Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
                 BatchNormalization(),
                 MaxPooling1D(pool_size=2),
-                Conv1D(filters=64, kernel_size=3, activation='relu'),
-                Flatten(),
-                Dense(64, activation='relu'),
                 Dense(16, activation='relu'),
                 Dropout(0.2),
                 Dense(num_classes, activation='softmax')
