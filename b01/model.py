@@ -89,6 +89,7 @@ class PacketModel:
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
 
         if len(y_train_filtered) == 0:
+            print(indices)
             raise Exception("No data found for the given mode. Please check the mode and try again.")
 
         X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
