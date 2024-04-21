@@ -268,6 +268,11 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         print("Stats predictions shape:", stats_predictions.shape)
 
         final_predictions = self.calculate_final_predictions(packet_predictions, stats_predictions)
+
+        # 차원 확인
+        print("Final predictions shape:", len(final_predictions))
+        print("Final predictions dtype:", final_predictions.dtype)
+
         return final_predictions
     
     def calculate_final_predictions(self, packet_probs, stats_probs):
