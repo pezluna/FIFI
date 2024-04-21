@@ -270,18 +270,19 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
     def calculate_final_predictions(self, packet_probs, stats_probs):
         final_predictions = []
         for packet_prob, stats_prob in zip(packet_probs, stats_probs):
+            # 패킷 모델과 통계 모델의 예측 확률을 각각 평가합니다.
             packet_label = np.argmax(packet_prob)
             stats_label = np.argmax(stats_prob)
-            packet_max_prob = packet_prob[packet_label]
-            stats_max_prob = stats_prob[stats_label]
 
+            # 두 모델이 동일한 레이블을 예측했다면, 해당 레이블을 선택합니다.
             if packet_label == stats_label:
-                # 같은 레이블일 경우 평균 확률 사용
-                final_prob = (packet_max_prob + stats_max_prob) / 2
+                final_predictions.append(packet_label)
             else:
-                # 다른 레이블일 경우
-                cross_prob = (packet_prob[stats_label] + stats_max_prob) / 2
-                final_prob = max(packet_max_prob, cross_prob)
-
-            final_predictions.append(np.argmax([final_prob]))
+                # 두 모델이 서로 다른 레이블을 예측했다면, 각 레이블의 평균 확률을 비교하여 더 높은 확률을 가진 레이블을 선택합니다.
+                packet_label_prob = packet_prob[packet_label]
+                stats_label_prob = stats_prob[stats_label]
+                if packet_label_prob > stats_label_prob:
+                    final_predictions.append(packet_label)
+                else:
+                    final_predictions.append(stats_label)
         return final_predictions
