@@ -32,7 +32,7 @@ class PacketModel:
     def __init__(self, model = 'cnn'):
         if model == 'cnn':
             self.model = Sequential([
-                Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(5, 1)),
+                Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(8, 5, 1)),
                 MaxPooling1D(pool_size=2),
                 Flatten(),
                 Dense(10, activation='relu'),
@@ -74,14 +74,12 @@ class PacketModel:
         X_train_normalized = self.normalize(X_train)
         X_test_normalized = self.normalize(X_test)
         
-        # 데이터 형태를 (샘플 수, 시간 단계 수, 채널 수)로 조정
         X_train_normalized = np.array([X_train_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
         X_test_normalized = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
 
-        # 채널 차원 추가 (5, 5) -> (5, 5, 1)
         X_train_normalized = X_train_normalized[..., np.newaxis]
         X_test_normalized = X_test_normalized[..., np.newaxis]
-        
+
         for i in range(len(y_train)):
             y_train[i] = embedding[y_train[i]]
         
