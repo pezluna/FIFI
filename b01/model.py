@@ -20,7 +20,6 @@ class PacketModel:
     def normalize(self, X):
         tmp = []
         for x in X:
-            print(x)
             try:
                 tmp.append(x[1])
             except:
