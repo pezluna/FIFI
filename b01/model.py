@@ -277,14 +277,9 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
 
             if packet_label == stats_label:
                 # 같은 레이블일 경우 평균 확률 사용
-                print("packet_max_prob:", packet_max_prob)
-                print("stats_max_prob:", stats_max_prob)
                 final_prob = (packet_max_prob + stats_max_prob) / 2
             else:
                 # 다른 레이블일 경우
-                print("packet_max_prob:", packet_max_prob)
-                print("stats_max_prob:", stats_max_prob)
-
                 cross_prob = (packet_prob[stats_label] + stats_max_prob) / 2
                 final_prob = max(packet_max_prob, cross_prob)
 
