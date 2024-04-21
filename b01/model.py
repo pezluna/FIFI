@@ -111,8 +111,13 @@ class PacketModel:
         print("test packet protocol:", len(X_test_normalized["protocol"]))
         print("test packet indices:", len(indices))
 
-        X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
-        X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+        X_test_filtered = {key: X_test_normalized[key][indices] for key in X_test_normalized}
+        
+        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
+        X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered]).transpose()
+
+        # X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+        # X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
 
         return X_train_final, y_train_filtered, X_test_final
 
