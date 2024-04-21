@@ -116,9 +116,6 @@ class PacketModel:
         X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
         X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered]).transpose()
 
-        # X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
-        # X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
-
         return X_train_final, y_train_filtered, X_test_final
 
 class StatsModel:
@@ -266,7 +263,7 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
             raise ValueError("Different number of samples in packet and stats data.")
 
         # 각 모델에서 확률 예측을 수행
-        packet_predictions = self.models['packet'].predict(X['packet'])
+        packet_predictions = self.models['packet'].predict_proba(X['packet'])
         stats_predictions = self.models['stats'].predict_proba(X['stats'])
 
         # 차원 확인
