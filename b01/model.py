@@ -242,6 +242,10 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         packet_predictions = self.models['packet'].predict(X['packet'])
         stats_predictions = self.models['stats'].predict_proba(X['stats'])
 
+        # 차원 확인
+        print("Packet predictions shape:", packet_predictions.shape)
+        print("Stats predictions shape:", stats_predictions.shape)
+
         # 확률 벡터가 올바른 차원인지 확인하고 조정
         if packet_predictions.ndim > 2:
             packet_predictions = packet_predictions.mean(axis=1)
