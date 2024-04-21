@@ -82,28 +82,23 @@ class PacketModel:
         tmp = 1 if self.mode == 'botnet' else 0
 
         for i, x in enumerate(X_train_normalized["protocol"]):
-            if x.any() == tmp:
+            if x == tmp:
                 indices.append(i)
-
-        # filter_protocol = 1 if self.mode == 'botnet' else 0
-        # indices = [i for i, val in enumerate(X_train_preprocessed) if val['protocol'] == filter_protocol]
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
 
         if len(y_train_filtered) == 0:
-            print(indices)
-            raise Exception("No data found for the given mode. Please check the mode and try again.")
-        
-        class_distribution = Counter(y_train_filtered)
-        print("Class distribution: ", class_distribution)
+            print("No data found for the given mode. Check the mode and data.")
+            return
 
         X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+        X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
 
         self.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['categorical_accuracy'])
-        self.model.fit(X_train_final, y_train_filtered, epochs=25)
+        self.model.fit(X_train_final, y_train_filtered, epochs=50)
         
-        return self.model.predict(X_test_normalized)
+        return self.model.predict(X_test_final)
 
 class StatsModel:
     def __init__(self, model = 'rf'):
