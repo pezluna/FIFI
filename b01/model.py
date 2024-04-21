@@ -153,16 +153,51 @@ class StatsModel:
 
         for x in X:
             for key, value in x.items():
-                if np.isnan(value).any():
-                    print(f"NaN found in {key} of {x}")
+                if value is None:
+                    if key != "sRatio":
+                        x[key] = 0
+                    else:
+                        x[key] = 1 if x["sPackets"] > 0 else 0
+        
+        return X
 
     
     def train(self, X_train, y_train, X_test):
         X_train_preprocessed = self.preprocess(X_train)
         X_test_preprocessed = self.preprocess(X_test)
 
-        # 결측치 확인
-        self.check_NaN(X_train_preprocessed)
+        # 결측치 처리
+        X_train_without_NaN = self.check_NaN(X_train_preprocessed)
+        X_test_without_NaN = self.check_NaN(X_test_preprocessed)
+
+        X_train_normalized = self.normalize(X_train_without_NaN)
+        X_test_normalized = self.normalize(X_test_without_NaN)
+
+        tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
+        indices = []
+
+        for i, x in enumerate(X_train_normalized["protocol"]):
+            if tmp in x:
+                indices.append(i)
+
+        X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
+        y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
+
+        for i, x in enumerate(X_test_normalized["protocol"]):
+            if tmp in x:
+                indices.append(i)
+
+        X_test_filtered = {key: X_test_normalized[key][indices] for key in X_test_normalized}
+
+        if len(y_train_filtered) == 0:
+            print("No data found for the given mode. Check the mode and data.")
+            return
+        
+        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
+        X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered]).transpose()
+
+        self.model.fit(X_train_final, y_train_filtered)
+        return self.model.predict(X_test_final)
     
     # def train(self, X_train, y_train, X_test):
     #     X_train_preprocessed = self.preprocess(X_train)
