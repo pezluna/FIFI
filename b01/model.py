@@ -35,14 +35,14 @@ class PacketModel:
         if model == 'cnn':
             num_classes = 4 if mode == 'botnet' else 10
             self.model = Sequential([
-                Conv1D(32, 3, activation='relu', input_shape=(8, 5)),
+                Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
                 BatchNormalization(),
-                MaxPooling1D(2),
-                Conv1D(64, 3, activation='relu'),
+                MaxPooling1D(pool_size=2),
+                Conv1D(filters=64, kernel_size=3, activation='relu'),
                 BatchNormalization(),
-                MaxPooling1D(2),
+                MaxPooling1D(pool_size=2),
                 Flatten(),
-                Dense(128, activation='relu'),
+                Dense(64, activation='relu'),
                 Dropout(0.5),
                 Dense(num_classes, activation='softmax')
             ])
