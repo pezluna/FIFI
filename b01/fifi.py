@@ -105,3 +105,19 @@ if final_y_test.dtype != predictions.dtype:
 accuracy = accuracy_score(final_y_test, predictions)
 
 print("Accuracy: ", accuracy)
+
+# CNN
+
+stats_y_pred = stats_model.model.predict(stats_X_test)
+
+# Confusion Matrix
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+cm = confusion_matrix(final_y_test, predictions)
+plt.figure(figsize=(10, 7))
+sns.heatmap(cm, annot=True, fmt='d')
+plt.xlabel('Predicted')
+plt.ylabel('Truth')
+plt.savefig("confusion_matrix.png")
