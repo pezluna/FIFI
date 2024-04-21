@@ -3,7 +3,7 @@ from session import Sessions
 from model import PacketModel, StatsModel, EnsembleClassifier
 import numpy as np
 
-from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
+from scikeras.wrappers import KerasClassifier
 from sklearn.metrics import accuracy_score
 
 isReset = False

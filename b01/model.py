@@ -1,8 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.base import BaseEstimator, ClassifierMixin
-from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
 from xgboost import XGBClassifier
 import numpy as np
 from collections import Counter
