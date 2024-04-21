@@ -95,10 +95,10 @@ class PacketModel:
             if x.all() == tmp:
                 indices.append(i)
 
+        print("Pakcet counter:" ,Counter(y_train))
+
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
-
-        print("Pakcet counter:" ,Counter(y_train_filtered))
 
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
