@@ -168,7 +168,7 @@ class StatsModel:
         print(protocol)
 
         for i, x in enumerate(protocol):
-            if np.array(x).any() == tmp:
+            if x[0] == tmp:
                 indices.append(i)
         # for i, x in enumerate(X_train_normalized["protocol"]):
         #     if x.all() == tmp:
