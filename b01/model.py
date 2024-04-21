@@ -70,40 +70,31 @@ class PacketModel:
             if len(X["deltaTime"][i]) < 8:
                 X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
 
-        raw_length_normalized = np.minimum(np.array(X["rawLength"]) * 0.001, 1)
-        captured_length_normalized = np.minimum(np.array(X["capturedLength"]) * 0.001, 1)
-        direction_normalized = np.where(np.array(X["direction"]) == -1, 0, 1)
-        delta_time_normalized = np.minimum(np.array(X["deltaTime"]) * 0.5, 1)
-        protocol_normalized = np.where(np.array(X["protocol"]) == "TCP/IP", 0, 1)
-
         return {
-            "rawLength": raw_length_normalized,
-            "capturedLength": captured_length_normalized,
-            "direction": direction_normalized,
-            "deltaTime": delta_time_normalized,
-            "protocol": protocol_normalized
+            "rawLength": np.minimum(np.array(X["rawLength"]) * 0.001, 1),
+            "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.001, 1),
+            "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
+            "deltaTime": np.minimum(np.array(X["deltaTime"]) * 0.5, 1),
+            "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
         }
     
     def train(self, X_train, y_train, X_test):
-        X_train = self.preprocess(X_train)
-        X_test = self.preprocess(X_test)
+        X_train_preprocessed = self.preprocess(X_train)
+        X_test_preprocessed = self.preprocess(X_test)
 
-        X_train_normalized = self.normalize(X_train)
-        X_test_normalized = self.normalize(X_test)
+        X_train_normalized = self.normalize(X_train_preprocessed)
+        X_test_normalized = self.normalize(X_test_preprocessed)
 
-        X_train_normalized = np.array([X_train_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
-        X_test_normalized = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+        # 필터링을 위한 프로토콜 결정
+        filter_protocol = 1 if self.mode == 'botnet' else 0
 
-        # 데이터 필터링
-        filter_protocol = 'Zigbee' if self.mode == 'fingerprint' else 'TCP/IP'
-        X_train_filtered = [x for x in X_train_normalized if x['protocol'] == filter_protocol]
-        y_train_filtered = [y for x, y in zip(X_train, y_train) if x['protocol'] == filter_protocol]
+        # 필터 적용
+        indices = [i for i, val in enumerate(X_train_preprocessed) if val['protocol'] == filter_protocol]
+        X_train_filtered = X_train_normalized[:, indices]
+        y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
 
-        X_train_filtered = np.array([x for x in X_train_filtered]).transpose((1, 2, 0))
-        y_train_filtered = np.array([embedding[y] for y in y_train_filtered])
-        
         self.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['categorical_accuracy'])
-        self.model.fit(X_train_normalized, y_train_filtered, epochs=25)
+        self.model.fit(X_train_filtered, y_train_filtered, epochs=25)
         
         return self.model.predict(X_test_normalized)
 
