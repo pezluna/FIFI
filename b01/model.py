@@ -29,15 +29,24 @@ def transpose(X):
     return transposed_data
 
 class PacketModel:
-    def __init__(self, model = 'cnn'):
+    def __init__(self, purpose, model='cnn'):
         if model == 'cnn':
-            self.model = Sequential([
-                Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(8, 5)),
-                MaxPooling1D(pool_size=2),
-                Flatten(),
-                Dense(10, activation='relu'),
-                Dense(1, activation='sigmoid')
-            ])
+            if purpose == 'fingerprint':
+                self.model = Sequential([
+                    Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(8, 5)),
+                    MaxPooling1D(pool_size=2),
+                    Flatten(),
+                    Dense(10, activation='relu'),
+                    Dense(10, activation='softmax')
+                ])
+            else:
+                self.model = Sequential([
+                    Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(8, 5)),
+                    MaxPooling1D(pool_size=2),
+                    Flatten(),
+                    Dense(10, activation='relu'),
+                    Dense(4, activation='softmax')
+                ])
         else:
             raise Exception("Invalid model type.")
         
@@ -82,7 +91,7 @@ class PacketModel:
         
         y_train = np.array(y_train)
         
-        self.model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+        self.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['categorical_accuracy'])
         self.model.fit(X_train_normalized, y_train, epochs=10)
         
         return self.model.predict(X_test_normalized)
