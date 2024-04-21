@@ -85,23 +85,8 @@ class PacketModel:
         }
     
     def train(self, X_train, y_train, X_test):
-        train_indices = []
-        test_indices = []
-
         X_train = self.preprocess(X_train)
         X_test = self.preprocess(X_test)
-
-        if self.mode == 'fingerprint':
-            train_indices = [i for i, x in enumerate(X_train) if x['protocol'] == 'Zigbee']
-            test_indices = [i for i, x in enumerate(X_test) if x['protocol'] == 'Zigbee']
-        else:
-            train_indices = [i for i, x in enumerate(X_train) if x['protocol'] == 'TCP/IP']
-            test_indices = [i for i, x in enumerate(X_test) if x['protocol'] == 'TCP/IP']
-
-        X_train = [X_train[i] for i in train_indices]
-        y_train = [y_train[i] for i in train_indices]
-
-        X_test = [X_test[i] for i in test_indices]
 
         X_train_normalized = self.normalize(X_train)
         X_test_normalized = self.normalize(X_test)
@@ -109,13 +94,16 @@ class PacketModel:
         X_train_normalized = np.array([X_train_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
         X_test_normalized = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
 
-        for i in range(len(y_train)):
-            y_train[i] = embedding[y_train[i]]
-        
-        y_train = np.array(y_train)
+        # 데이터 필터링
+        filter_protocol = 'Zigbee' if self.mode == 'fingerprint' else 'TCP/IP'
+        X_train_filtered = [x for x in X_train_normalized if x['protocol'] == filter_protocol]
+        y_train_filtered = [y for x, y in zip(X_train, y_train) if x['protocol'] == filter_protocol]
+
+        X_train_filtered = np.array([x for x in X_train_filtered]).transpose((1, 2, 0))
+        y_train_filtered = np.array([embedding[y] for y in y_train_filtered])
         
         self.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['categorical_accuracy'])
-        self.model.fit(X_train_normalized, y_train, epochs=10)
+        self.model.fit(X_train_normalized, y_train_filtered, epochs=25)
         
         return self.model.predict(X_test_normalized)
 
