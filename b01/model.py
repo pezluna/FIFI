@@ -149,13 +149,7 @@ class StatsModel:
     
     def check_NaN(self, X):
         print("Type of X: ", type(X))
-
-        for x in X:
-            for key, value in x.items():
-                if np.isnan(value).any():
-                    print(f"NaN found in {key}")
-                    print(f"Index: {x['index']}")
-                    print(f"Value: {value}")
+        print(X)
 
     
     def train(self, X_train, y_train, X_test):
