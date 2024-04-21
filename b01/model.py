@@ -114,9 +114,9 @@ class StatsModel:
         tmp = []
         for x in X:
             try:
-                tmp.append(x[0][1])
+                tmp.append(x[0][0])
             except:
-                tmp.append(x[1])
+                tmp.append(x[0])
         X = tmp
 
         return X
@@ -124,11 +124,27 @@ class StatsModel:
     def normalize(self, X):
         X = transpose(X)
         return {
-            "rawLength": np.minimum(np.array(X["rawLength"]) * 0.001, 1),
-            "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.001, 1),
-            "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
-            "deltaTime": np.minimum(np.array(X["deltaTime"]) * 0.5, 1),
-            "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
+            "sPackets": np.array(X["sPackets"]),
+            "rPackets": np.array(X["rPackets"]),
+            "sTotalSize": np.array(X["sTotalSize"]),
+            "rTotalSize": np.array(X["rTotalSize"]),
+            "sMinSize": np.array(X["sMinSize"]),
+            "rMinSize": np.array(X["rMinSize"]),
+            "sMaxSize": np.array(X["sMaxSize"]),
+            "rMaxSize": np.array(X["rMaxSize"]),
+            "sAvgSize": np.array(X["sAvgSize"]),
+            "rAvgSize": np.array(X["rAvgSize"]),
+            "sVarSize": np.array(X["sVarSize"]),
+            "rVarSize": np.array(X["rVarSize"]),
+            "sMinInterval": np.array(X["sMinInterval"]),
+            "rMinInterval": np.array(X["rMinInterval"]),
+            "sMaxInterval": np.array(X["sMaxInterval"]),
+            "rMaxInterval": np.array(X["rMaxInterval"]),
+            "sAvgInterval": np.array(X["sAvgInterval"]),
+            "rAvgInterval": np.array(X["rAvgInterval"]),
+            "sVarInterval": np.array(X["sVarInterval"]),
+            "rVarInterval": np.array(X["rVarInterval"]),
+            "sRatio": np.array(X["sRatio"]),
         }
     
     def train(self, X_train, y_train, X_test):
