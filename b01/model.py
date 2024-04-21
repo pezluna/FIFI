@@ -15,6 +15,9 @@ embedding = {
     "Sengled Smart Plug": 6,
     "SmartThings Button": 7,
     "Sonoff Smart Plug": 8,
+    "Aqara Door Sensor": 9,
+    "Aqara Switch": 10,
+    "Aqara Temperature/Humidity Sensor": 11,
     "benign": 0,
     "mirai": 1,
     "qbot": 2,
@@ -32,7 +35,7 @@ class PacketModel:
     def __init__(self, mode, model='cnn'):
         self.mode = mode
         if model == 'cnn':
-            num_classes = 4 if mode == 'botnet' else 9
+            num_classes = 4 if mode == 'botnet' else 12
             self.model = Sequential([
                 Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
                 BatchNormalization(),
@@ -238,7 +241,7 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
     def __init__(self, models, mode):
         self.models = models
         self.mode = mode
-        self.num_classes = 4 if mode == 'botnet' else 9
+        self.num_classes = 4 if mode == 'botnet' else 12
     
     def fit(self, X, y):
         # 각 모델에 대한 데이터와 타깃을 받아 모델 별로 학습을 수행
