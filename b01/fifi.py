@@ -58,8 +58,8 @@ packet_keras_model = KerasClassifier(
 
 # Ensemble classifier
 ensemble = EnsembleClassifier(models={
-    packet_model.model,
-    stats_model.model
+    'packet': packet_model.model,
+    'stats': stats_model.model
 })
 
 ensemble.fit(
