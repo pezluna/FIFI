@@ -39,8 +39,6 @@ class PacketModel:
                 BatchNormalization(),
                 MaxPooling1D(pool_size=2),
                 Conv1D(filters=64, kernel_size=3, activation='relu'),
-                BatchNormalization(),
-                MaxPooling1D(pool_size=2),
                 Flatten(),
                 Dense(64, activation='relu'),
                 Dropout(0.5),
