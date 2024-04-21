@@ -63,12 +63,12 @@ class Sessions:
                         continue
 
                     # padding
-                    if len(bodydata["rawTime"]) < 8:
-                        bodydata["rawLength"].extend([0] * (8 - len(bodydata["rawLength"])))
-                        bodydata["direction"].extend([1] * (8 - len(bodydata["direction"])))
-                        bodydata["deltaTime"].extend([0] * (8 - len(bodydata["deltaTime"])))
-                        bodydata["protocol"].extend(["Zigbee"] * (8 - len(bodydata["protocol"])))
-                        bodydata["capturedLength"].extend([0] * (8 - len(bodydata["capturedLength"])))
+                    if len(bodydata[1]["rawTime"]) < 8:
+                        bodydata[1]["rawLength"].extend([0] * (8 - len(bodydata[1]["rawLength"])))
+                        bodydata[1]["direction"].extend([1] * (8 - len(bodydata[1]["direction"])))
+                        bodydata[1]["deltaTime"].extend([0] * (8 - len(bodydata[1]["deltaTime"])))
+                        bodydata[1]["protocol"].extend(["Zigbee"] * (8 - len(bodydata[1]["protocol"])))
+                        bodydata[1]["capturedLength"].extend([0] * (8 - len(bodydata[1]["capturedLength"])))
 
                     reverse_metadata = {
                         "srcId": metadata["dstId"],
