@@ -74,9 +74,9 @@ class PacketModel:
         X_train_normalized = self.normalize(X_train)
         X_test_normalized = self.normalize(X_test)
 
-        X_train_normalized = np.array([X_train_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 0, 2))
-        X_test_normalized = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 0, 2))
-        
+        X_train_normalized = np.array([X_train_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+        X_test_normalized = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
+
         for i in range(len(y_train)):
             y_train[i] = embedding[y_train[i]]
         
