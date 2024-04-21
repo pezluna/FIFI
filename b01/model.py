@@ -82,8 +82,15 @@ class PacketModel:
         X_train_normalized = self.normalize(X_train_preprocessed)
         X_test_normalized = self.normalize(X_test_preprocessed)
 
-        filter_protocol = 1 if self.mode == 'botnet' else 0
-        indices = [i for i, val in enumerate(X_train_preprocessed) if val['protocol'] == filter_protocol]
+        indices = []
+        tmp = 1 if self.mode == 'botnet' else 0
+
+        for i, x in enumerate(X_train_normalized["protocol"]):
+            if x == tmp:
+                indices.append(i)
+
+        # filter_protocol = 1 if self.mode == 'botnet' else 0
+        # indices = [i for i, val in enumerate(X_train_preprocessed) if val['protocol'] == filter_protocol]
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
