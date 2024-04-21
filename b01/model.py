@@ -93,7 +93,8 @@ class PacketModel:
             if x.all() == tmp:
                 indices.append(i)
 
-        print("Pakcet counter:" ,Counter(y_train))
+        print("train packet protocol:", len(X_train_normalized["protocol"]))
+        print("train packet indices:", len(indices))
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
@@ -105,6 +106,9 @@ class PacketModel:
         for i, x in enumerate(X_test_normalized["protocol"]):
             if x.all() == tmp:
                 indices.append(i)
+
+        print("test packet protocol:", len(X_test_normalized["protocol"]))
+        print("test packet indices:", len(indices))
 
         X_train_final = np.array([X_train_filtered[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
         X_test_final = np.array([X_test_normalized[key] for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime', 'protocol']]).transpose((1, 2, 0))
@@ -197,6 +201,9 @@ class StatsModel:
         for i, x in enumerate(protocol):
             if tmp in x:
                 indices.append(i)
+        
+        print("train stats protocol:", len(protocol))
+        print("train stats indices:", len(indices))
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
@@ -211,7 +218,10 @@ class StatsModel:
         indices = []
         for i, x in enumerate(protocol):
             if tmp in x:
-                indices.extend([i] * len(x))
+                indices.append(i)
+
+        print("test stats protocol:", len(protocol))
+        print("test stats indices:", len(indices))
 
         X_test_filtered = {key: X_test_normalized[key][indices] for key in X_test_normalized}
 
