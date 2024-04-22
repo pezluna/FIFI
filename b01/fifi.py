@@ -216,6 +216,13 @@ plt.xlabel('Predicted')
 plt.ylabel('Truth')
 plt.savefig("cnn_confusion_matrix.png")
 
+cm_lstm = confusion_matrix(final_y_test, predictions_lstm)
+plt.figure(figsize=(10, 7))
+sns.heatmap(cm_lstm, annot=True, fmt='d')
+plt.xlabel('Predicted')
+plt.ylabel('Truth')
+plt.savefig("lstm_confusion_matrix.png")
+
 cm_ensemble_rf = confusion_matrix(final_y_test, predictions_ensemble_rf_cnn)
 plt.figure(figsize=(10, 7))
 sns.heatmap(cm_ensemble_rf, annot=True, fmt='d')
