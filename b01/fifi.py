@@ -190,33 +190,6 @@ print("Accuracy Ensemble XGB-CNN: ", accuracy_ensemble_xgb_cnn)
 print("Accuracy Ensemble RF-LSTM: ", accuracy_ensemble_rf_lstm)
 print("Accuracy Ensemble XGB-LSTM: ", accuracy_ensemble_xgb_lstm)
 
-# ROC Curve
-from sklearn.metrics import roc_curve, roc_auc_score
-import matplotlib.pyplot as plt
-
-fpr_rf, tpr_rf, _ = roc_curve(final_y_test, predictions_rf)
-fpr_xgb, tpr_xgb, _ = roc_curve(final_y_test, predictions_xgb)
-fpr_cnn, tpr_cnn, _ = roc_curve(final_y_test, predictions_cnn)
-fpr_lstm, tpr_lstm, _ = roc_curve(final_y_test, predictions_lstm)
-fpr_ensemble_rf_cnn, tpr_ensemble_rf_cnn, _ = roc_curve(final_y_test, predictions_ensemble_rf_cnn)
-fpr_ensemble_xgb_cnn, tpr_ensemble_xgb_cnn, _ = roc_curve(final_y_test, predictions_ensemble_xgb_cnn)
-fpr_ensemble_rf_lstm, tpr_ensemble_rf_lstm, _ = roc_curve(final_y_test, predictions_ensemble_rf_lstm)
-fpr_ensemble_xgb_lstm, tpr_ensemble_xgb_lstm, _ = roc_curve(final_y_test, predictions_ensemble_xgb_lstm)
-
-plt.figure(figsize=(10, 10))
-plt.plot(fpr_rf, tpr_rf, label='RF')
-plt.plot(fpr_xgb, tpr_xgb, label='XGB')
-plt.plot(fpr_cnn, tpr_cnn, label='CNN')
-plt.plot(fpr_lstm, tpr_lstm, label='LSTM')
-plt.plot(fpr_ensemble_rf_cnn, tpr_ensemble_rf_cnn, label='Ensemble RF-CNN')
-plt.plot(fpr_ensemble_xgb_cnn, tpr_ensemble_xgb_cnn, label='Ensemble XGB-CNN')
-plt.plot(fpr_ensemble_rf_lstm, tpr_ensemble_rf_lstm, label='Ensemble RF-LSTM')
-plt.plot(fpr_ensemble_xgb_lstm, tpr_ensemble_xgb_lstm, label='Ensemble XGB-LSTM')
-plt.xlabel('False Positive Rate')
-plt.ylabel('True Positive Rate')
-plt.legend()
-plt.savefig("roc_curve.png")
-
 # Save Confusion Matrix
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
