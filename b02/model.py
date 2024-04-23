@@ -127,8 +127,10 @@ class PacketModel:
         
         X_train_final = np.stack([np.array(X_train_normalized[key]) for key in X_train_normalized], axis=-1)
         X_test_final = np.stack([np.array(X_test_normalized[key]) for key in X_test_normalized], axis=-1)
+
+        y_train_final = np.array([embedding_botnet[y] for y in y_train])
         
-        return X_train_final, y_train, X_test_final
+        return X_train_final, y_train_final, X_test_final
     
     def check_lengths(self, data):
         lengths = {key: [] for key in data}  # Dictionary to store lengths of each list for each key
