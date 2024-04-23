@@ -1,7 +1,8 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.class_weight import compute_class_weight
 from keras.models import Sequential
-from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization, LSTM
+from keras.layers import Dense, Conv1D, Flatten, Dropout, BatchNormalization, LSTM
 from xgboost import XGBClassifier
 import numpy as np
 
@@ -24,6 +25,14 @@ embedding = {
     "qbot": 2,
     "kaiten": 3
 }
+
+class_weights = compute_class_weight(
+    'balanced',
+    np.unique(list(embedding.values())),
+    list(embedding.values())
+)
+
+class_weights_dict = {i: class_weights[i] for i in range(len(class_weights))}
 
 def transpose(X):
     transposed_data = {key: [] for key in X[0]}
@@ -133,10 +142,18 @@ class StatsModel:
             self.model = RandomForestClassifier(
                 n_estimators=300,
                 max_depth=10,
-                verbose=1
+                verbose=1,
+                class_weight=class_weights_dict
             )
         elif model == 'xgb':
-            self.model = XGBClassifier()
+            self.model = XGBClassifier(
+                n_estimators=300,
+                max_depth=10,
+                verbosity=1,
+                objective='multi:softmax',
+                num_class=4 if mode == 'botnet' else 13,
+                scale_pos_weight=class_weights_dict
+            )
         else:
             raise Exception("Invalid model type.")
         
