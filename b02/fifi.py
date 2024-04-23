@@ -114,7 +114,9 @@ for pred in predictions_lstm:
     else:
         final_predictions_lstm.append(0)
 
-print(set(final_y_test))
+print(np.array(final_predictions_cnn).shape)
+print(np.array(final_predictions_lstm).shape)
+print(final_y_test.shape)
 
 print("-------------------")
 print("CNN")
