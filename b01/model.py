@@ -48,10 +48,8 @@ class PacketModel:
             num_classes = 4 if mode == 'botnet' else 13
             self.model = Sequential([
                 Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
-                BatchNormalization(),
                 Flatten(),
                 Dense(64, activation='relu'),
-                Dropout(0.2),
                 Dense(num_classes, activation='softmax')
             ])
             self.model.compile(
@@ -141,18 +139,14 @@ class StatsModel:
         if model == 'rf':
             self.model = RandomForestClassifier(
                 n_estimators=300,
-                max_depth=10,
-                verbose=1,
-                class_weight=class_weights_dict
+                max_depth=10
             )
         elif model == 'xgb':
             self.model = XGBClassifier(
                 n_estimators=300,
                 max_depth=10,
-                verbosity=1,
                 objective='multi:softmax',
                 num_class=4 if mode == 'botnet' else 13,
-                scale_pos_weight=class_weights_dict
             )
         else:
             raise Exception("Invalid model type.")
