@@ -62,35 +62,22 @@ class PacketModel:
         return X
 
     def normalize(self, data):
-        # 이 예제에서는 rawLength, capturedLength, direction, deltaTime을 사용합니다.
-        # 각 특성에 대해 모든 샘플의 길이를 최대 길이에 맞추어 패딩을 적용합니다.
+        # 각 특성의 최대 길이를 찾습니다.
         max_length = 8
         
-        # 데이터를 저장할 배열을 초기화합니다.
-        feature_arrays = {
-            'rawLength': [],
-            'capturedLength': [],
-            'direction': [],
-            'deltaTime': [],
-            'protocol': []
-        }
+        # 정규화된 데이터를 저장할 리스트
+        normalized_data = []
+
+        # 데이터를 정규화합니다.
+        for item in data:
+            entry = {}
+            for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime']:
+                # 리스트에 패딩을 추가하여 길이를 맞춥니다.
+                padded_array = np.array(item[key] + [0]*(max_length - len(item[key])))
+                entry[key] = padded_array
+            normalized_data.append(entry)
         
-        # 데이터를 배열로 변환합니다.
-        for entry in data:
-            for key in feature_arrays:
-                padded_array = np.array(entry[key] + [0]*(max_length - len(entry[key])))
-                feature_arrays[key].append(padded_array)
-        
-        # 각 특성 배열을 스택으로 합쳐 하나의 입력 데이터로 만듭니다.
-        stacked_features = np.stack([
-            np.stack(feature_arrays['rawLength'], axis=0),
-            np.stack(feature_arrays['capturedLength'], axis=0),
-            np.stack(feature_arrays['direction'], axis=0),
-            np.stack(feature_arrays['deltaTime'], axis=0),
-            np.stack(feature_arrays['protocol'], axis=0)
-        ], axis=-1)  # 채널 마지막 방식(CNN에 적합)
-        
-        return stacked_features
+        return normalized_data
     
     def preprocess(self, X_train, y_train, X_test):
         # X_train_preprocessed = self.rearrange(X_train)
