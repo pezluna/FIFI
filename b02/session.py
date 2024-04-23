@@ -220,7 +220,7 @@ class Sessions:
                     if s["label"] == label:
                         idxs.append(j)
 
-                train_idxs = np.random.choice(idxs, round(len(idxs)*0.5), replace=False)
+                train_idxs = np.random.choice(idxs, round(len(idxs)*0.6), replace=False)
                 test_idxs = [j for j in idxs if j not in train_idxs]
 
                 for idx in train_idxs:
