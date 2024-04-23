@@ -231,7 +231,7 @@ class Sessions:
         statisticsDatas = []
         packetDatas = []
         for i, line in enumerate(csv):
-            if i > 30:
+            if i > 10:
                 break
             if i == 0:
                 # header
