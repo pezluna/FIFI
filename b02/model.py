@@ -61,23 +61,63 @@ class PacketModel:
 
         return X
 
-    def normalize(self, data):
-        # 각 특성의 최대 길이를 찾습니다.
-        max_length = 8
-        
-        # 정규화된 데이터를 저장할 리스트
-        normalized_data = []
+    def normalize(self, X):
 
-        # 데이터를 정규화합니다.
-        for item in data:
-            entry = {}
-            for key in ['rawLength', 'capturedLength', 'direction', 'deltaTime']:
-                # 리스트에 패딩을 추가하여 길이를 맞춥니다.
-                padded_array = np.array(item[key] + [0]*(max_length - len(item[key])))
-                entry[key] = padded_array
-            normalized_data.append(entry)
-        
-        return normalized_data
+        # X = transpose(X)
+        # for i in range(len(X["deltaTime"])):
+        #     if len(X["deltaTime"][i]) < 8:
+        #         X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
+        # return {
+        #     "rawLength": np.minimum(np.array(X["rawLength"]) * 0.04, 1),
+        #     "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.04, 1),
+        #     "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
+        #     "deltaTime": np.minimum(np.array(X["deltaTime"]), 1),
+        #     "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
+        # }
+
+        transposed_data = {
+            "rawLength": [],
+            "capturedLength": [],
+            "direction": [],
+            "deltaTime": [],
+            "protocol": []
+        }
+
+        for x in X:
+            # x는 8개의 패킷 정보를 가지고 있는 딕셔너리
+            rawLength = []
+            capturedLength = []
+            direction = []
+            deltaTime = []
+            protocol = []
+
+            for i in range(8):
+                try:
+                    rawLength.append(x[i]["rawLength"])
+                    capturedLength.append(x[i]["capturedLength"])
+                    direction.append(x[i]["direction"])
+                    deltaTime.append(x[i]["deltaTime"])
+                    protocol.append(x[i]["protocol"])
+                except:
+                    rawLength.append(0)
+                    capturedLength.append(0)
+                    direction.append(0)
+                    deltaTime.append(0)
+                    protocol.append(0)
+
+            transposed_data["rawLength"].append(rawLength)
+            transposed_data["capturedLength"].append(capturedLength)
+            transposed_data["direction"].append(direction)
+            transposed_data["deltaTime"].append(deltaTime)
+            transposed_data["protocol"].append(protocol)
+
+        return {
+            "rawLength": np.minimum(np.array(transposed_data["rawLength"]) * 0.04, 1),
+            "capturedLength": np.minimum(np.array(transposed_data["capturedLength"]) * 0.04, 1),
+            "direction": np.where(np.array(transposed_data["direction"]) == -1, 0, 1),
+            "deltaTime": np.minimum(np.array(transposed_data["deltaTime"]), 1),
+            "protocol": np.where(np.array(transposed_data["protocol"]) == "TCP/IP", 1, 0)
+        }
     
     def preprocess(self, X_train, y_train, X_test):
         # X_train_preprocessed = self.rearrange(X_train)
