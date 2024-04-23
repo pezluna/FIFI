@@ -87,144 +87,6 @@ class Sessions:
         except:
             print("Error saving session data.")
             raise Exception("Error saving session data.")
-
-    def get_zigbee_metadata(self, pcap):
-        metadata = {}
-
-        for i, pkt in enumerate(pcap):
-            if 'ZBEE_NWK' in pkt.highest_layer:
-                if pkt.wpan.dst16 == "0xffff":
-                    continue
-                metadata["srcId"] = pkt.wpan.src16
-                metadata["dstId"] = pkt.wpan.dst16
-                metadata["protocol"] = "Zigbee"
-                metadata["remarks"] = pkt.wpan.dst_pan
-
-                break
-        else:
-            # Whole packet is broadcast
-            return None
-
-        return metadata
-
-    def get_zigbee_bodydata(self, pcap):
-        statisticsData = {
-            "sPackets": None,
-            "rPackets": None,
-            "sTotalSize": None,
-            "rTotalSize": None,
-            "sMinSize": None,
-            "rMinSize": None,
-            "sMaxSize": None,
-            "rMaxSize": None,
-            "sAvgSize": None,
-            "rAvgSize": None,
-            "sVarSize": None,
-            "rVarSize": None,
-            "sMinInterval": None,
-            "rMinInterval": None,
-            "sMaxInterval": None,
-            "rMaxInterval": None,
-            "sAvgInterval": None,
-            "rAvgInterval": None,
-            "sVarInterval": None,
-            "rVarInterval": None,
-            "sRatio": None
-        }
-        packetData = {
-            "rawTime": [],
-            "rawLength": [],
-            "payload": [],
-            "capturedLength": [],
-            "direction": [],
-            "deltaTime": [],
-            "protocol": []
-        }
-        last_sTime = None
-        last_rTime = None
-
-        s_lengths = []
-        r_lengths = []
-        s_intervals = []
-        r_intervals = []
-        srcId = None
-
-        i = 0
-
-        for i, pkt in enumerate(pcap):
-            if 'ZBEE_NWK' in pkt.highest_layer:
-                if pkt.wpan.dst16 == "0xffff":
-                    continue
-                if srcId is None:
-                    srcId = pkt.wpan.src16
-                currentTime = float(pkt.sniff_timestamp)
-                direction = 0 if srcId == pkt.wpan.src16 else 1
-
-                if i < 8:
-                    packetData["rawTime"].append(currentTime)
-                    packetData["rawLength"].append(pkt.length)
-                    packetData["payload"].append(pkt.get_raw_packet().decode("utf-8", errors="replace"))
-                    packetData["capturedLength"].append(pkt.captured_length) if pkt.captured_length is not None else packetData["capturedLength"].append(pkt.length)
-                    packetData["direction"].append(direction)
-                    packetData["protocol"].append("Zigbee")
-
-                if direction == 0:
-                    s_lengths.append(pkt.length)
-                    if last_sTime is not None:
-                        interval = currentTime - last_sTime
-                        s_intervals.append(interval)
-                        if i < 8:
-                            packetData["deltaTime"].append(interval)
-                    else:
-                        pass
-                    last_sTime = currentTime
-                else:
-                    r_lengths.append(pkt.length)
-                    if last_rTime is not None:
-                        interval = currentTime - last_rTime
-                        r_intervals.append(interval)
-                        if i < 8:
-                            packetData["deltaTime"].append(interval)
-                    else:
-                        pass
-                    last_rTime = currentTime
-
-        packetData["deltaTime"] = [0] + packetData["deltaTime"]
-
-        if i == 0:
-            return None
-
-        if i < 8:
-            packetData["deltaTime"].extend([0] * (8 - len(packetData["deltaTime"])))
-            packetData["direction"].extend([1] * (8 - len(packetData["direction"])))
-            packetData["protocol"].extend(["Zigbee"] * (8 - len(packetData["protocol"])))
-            packetData["rawLength"].extend([0] * (8 - len(packetData["rawLength"])))
-            packetData["capturedLength"].extend([0] * (8 - len(packetData["capturedLength"])))
-
-        # Calculating statistics
-        statisticsData["sPackets"] = len(s_lengths)
-        statisticsData["rPackets"] = len(r_lengths)
-        statisticsData["sTotalSize"] = sum(s_lengths)
-        statisticsData["rTotalSize"] = sum(r_lengths)
-        statisticsData["sMinSize"] = min(s_lengths) if s_lengths else None
-        statisticsData["rMinSize"] = min(r_lengths) if r_lengths else None
-        statisticsData["sMaxSize"] = max(s_lengths) if s_lengths else None
-        statisticsData["rMaxSize"] = max(r_lengths) if r_lengths else None
-        statisticsData["sAvgSize"] = np.mean(s_lengths) if s_lengths else None
-        statisticsData["rAvgSize"] = np.mean(r_lengths) if r_lengths else None
-        statisticsData["sVarSize"] = np.var(s_lengths) if s_lengths else None
-        statisticsData["rVarSize"] = np.var(r_lengths) if r_lengths else None
-        statisticsData["sMinInterval"] = min(s_intervals) if s_intervals else None
-        statisticsData["rMinInterval"] = min(r_intervals) if r_intervals else None
-        statisticsData["sMaxInterval"] = max(s_intervals) if s_intervals else None
-        statisticsData["rMaxInterval"] = max(r_intervals) if r_intervals else None
-        statisticsData["sAvgInterval"] = np.mean(s_intervals) if s_intervals else None
-        statisticsData["rAvgInterval"] = np.mean(r_intervals) if r_intervals else None
-        statisticsData["sVarInterval"] = np.var(s_intervals) if s_intervals else None
-        statisticsData["rVarInterval"] = np.var(r_intervals) if r_intervals else None
-        statisticsData["sRatio"] = len(s_lengths) / (len(r_lengths) + len(s_lengths)) if len(r_lengths) + len(s_lengths) > 0 else None
-
-        return statisticsData, packetData
     
     def get_cnc_data(self, csv):
         metadatas = []
@@ -254,29 +116,6 @@ class Sessions:
                 "deltaTime": [],
                 "protocol": []
             }
-            statisticsData = {
-                "sPackets": None,
-                "rPackets": None,
-                "sTotalSize": None,
-                "rTotalSize": None,
-                "sMinSize": None,
-                "rMinSize": None,
-                "sMaxSize": None,
-                "rMaxSize": None,
-                "sAvgSize": None,
-                "rAvgSize": None,
-                "sVarSize": None,
-                "rVarSize": None,
-                "sMinInterval": None,
-                "rMinInterval": None,
-                "sMaxInterval": None,
-                "rMaxInterval": None,
-                "sAvgInterval": None,
-                "rAvgInterval": None,
-                "sVarInterval": None,
-                "rVarInterval": None,
-                "sRatio": None
-            }
 
             last_sTime = None
             last_rTime = None
@@ -293,10 +132,6 @@ class Sessions:
             metadata["protocol"] = "TCP/IP"
             metadata["remarks"] = (line[11].strip(), line[12].strip())
 
-            sBytes = int(line[2].strip())
-            rBytes = int(line[3].strip())
-            sPackets = int(line[9].strip())
-            rPackets = int(line[10].strip())
             directions = line[17].strip()
             flags = line[18].strip()
             lengths = line[19].strip()
@@ -306,12 +141,6 @@ class Sessions:
             flags = list(map(int, flags[1:-1].split("|")))
             lengths = list(map(int, lengths[1:-1].split("|")))
             times = times[1:-1].split("|")
-
-            statisticsData["sPackets"] = sPackets
-            statisticsData["rPackets"] = rPackets
-            statisticsData["sTotalSize"] = sBytes
-            statisticsData["rTotalSize"] = rBytes
-            statisticsData["sRatio"] = sPackets / (sPackets + rPackets) if sPackets + rPackets > 0 else None
 
             for i in range(len(directions)):
                 direction = directions[i]
@@ -346,23 +175,6 @@ class Sessions:
                 packetData["payload"].append(None)
                 packetData["protocol"].append("TCP/IP")
 
-            statisticsData["sMinSize"] = min(s_lengths) if s_lengths else None
-            statisticsData["rMinSize"] = min(r_lengths) if r_lengths else None
-            statisticsData["sMaxSize"] = max(s_lengths) if s_lengths else None
-            statisticsData["rMaxSize"] = max(r_lengths) if r_lengths else None
-            statisticsData["sAvgSize"] = np.mean(s_lengths) if s_lengths else None
-            statisticsData["rAvgSize"] = np.mean(r_lengths) if r_lengths else None
-            statisticsData["sVarSize"] = np.var(s_lengths) if s_lengths else None
-            statisticsData["rVarSize"] = np.var(r_lengths) if r_lengths else None
-            statisticsData["sMinInterval"] = min(s_intervals) if s_intervals else None
-            statisticsData["rMinInterval"] = min(r_intervals) if r_intervals else None
-            statisticsData["sMaxInterval"] = max(s_intervals) if s_intervals else None
-            statisticsData["rMaxInterval"] = max(r_intervals) if r_intervals else None
-            statisticsData["sAvgInterval"] = np.mean(s_intervals) if s_intervals else None
-            statisticsData["rAvgInterval"] = np.mean(r_intervals) if r_intervals else None
-            statisticsData["sVarInterval"] = np.var(s_intervals) if s_intervals else None
-            statisticsData["rVarInterval"] = np.var(r_intervals) if r_intervals else None
-
             packetData["deltaTime"] = [0] + packetData["deltaTime"]
             packetData["direction"] = packetData["direction"][:8]
             packetData["protocol"] = packetData["protocol"][:8]
@@ -378,7 +190,6 @@ class Sessions:
                 packetData["deltaTime"].extend([0] * (8 - len(packetData["deltaTime"])))
 
             metadatas.append(metadata)
-            statisticsDatas.append(statisticsData)
             packetDatas.append(packetData)
 
         return metadatas, statisticsDatas, packetDatas
