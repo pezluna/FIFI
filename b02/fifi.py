@@ -1,6 +1,6 @@
 import sys
 from session import Sessions
-from model import PacketModel, StatsModel, EnsembleClassifier, embedding_botnet
+from model import PacketModel, embedding_botnet
 import numpy as np
 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
