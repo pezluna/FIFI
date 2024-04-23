@@ -3,8 +3,7 @@ from session import Sessions
 from model import PacketModel, StatsModel, EnsembleClassifier, embedding
 import numpy as np
 
-from scikeras.wrappers import KerasClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 isReset = False
 mode = None
@@ -170,25 +169,63 @@ final_y_test = np.array(final_y_test)
 if final_y_test.dtype != predictions_rf.dtype:
     final_y_test = final_y_test.astype(predictions_rf.dtype)
 
-accuracy_rf = accuracy_score(final_y_test, predictions_rf)
-accuracy_xgb = accuracy_score(final_y_test, predictions_xgb)
-predictions_cnn = np.argmax(predictions_cnn, axis=1)
-accuracy_cnn = accuracy_score(final_y_test, predictions_cnn)
-predictions_lstm = np.argmax(predictions_lstm, axis=1)
-accuracy_lstm = accuracy_score(final_y_test, predictions_lstm)
-accuracy_ensemble_rf_cnn = accuracy_score(final_y_test, predictions_ensemble_rf_cnn)
-accuracy_ensemble_xgb_cnn = accuracy_score(final_y_test, predictions_ensemble_xgb_cnn)
-accuracy_ensemble_rf_lstm = accuracy_score(final_y_test, predictions_ensemble_rf_lstm)
-accuracy_ensemble_xgb_lstm = accuracy_score(final_y_test, predictions_ensemble_xgb_lstm)
+print("-------------------")
+print("RF")
+print("Accuracy: ", accuracy_score(final_y_test, predictions_rf))
+print("Precision: ", precision_score(final_y_test, predictions_rf, average='macro'))
+print("Recall: ", recall_score(final_y_test, predictions_rf, average='macro'))
+print("F1: ", f1_score(final_y_test, predictions_rf, average='macro'))
 
-print("Accuracy RF: ", accuracy_rf)
-print("Accuracy XGB: ", accuracy_xgb)
-print("Accuracy CNN: ", accuracy_cnn)
-print("Accuracy LSTM: ", accuracy_lstm)
-print("Accuracy Ensemble RF-CNN: ", accuracy_ensemble_rf_cnn)
-print("Accuracy Ensemble XGB-CNN: ", accuracy_ensemble_xgb_cnn)
-print("Accuracy Ensemble RF-LSTM: ", accuracy_ensemble_rf_lstm)
-print("Accuracy Ensemble XGB-LSTM: ", accuracy_ensemble_xgb_lstm)
+print("-------------------")
+print("XGB")
+print("Accuracy: ", accuracy_score(final_y_test, predictions_xgb))
+print("Precision: ", precision_score(final_y_test, predictions_xgb, average='macro'))
+print("Recall: ", recall_score(final_y_test, predictions_xgb, average='macro'))
+print("F1: ", f1_score(final_y_test, predictions_xgb, average='macro'))
+
+print("-------------------")
+print("CNN")
+print("Accuracy: ", accuracy_score(final_y_test, predictions_cnn))
+print("Precision: ", precision_score(final_y_test, predictions_cnn, average='macro'))
+print("Recall: ", recall_score(final_y_test, predictions_cnn, average='macro'))
+print("F1: ", f1_score(final_y_test, predictions_cnn, average='macro'))
+
+print("-------------------")
+print("LSTM")
+print("Accuracy: ", accuracy_score(final_y_test, predictions_lstm))
+print("Precision: ", precision_score(final_y_test, predictions_lstm, average='macro'))
+print("Recall: ", recall_score(final_y_test, predictions_lstm, average='macro'))
+print("F1: ", f1_score(final_y_test, predictions_lstm, average='macro'))
+
+print("-------------------")
+print("Ensemble RF-CNN")
+print("Accuracy: ", accuracy_score(final_y_test, predictions_ensemble_rf_cnn))
+print("Precision: ", precision_score(final_y_test, predictions_ensemble_rf_cnn, average='macro'))
+print("Recall: ", recall_score(final_y_test, predictions_ensemble_rf_cnn, average='macro'))
+print("F1: ", f1_score(final_y_test, predictions_ensemble_rf_cnn, average='macro'))
+
+print("-------------------")
+print("Ensemble XGB-CNN")
+print("Accuracy: ", accuracy_score(final_y_test, predictions_ensemble_xgb_cnn))
+print("Precision: ", precision_score(final_y_test, predictions_ensemble_xgb_cnn, average='macro'))
+print("Recall: ", recall_score(final_y_test, predictions_ensemble_xgb_cnn, average='macro'))
+print("F1: ", f1_score(final_y_test, predictions_ensemble_xgb_cnn, average='macro'))
+
+print("-------------------")
+print("Ensemble RF-LSTM")
+print("Accuracy: ", accuracy_score(final_y_test, predictions_ensemble_rf_lstm))
+print("Precision: ", precision_score(final_y_test, predictions_ensemble_rf_lstm, average='macro'))
+print("Recall: ", recall_score(final_y_test, predictions_ensemble_rf_lstm, average='macro'))
+print("F1: ", f1_score(final_y_test, predictions_ensemble_rf_lstm, average='macro'))
+
+print("-------------------")
+print("Ensemble XGB-LSTM")
+print("Accuracy: ", accuracy_score(final_y_test, predictions_ensemble_xgb_lstm))
+print("Precision: ", precision_score(final_y_test, predictions_ensemble_xgb_lstm, average='macro'))
+print("Recall: ", recall_score(final_y_test, predictions_ensemble_xgb_lstm, average='macro'))
+print("F1: ", f1_score(final_y_test, predictions_ensemble_xgb_lstm, average='macro'))
+
+print("Evaluation completed.")
 
 # Save Confusion Matrix
 from sklearn.metrics import confusion_matrix
@@ -236,3 +273,21 @@ sns.heatmap(cm_ensemble_xgb, annot=True, fmt='d')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
 plt.savefig("ensemble_xgb_cnn_confusion_matrix.png")
+
+cm_ensemble_rf_lstm = confusion_matrix(final_y_test, predictions_ensemble_rf_lstm)
+plt.figure(figsize=(10, 7))
+sns.heatmap(cm_ensemble_rf_lstm, annot=True, fmt='d')
+plt.xlabel('Predicted')
+plt.ylabel('Truth')
+plt.savefig("ensemble_rf_lstm_confusion_matrix.png")
+
+cm_ensemble_xgb_lstm = confusion_matrix(final_y_test, predictions_ensemble_xgb_lstm)
+plt.figure(figsize=(10, 7))
+sns.heatmap(cm_ensemble_xgb_lstm, annot=True, fmt='d')
+plt.xlabel('Predicted')
+plt.ylabel('Truth')
+plt.savefig("ensemble_xgb_lstm_confusion_matrix.png")
+
+print("Confusion matrices saved.")
+
+# Save epoch-loss graph

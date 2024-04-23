@@ -245,6 +245,59 @@ class StatsModel:
 
         return X_train_final, y_train_filtered, X_test_final
     
+# class EnsembleClassifier(BaseEstimator, ClassifierMixin):
+#     def __init__(self, models, mode):
+#         self.models = models
+#         self.mode = mode
+#         self.num_classes = 4 if mode == 'botnet' else 13
+    
+#     def fit(self, X, y):
+#         # 각 모델에 대한 데이터와 타깃을 받아 모델 별로 학습을 수행
+#         self.models['packet'].fit(X['packet'], y)
+#         self.models['stats'].fit(X['stats'], y)
+#         return self
+    
+#     def predict(self, X):
+#         # 차원 확인
+#         print("Packet data shape:", X['packet'].shape)
+#         print("Stats data shape:", X['stats'].shape)
+#         if len(X['packet']) != len(X['stats']):
+#             raise ValueError("Different number of samples in packet and stats data.")
+
+#         # 각 모델에서 확률 예측을 수행
+#         packet_predictions = self.models['packet'].predict(X['packet'])
+#         stats_predictions = self.models['stats'].predict_proba(X['stats'])
+
+#         # 차원 확인
+#         print("Packet predictions shape:", packet_predictions.shape)
+#         print("Stats predictions shape:", stats_predictions.shape)
+
+#         final_predictions = self.calculate_final_predictions(packet_predictions, stats_predictions)
+
+#         final_predictions = np.array(final_predictions)
+
+#         return final_predictions
+    
+#     def calculate_final_predictions(self, packet_probs, stats_probs):
+#         final_predictions = []
+#         for packet_prob, stats_prob in zip(packet_probs, stats_probs):
+#             # 패킷 모델과 통계 모델의 예측 확률을 각각 평가합니다.
+#             packet_label = np.argmax(packet_prob)
+#             stats_label = np.argmax(stats_prob)
+
+#             # 두 모델이 동일한 레이블을 예측했다면, 해당 레이블을 선택합니다.
+#             if packet_label == stats_label:
+#                 final_predictions.append(packet_label)
+#             else:
+#                 # 두 모델이 서로 다른 레이블을 예측했다면, 각 레이블의 평균 확률을 비교하여 더 높은 확률을 가진 레이블을 선택합니다.
+#                 packet_label_prob = packet_prob[packet_label]
+#                 stats_label_prob = stats_prob[stats_label]
+#                 if packet_label_prob > stats_label_prob:
+#                     final_predictions.append(packet_label)
+#                 else:
+#                     final_predictions.append(stats_label)
+#         return final_predictions
+
 class EnsembleClassifier(BaseEstimator, ClassifierMixin):
     def __init__(self, models, mode):
         self.models = models
@@ -252,48 +305,27 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         self.num_classes = 4 if mode == 'botnet' else 13
     
     def fit(self, X, y):
-        # 각 모델에 대한 데이터와 타깃을 받아 모델 별로 학습을 수행
+        # 각 모델을 해당 데이터에 맞게 학습시킵니다.
         self.models['packet'].fit(X['packet'], y)
         self.models['stats'].fit(X['stats'], y)
         return self
     
     def predict(self, X):
-        # 차원 확인
-        print("Packet data shape:", X['packet'].shape)
-        print("Stats data shape:", X['stats'].shape)
-        if len(X['packet']) != len(X['stats']):
-            raise ValueError("Different number of samples in packet and stats data.")
+        # 각 모델의 예측 확률을 가져옵니다.
+        packet_probs = self.models['packet'].predict_proba(X['packet'])
+        stats_probs = self.models['stats'].predict_proba(X['stats'])
 
-        # 각 모델에서 확률 예측을 수행
-        packet_predictions = self.models['packet'].predict(X['packet'])
-        stats_predictions = self.models['stats'].predict_proba(X['stats'])
-
-        # 차원 확인
-        print("Packet predictions shape:", packet_predictions.shape)
-        print("Stats predictions shape:", stats_predictions.shape)
-
-        final_predictions = self.calculate_final_predictions(packet_predictions, stats_predictions)
-
-        final_predictions = np.array(final_predictions)
+        # 예측 확률을 평균내어 최종 예측을 결정합니다.
+        final_probs = (packet_probs + stats_probs) / 2
+        final_predictions = np.argmax(final_probs, axis=1)
 
         return final_predictions
     
-    def calculate_final_predictions(self, packet_probs, stats_probs):
-        final_predictions = []
-        for packet_prob, stats_prob in zip(packet_probs, stats_probs):
-            # 패킷 모델과 통계 모델의 예측 확률을 각각 평가합니다.
-            packet_label = np.argmax(packet_prob)
-            stats_label = np.argmax(stats_prob)
+    def predict_proba(self, X):
+        # 각 모델의 예측 확률을 가져옵니다.
+        packet_probs = self.models['packet'].predict_proba(X['packet'])
+        stats_probs = self.models['stats'].predict_proba(X['stats'])
 
-            # 두 모델이 동일한 레이블을 예측했다면, 해당 레이블을 선택합니다.
-            if packet_label == stats_label:
-                final_predictions.append(packet_label)
-            else:
-                # 두 모델이 서로 다른 레이블을 예측했다면, 각 레이블의 평균 확률을 비교하여 더 높은 확률을 가진 레이블을 선택합니다.
-                packet_label_prob = packet_prob[packet_label]
-                stats_label_prob = stats_prob[stats_label]
-                if packet_label_prob > stats_label_prob:
-                    final_predictions.append(packet_label)
-                else:
-                    final_predictions.append(stats_label)
-        return final_predictions
+        # 예측 확률을 평균냅니다.
+        final_probs = (packet_probs + stats_probs) / 2
+        return final_probs
