@@ -10,7 +10,7 @@ from label import Label
 class Session:
     def __init__(self, metadata, packet, label):
         self.metadata = metadata
-        self.packet = packet
+        self.packet = [packet]
         self.label = label
     
     def to_dict(self):
