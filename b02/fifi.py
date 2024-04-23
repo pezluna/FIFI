@@ -62,6 +62,7 @@ print("Model loading...")
 
 cnn_model = PacketModel(mode=mode, model='cnn')
 lstm_model = PacketModel(mode=mode, model='lstm')
+cnnlstm_model = PacketModel(mode=mode, model='cnnlstm')
 
 print("Model loaded.")
 
@@ -72,6 +73,7 @@ packet_X_train, packet_y_train, packet_X_test = cnn_model.preprocess(X_train, y_
 
 lstm_model.model.fit(packet_X_train, packet_y_train, epochs=40, batch_size=4)
 cnn_model.model.fit(packet_X_train, packet_y_train, epochs=40, batch_size=4)
+cnnlstm_model.model.fit(packet_X_train, packet_y_train, epochs=40, batch_size=4)
 
 print("Training completed.")
 
@@ -80,15 +82,7 @@ print("Evaluating the model...")
 
 predictions_lstm = lstm_model.model.predict(packet_X_test)
 predictions_cnn = cnn_model.model.predict(packet_X_test)
-
-print("Predictions:")
-for i in range(len(predictions_lstm)):
-    print(predictions_lstm[i], y_test[i])
-print()
-print("Predictions:")
-for i in range(len(predictions_cnn)):
-    print(predictions_cnn[i], y_test[i])
-print("Predictions completed.")
+predictions_cnnlstm = cnnlstm_model.model.predict(packet_X_test)
 
 final_y_test = []
 
@@ -101,6 +95,7 @@ for y in y_test:
 final_y_test = np.array(final_y_test)
 final_predictions_cnn = []
 final_predictions_lstm = []
+final_predictions_cnnlstm = []
 
 for pred in predictions_cnn:
     if pred[0] > 0.4:
@@ -114,9 +109,11 @@ for pred in predictions_lstm:
     else:
         final_predictions_lstm.append(0)
 
-print(np.array(final_predictions_cnn).shape)
-print(np.array(final_predictions_lstm).shape)
-print(final_y_test.shape)
+for pred in predictions_cnnlstm:
+    if pred[0] > 0.4:
+        final_predictions_cnnlstm.append(1)
+    else:
+        final_predictions_cnnlstm.append(0)
 
 print("-------------------")
 print("CNN")
@@ -132,23 +129,31 @@ print("Precision: ", precision_score(final_y_test, final_predictions_lstm))
 print("Recall: ", recall_score(final_y_test, final_predictions_lstm))
 print("F1: ", f1_score(final_y_test, final_predictions_lstm))
 
+print("-------------------")
+print("CNNLSTM")
+print("Accuracy: ", accuracy_score(final_y_test, final_predictions_cnnlstm))
+print("Precision: ", precision_score(final_y_test, final_predictions_cnnlstm))
+print("Recall: ", recall_score(final_y_test, final_predictions_cnnlstm))
+print("F1: ", f1_score(final_y_test, final_predictions_cnnlstm))
+
 print("Evaluation completed.")
 
-# Save Confusion Matrix
-from sklearn.metrics import confusion_matrix
+# roc curve
+from sklearn.metrics import roc_curve
 import matplotlib.pyplot as plt
-import seaborn as sns
 
-cm_cnn = confusion_matrix(final_y_test, final_predictions_cnn)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_cnn, annot=True, fmt='d')
-plt.xlabel('Predicted')
-plt.ylabel('Truth')
-plt.savefig("cnn_confusion_matrix.png")
+fpr_cnn, tpr_cnn, _ = roc_curve(final_y_test, final_predictions_cnn)
+fpr_lstm, tpr_lstm, _ = roc_curve(final_y_test, final_predictions_lstm)
+fpr_cnnlstm, tpr_cnnlstm, _ = roc_curve(final_y_test, final_predictions_cnnlstm)
 
-cm_lstm = confusion_matrix(final_y_test, final_predictions_lstm)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_lstm, annot=True, fmt='d')
-plt.xlabel('Predicted')
-plt.ylabel('Truth')
-plt.savefig("lstm_confusion_matrix.png")
+plt.plot(fpr_cnn, tpr_cnn, label='CNN')
+plt.plot(fpr_lstm, tpr_lstm, label='LSTM')
+plt.plot(fpr_cnnlstm, tpr_cnnlstm, label='CNNLSTM')
+
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+
+plt.legend()
+plt.savefig('roc_curve.png')
+
+print("ROC curve saved.")
