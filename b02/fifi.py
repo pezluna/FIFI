@@ -69,10 +69,6 @@ print("Model loaded.")
 print("Training the model...")
 
 packet_X_train, packet_y_train, packet_X_test = cnn_model.preprocess(X_train, y_train, X_test)
-packet_y_train = np.array(packet_y_train)
-
-print("Packet X Train: ", packet_X_train)
-print("Packet Y Train: ", packet_y_train)
 
 lstm_model.model.fit(packet_X_train, packet_y_train, epochs=40, batch_size=4)
 cnn_model.model.fit(packet_X_train, packet_y_train, epochs=40, batch_size=4)
@@ -85,9 +81,11 @@ print("Evaluating the model...")
 predictions_lstm = lstm_model.model.predict(packet_X_test)
 predictions_cnn = cnn_model.model.predict(packet_X_test)
 
+print("Predictions:")
 for i in range(len(predictions_lstm)):
     print(predictions_lstm[i], y_test[i])
-
+print()
+print("Predictions:")
 for i in range(len(predictions_cnn)):
     print(predictions_cnn[i], y_test[i])
 print("Predictions completed.")
