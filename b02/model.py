@@ -27,12 +27,15 @@ class PacketModel:
                 Conv1D(filters=64, kernel_size=2, activation='relu', input_shape=(8, 5)),
                 Flatten(),
                 Dense(128, activation='relu'),
+                Dropout(0.5),
+                Dense(64, activation='relu'),
+                Dropout(0.5),
                 Dense(1, activation='sigmoid')
             ])
             self.model.compile(
                 optimizer='adam',
                 loss='binary_crossentropy',
-                metrics=['precision', 'recall', 'accuracy']
+                metrics=['accuracy']
             )
         elif model == 'lstm':
             self.model = Sequential([
@@ -44,7 +47,7 @@ class PacketModel:
             self.model.compile(
                 optimizer='adam',
                 loss='binary_crossentropy',
-                metrics=['precision', 'recall', 'accuracy']
+                metrics=['accuracy']
             )
 
     def rearrange(self, X):
