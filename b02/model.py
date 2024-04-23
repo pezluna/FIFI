@@ -120,6 +120,9 @@ class PacketModel:
         X_train_normalized = self.normalize(X_train)
         X_test_normalized = self.normalize(X_test)
 
+        print(X_train_normalized)
+        print(X_test_normalized)
+
         X_train_final = np.stack([X_train_normalized[key] for key in X_train_normalized], axis=-1)
         X_test_final = np.stack([X_test_normalized[key] for key in X_test_normalized], axis=-1)
 
