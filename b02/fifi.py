@@ -102,14 +102,14 @@ final_y_test = np.array(final_y_test)
 final_predictions_cnn = []
 final_predictions_lstm = []
 
-for i in range(len(predictions_cnn)):
-    if predictions_cnn[i] > 0.5:
+for pred in predictions_cnn:
+    if pred[0] > 0.5:
         final_predictions_cnn.append(1)
     else:
         final_predictions_cnn.append(0)
 
-for i in range(len(predictions_lstm)):
-    if predictions_lstm[i] > 0.5:
+for pred in predictions_lstm:
+    if pred[0] > 0.5:
         final_predictions_lstm.append(1)
     else:
         final_predictions_lstm.append(0)
