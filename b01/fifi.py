@@ -40,6 +40,11 @@ try:
         sessions.load()
         print("Sessions loaded.")
         print("Length of Session: ", len(sessions.sessions["session"]))
+
+        s = set()
+        for session in sessions.sessions["session"]:
+            s.add(session["label"])
+        print("Unique Labels: ", s)
 except:
     raise Exception("Sessions file or raw files are not found or corrupted.")
     
