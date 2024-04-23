@@ -6,7 +6,13 @@ from keras.layers import Dense, Conv1D, Flatten, Dropout, BatchNormalization, LS
 from xgboost import XGBClassifier
 import numpy as np
 
-embedding = {
+embedding_botnet = {
+    "benign": 0,
+    "mirai": 1,
+    "qbot": 2,
+    "kaiten": 3
+}
+embedding_fingerprint = {
     "Philips Hue White": 0,
     "SmartThings Smart Bulb": 1,
     "Aeotec Button": 2,
@@ -19,20 +25,22 @@ embedding = {
     "Aqara Door Sensor": 9,
     "Aqara Switch": 10,
     "Aqara Temperature/Humidity Sensor": 11,
-    "SmartThings Multipurpose Sensor": 12,
-    "benign": 0,
-    "mirai": 1,
-    "qbot": 2,
-    "kaiten": 3
+    "SmartThings Multipurpose Sensor": 12
 }
 
-class_weights = compute_class_weight(
+class_weights_botnet = compute_class_weight(
     'balanced',
-    classes=np.unique(list(embedding.values())),
-    y=list(embedding.values())
+    classes=np.unique(list(embedding_botnet.values())),
+    y=list(embedding_botnet.values())
+)
+class_weights_fingerprint = compute_class_weight(
+    'balanced',
+    classes=np.unique(list(embedding_fingerprint.values())),
+    y=list(embedding_fingerprint.values())
 )
 
-class_weights_dict = {i: class_weights[i] for i in range(len(class_weights))}
+class_weights_botnet_dict = {i: class_weights_botnet[i] for i in range(len(class_weights_botnet))}
+class_weights_fingerprint_dict = {i: class_weights_fingerprint[i] for i in range(len(class_weights_fingerprint))}
 
 def transpose(X):
     transposed_data = {key: [] for key in X[0]}
@@ -112,7 +120,11 @@ class PacketModel:
         print("train packet indices:", len(indices))
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
-        y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
+        # y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
+        if self.mode == 'botnet':
+            y_train_filtered = np.array([embedding_botnet[y_train[i]] for i in indices])
+        else:
+            y_train_filtered = np.array([embedding_fingerprint[y_train[i]] for i in indices])
 
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
@@ -228,7 +240,11 @@ class StatsModel:
         print("train stats indices:", len(indices))
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
-        y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
+        # y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
+        if self.mode == 'botnet':
+            y_train_filtered = np.array([embedding_botnet[y_train[i]] for i in indices])
+        else:
+            y_train_filtered = np.array([embedding_fingerprint[y_train[i]] for i in indices])
 
         protocol = []
         for x in X_test:
@@ -317,8 +333,8 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
     
     def fit(self, X, y):
         # 각 모델을 해당 데이터에 맞게 학습시킵니다.
-        self.models['packet'].fit(X['packet'], y)
-        self.models['stats'].fit(X['stats'], y)
+        self.models['packet'].fit(X['packet'], y, class_weight=class_weights_botnet_dict if self.mode == 'botnet' else class_weights_fingerprint_dict)
+        self.models['stats'].fit(X['stats'], y, class_weight=class_weights_botnet_dict if self.mode == 'botnet' else class_weights_fingerprint_dict)
         return self
     
     def predict(self, X):

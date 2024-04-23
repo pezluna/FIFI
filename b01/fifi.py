@@ -1,6 +1,6 @@
 import sys
 from session import Sessions
-from model import PacketModel, StatsModel, EnsembleClassifier, embedding
+from model import PacketModel, StatsModel, EnsembleClassifier, embedding_botnet, embedding_fingerprint, class_weights_botnet, class_weights_fingerprint
 import numpy as np
 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
@@ -86,6 +86,8 @@ packet_y_train = np.array(packet_y_train)
 stats_X_train, stats_y_train, stats_X_test = rf_model.preprocess(X_train, y_train, X_test)
 stats_y_train = np.array(stats_y_train)
 
+class_weights = class_weights_botnet if mode == "botnet" else class_weights_fingerprint
+
 ensemble_rf_cnn.fit(
     {
         "packet": packet_X_train,
@@ -118,8 +120,8 @@ ensemble_xgb_lstm.fit(
     packet_y_train
 )
 
-lstm_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=10, verbose=1)
-cnn_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=10, verbose=1)
+lstm_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=2, class_weight=class_weights)
+cnn_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=2, class_weight=class_weights)
 rf_model.model.fit(stats_X_train, stats_y_train)
 xgb_model.model.fit(stats_X_train, stats_y_train)
 
@@ -166,11 +168,11 @@ if mode == "fingerprint":
         if y == "benign" or y == "mirai" or y == "qbot" or y == "kaiten":
             pass
         else:
-            final_y_test.append(embedding[y])
+            final_y_test.append(embedding_fingerprint[y])
 else:
     for y in y_test:
         if y == "benign" or y == "mirai" or y == "qbot" or y == "kaiten":
-            final_y_test.append(embedding[y])
+            final_y_test.append(embedding_botnet[y])
         else:
             pass
 
