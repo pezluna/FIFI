@@ -110,7 +110,7 @@ for pred in predictions_lstm:
         final_predictions_lstm.append(0)
 
 for pred in predictions_cnnlstm:
-    if pred[0] > 0.4:
+    if pred[0] > 0.45:
         final_predictions_cnnlstm.append(1)
     else:
         final_predictions_cnnlstm.append(0)
