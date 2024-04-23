@@ -135,10 +135,7 @@ class PacketModel:
         print(X_train_normalized)
         print(X_test_normalized)
 
-        X_train_final = np.stack([X_train_normalized[key] for key in X_train_normalized], axis=-1)
-        X_test_final = np.stack([X_test_normalized[key] for key in X_test_normalized], axis=-1)
-
-        return X_train_final, y_train, X_test_final
+        return X_train_normalized, y_train, X_test_normalized
         
         # X_train_final = np.stack([np.array(X_train_filtered[key]) for key in X_train_filtered], axis=-1)
         # X_test_final = np.stack([np.array(X_test_filtered[key]) for key in X_test_filtered], axis=-1)
