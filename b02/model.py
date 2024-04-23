@@ -23,11 +23,10 @@ class PacketModel:
     def __init__(self, mode, model='cnn'):
         self.mode = mode
         if model == 'cnn':
-            num_classes = 2
             self.model = Sequential([
                 Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
                 Flatten(),
-                Dense(64, activation='relu'),
+                Dense(128, activation='relu'),
                 Dense(1, activation='sigmoid')
             ])
             self.model.compile(
@@ -36,9 +35,9 @@ class PacketModel:
                 metrics=['accuracy']
             )
         elif model == 'lstm':
-            num_classes = 2
             self.model = Sequential([
-                LSTM(32, input_shape=(8, 5)),
+                LSTM(64, input_shape=(8, 5)),
+                Flatten(),
                 Dense(16, activation='relu'),
                 Dense(1, activation='sigmoid')
             ])
