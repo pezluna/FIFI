@@ -103,13 +103,13 @@ final_predictions_cnn = []
 final_predictions_lstm = []
 
 for pred in predictions_cnn:
-    if pred[0] > 0.5:
+    if pred[0] > 0.4:
         final_predictions_cnn.append(1)
     else:
         final_predictions_cnn.append(0)
 
 for pred in predictions_lstm:
-    if pred[0] > 0.5:
+    if pred[0] > 0.4:
         final_predictions_lstm.append(1)
     else:
         final_predictions_lstm.append(0)
