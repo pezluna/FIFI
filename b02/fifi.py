@@ -100,8 +100,11 @@ for y in y_test:
 
 final_y_test = np.array(final_y_test)
 
-predictions_cnn = np.argmax(predictions_cnn, axis=1)
-predictions_lstm = np.argmax(predictions_lstm, axis=1)
+for i in range(len(predictions_lstm)):
+    if predictions_lstm[i] > 0.5:
+        predictions_lstm[i] = 1
+    else:
+        predictions_lstm[i] = 0
 
 if final_y_test.dtype != predictions_cnn.dtype:
     final_y_test = final_y_test.astype(predictions_cnn.dtype)
