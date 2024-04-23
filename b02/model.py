@@ -26,6 +26,7 @@ class PacketModel:
             self.model = Sequential([
                 Conv1D(filters=3, kernel_size=2, activation='relu', input_shape=(8, 5)),
                 Flatten(),
+                Dense(16, activation='relu'),
                 Dense(1, activation='sigmoid')
             ])
             self.model.compile(
@@ -36,6 +37,7 @@ class PacketModel:
         elif model == 'lstm':
             self.model = Sequential([
                 LSTM(64, input_shape=(8, 5)),
+                Dense(16, activation='relu'),
                 Dense(1, activation='sigmoid')
             ])
             self.model.compile(
@@ -47,6 +49,7 @@ class PacketModel:
             self.model = Sequential([
                 Conv1D(filters=3, kernel_size=2, activation='relu', input_shape=(8, 5)),
                 LSTM(64),
+                Dense(16, activation='relu'),
                 Dense(1, activation='sigmoid')
             ])
             self.model.compile(
