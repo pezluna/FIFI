@@ -28,8 +28,8 @@ embedding = {
 
 class_weights = compute_class_weight(
     'balanced',
-    np.unique(list(embedding.values())),
-    list(embedding.values())
+    classes=np.unique(list(embedding.values())),
+    y=list(embedding.values())
 )
 
 class_weights_dict = {i: class_weights[i] for i in range(len(class_weights))}
