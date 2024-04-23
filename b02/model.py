@@ -84,41 +84,44 @@ class PacketModel:
         }
 
         for x in X:
-            # x는 8개의 패킷 정보를 가지고 있는 딕셔너리
+            x = x[0]
             rawLength = []
             capturedLength = []
             direction = []
             deltaTime = []
             protocol = []
 
-            print()
-            print(x)
-
             for i in range(8):
                 try:
-                    print(x[i]["rawLength"] * 0.04)
-                    print(x[i]["capturedLength"] * 0.04)
-                    print(x[i]["direction"])
-                    print(x[i]["deltaTime"])
-                    print(x[i]["protocol"])
-
-                    rawLength.append(np.minimum(x[i]["rawLength"] * 0.04, 1))
-                    capturedLength.append(np.minimum(x[i]["capturedLength"] * 0.04, 1))
-                    direction.append(0 if x[i]["direction"] == -1 else 1)
-                    deltaTime.append(np.minimum(x[i]["deltaTime"], 1))
-                    protocol.append(1 if x[i]["protocol"] == "TCP/IP" else 0)
+                    rawLength.append(min(x["rawLength"][i] * 0.04, 1))
                 except:
                     rawLength.append(0)
+
+                try:
+                    capturedLength.append(min(x["capturedLength"][i] * 0.04, 1))
+                except:
                     capturedLength.append(0)
+
+                try:
+                    direction.append(1 if x["direction"][i] == 1 else 0)
+                except:
                     direction.append(0)
+
+                try:
+                    deltaTime.append(min(x["deltaTime"][i], 1))
+                except:
                     deltaTime.append(0)
+
+                try:
+                    protocol.append(1 if x["protocol"][i] == "TCP/IP" else 0)
+                except:
                     protocol.append(0)
 
-            transposed_data["rawLength"].append(np.array(rawLength))
-            transposed_data["capturedLength"].append(np.array(capturedLength))
-            transposed_data["direction"].append(np.array(direction))
-            transposed_data["deltaTime"].append(np.array(deltaTime))
-            transposed_data["protocol"].append(np.array(protocol))
+            transposed_data["rawLength"].append(rawLength)
+            transposed_data["capturedLength"].append(capturedLength)
+            transposed_data["direction"].append(direction)
+            transposed_data["deltaTime"].append(deltaTime)
+            transposed_data["protocol"].append(protocol)
 
         return np.array(transposed_data)
     
