@@ -105,19 +105,19 @@ class PacketModel:
                     deltaTime.append(0)
                     protocol.append(0)
 
+            rawLength = np.minimum(np.array(rawLength) * 0.04, 1)
+            capturedLength = np.minimum(np.array(capturedLength) * 0.04, 1)
+            direction = np.where(np.array(direction) == -1, 0, 1)
+            deltaTime = np.minimum(np.array(deltaTime), 1)
+            protocol = np.where(np.array(protocol) == "TCP/IP", 1, 0)
+
             transposed_data["rawLength"].append(rawLength)
             transposed_data["capturedLength"].append(capturedLength)
             transposed_data["direction"].append(direction)
             transposed_data["deltaTime"].append(deltaTime)
             transposed_data["protocol"].append(protocol)
 
-        return {
-            "rawLength": np.minimum(np.array(transposed_data["rawLength"]) * 0.04, 1),
-            "capturedLength": np.minimum(np.array(transposed_data["capturedLength"]) * 0.04, 1),
-            "direction": np.where(np.array(transposed_data["direction"]) == -1, 0, 1),
-            "deltaTime": np.minimum(np.array(transposed_data["deltaTime"]), 1),
-            "protocol": np.where(np.array(transposed_data["protocol"]) == "TCP/IP", 1, 0)
-        }
+        return transposed_data
     
     def preprocess(self, X_train, y_train, X_test):
         # X_train_preprocessed = self.rearrange(X_train)
