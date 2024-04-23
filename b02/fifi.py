@@ -114,9 +114,6 @@ for i in range(len(predictions_lstm)):
     else:
         final_predictions_lstm.append(0)
 
-if final_y_test.dtype != predictions_cnn.dtype:
-    final_y_test = final_y_test.astype(predictions_cnn.dtype)
-
 print(set(final_y_test))
 
 print("-------------------")
