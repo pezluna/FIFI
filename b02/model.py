@@ -62,19 +62,6 @@ class PacketModel:
         return X
 
     def normalize(self, X):
-
-        # X = transpose(X)
-        # for i in range(len(X["deltaTime"])):
-        #     if len(X["deltaTime"][i]) < 8:
-        #         X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
-        # return {
-        #     "rawLength": np.minimum(np.array(X["rawLength"]) * 0.04, 1),
-        #     "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.04, 1),
-        #     "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
-        #     "deltaTime": np.minimum(np.array(X["deltaTime"]), 1),
-        #     "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
-        # }
-
         transposed_data = {
             "rawLength": [],
             "capturedLength": [],
@@ -134,11 +121,34 @@ class PacketModel:
 
         print(X_train_normalized)
         print(X_test_normalized)
+
+        self.check_lengths(X_train_normalized)
+        self.check_lengths(X_test_normalized)
         
         X_train_final = np.stack([np.array(X_train_normalized[key]) for key in X_train_normalized], axis=-1)
         X_test_final = np.stack([np.array(X_test_normalized[key]) for key in X_test_normalized], axis=-1)
         
         return X_train_final, y_train, X_test_final
+    
+    def check_lengths(data):
+        lengths = {key: [] for key in data}  # Dictionary to store lengths of each list for each key
+        inconsistent_lengths = {key: set() for key in data}  # Dictionary to store unique lengths that vary
+
+        for key, values in data.items():
+            for value in values:
+                length = len(value)  # Get the length of each list
+                lengths[key].append(length)
+                inconsistent_lengths[key].add(length)  # Add length to set for uniqueness
+
+        # Print the lengths for each key and check for inconsistencies
+        for key, length_set in inconsistent_lengths.items():
+            if len(length_set) > 1:  # More than one unique length indicates inconsistency
+                print(f"Inconsistent lengths found in '{key}': {length_set}")
+                raise ValueError(f"Inconsistent lengths found in '{key}': {length_set}")
+            else:
+                print(f"All lists in '{key}' are consistent with length: {list(length_set)[0]}")
+
+        return lengths
 
 class EnsembleClassifier(BaseEstimator, ClassifierMixin):
     def __init__(self, models, mode):
