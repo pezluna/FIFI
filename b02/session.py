@@ -63,7 +63,7 @@ class Sessions:
 
                         for j in range(len(self.sessions["session"])):
                             if metadata == self.sessions["session"][j].metadata or reverse_metadata == self.sessions["session"][j].metadata:
-                                self.sessions["session"][j].body.append(packetDatas[i])
+                                self.sessions["session"][j].packet.append(packetDatas[i])
                                 break
                         else:
                             if "benign" in file:
