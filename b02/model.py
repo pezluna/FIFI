@@ -8,23 +8,8 @@ import numpy as np
 embedding_botnet = {
     "benign": 0,
     "mirai": 1,
-    "qbot": 2,
-    "kaiten": 3
-}
-embedding_fingerprint = {
-    "Philips Hue White": 0,
-    "SmartThings Smart Bulb": 1,
-    "Aeotec Button": 2,
-    "AeoTec Motion Sensor": 3,
-    "AeoTec Multipurpose Sensor": 4,
-    "AeoTec Water Leak Sensor": 5,
-    "Sengled Smart Plug": 6,
-    "SmartThings Button": 7,
-    "Sonoff Smart Plug": 8,
-    "Aqara Door Sensor": 9,
-    "Aqara Switch": 10,
-    "Aqara Temperature/Humidity Sensor": 11,
-    "SmartThings Multipurpose Sensor": 12
+    "qbot": 1,
+    "kaiten": 1
 }
 
 def transpose(X):
@@ -38,28 +23,28 @@ class PacketModel:
     def __init__(self, mode, model='cnn'):
         self.mode = mode
         if model == 'cnn':
-            num_classes = 4 if mode == 'botnet' else 13
+            num_classes = 2
             self.model = Sequential([
                 Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
                 Flatten(),
                 Dense(64, activation='relu'),
-                Dense(num_classes, activation='softmax')
+                Dense(num_classes, activation='sigmoid')
             ])
             self.model.compile(
                 optimizer='adam',
-                loss='sparse_categorical_crossentropy',
+                loss='binary_crossentropy',
                 metrics=['accuracy']
             )
         elif model == 'lstm':
-            num_classes = 4 if mode == 'botnet' else 13
+            num_classes = 2
             self.model = Sequential([
                 LSTM(32, input_shape=(8, 5)),
                 Dense(16, activation='relu'),
-                Dense(num_classes, activation='softmax')
+                Dense(num_classes, activation='sigmoid')
             ])
             self.model.compile(
                 optimizer='adam',
-                loss='sparse_categorical_crossentropy',
+                loss='binary_crossentropy',
                 metrics=['accuracy']
             )
 

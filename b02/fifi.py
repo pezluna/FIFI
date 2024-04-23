@@ -83,18 +83,12 @@ predictions_lstm = lstm_model.model.predict(packet_X_test)
 predictions_cnn = cnn_model.model.predict(packet_X_test)
 
 final_y_test = []
-if mode == "fingerprint":
-    for y in y_test:
-        if y == "benign" or y == "mirai" or y == "qbot" or y == "kaiten":
-            pass
-        else:
-            final_y_test.append(embedding_fingerprint[y])
-else:
-    for y in y_test:
-        if y == "benign" or y == "mirai" or y == "qbot" or y == "kaiten":
-            final_y_test.append(embedding_botnet[y])
-        else:
-            pass
+
+for y in y_test:
+    if y == "benign" or y == "mirai" or y == "qbot" or y == "kaiten":
+        final_y_test.append(embedding_botnet[y])
+    else:
+        pass
 
 final_y_test = np.array(final_y_test)
 
