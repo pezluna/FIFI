@@ -62,17 +62,34 @@ class PacketModel:
         return X
 
     def normalize(self, X):
-        X = transpose(X)
-        for i in range(len(X["deltaTime"])):
-            if len(X["deltaTime"][i]) < 8:
-                X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
-        return {
-            "rawLength": np.minimum(np.array(X["rawLength"]) * 0.04, 1),
-            "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.04, 1),
-            "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
-            "deltaTime": np.minimum(np.array(X["deltaTime"]), 1),
-            "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
+        feature_arrays = {
+            'rawLength': [],
+            'capturedLength': [],
+            'direction': [],
+            'deltaTime': [],
+            'protocol': []
         }
+
+        for entry in X:
+            for key in feature_arrays:
+                padded_array = np.array(entry[key] + [0]*(8 - len(entry[key])))
+                feature_arrays[key].append(padded_array)
+
+        stacked_arrays = np.stack([np.array(feature_arrays[key]) for key in feature_arrays], axis=-1)
+
+        return stacked_arrays
+
+        # X = transpose(X)
+        # for i in range(len(X["deltaTime"])):
+        #     if len(X["deltaTime"][i]) < 8:
+        #         X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
+        # return {
+        #     "rawLength": np.minimum(np.array(X["rawLength"]) * 0.04, 1),
+        #     "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.04, 1),
+        #     "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
+        #     "deltaTime": np.minimum(np.array(X["deltaTime"]), 1),
+        #     "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
+        # }
     
     def preprocess(self, X_train, y_train, X_test):
         # X_train_preprocessed = self.rearrange(X_train)
