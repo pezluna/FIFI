@@ -180,23 +180,3 @@ print("Recall: ", recall_score(final_y_test, final_predictions_cnnlstm))
 print("F1: ", f1_score(final_y_test, final_predictions_cnnlstm))
 
 print("Evaluation completed.")
-
-# roc curve
-from sklearn.metrics import roc_curve
-import matplotlib.pyplot as plt
-
-fpr_cnn, tpr_cnn, _ = roc_curve(final_y_test, final_predictions_cnn)
-fpr_lstm, tpr_lstm, _ = roc_curve(final_y_test, final_predictions_lstm)
-fpr_cnnlstm, tpr_cnnlstm, _ = roc_curve(final_y_test, final_predictions_cnnlstm)
-
-plt.plot(fpr_cnn, tpr_cnn, label='CNN')
-plt.plot(fpr_lstm, tpr_lstm, label='LSTM')
-plt.plot(fpr_cnnlstm, tpr_cnnlstm, label='CNNLSTM')
-
-plt.xlabel('False Positive Rate')
-plt.ylabel('True Positive Rate')
-
-plt.legend()
-plt.savefig('roc_curve.png')
-
-print("ROC curve saved.")
