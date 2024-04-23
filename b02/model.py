@@ -111,7 +111,7 @@ class PacketModel:
             transposed_data["deltaTime"].append(np.array(deltaTime))
             transposed_data["protocol"].append(np.array(protocol))
 
-        return transposed_data
+        return np.array(transposed_data)
     
     def preprocess(self, X_train, y_train, X_test):
         # X_train_preprocessed = self.rearrange(X_train)
@@ -120,39 +120,15 @@ class PacketModel:
         X_train_normalized = self.normalize(X_train)
         X_test_normalized = self.normalize(X_test)
 
-        indices = []
-        tmp = 1 if self.mode == 'botnet' else 0
+        X_train_final = np.stack([X_train_normalized[key] for key in X_train_normalized], axis=-1)
+        X_test_final = np.stack([X_test_normalized[key] for key in X_test_normalized], axis=-1)
 
-        for i, x in enumerate(X_train_normalized["protocol"]):
-            if x.all() == tmp:
-                indices.append(i)
-
-        print("train packet protocol:", len(X_train_normalized["protocol"]))
-        print("train packet indices:", len(indices))
-
-        X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
-
-        y_train_filtered = np.array([embedding_botnet[y_train[i]] for i in indices])
-
-        if len(y_train_filtered) == 0:
-            print("No data found for the given mode. Check the mode and data.")
-            return
-        print("y_train_filtered:", set(y_train_filtered))
-
-        indices = []        
-        for i, x in enumerate(X_test_normalized["protocol"]):
-            if x.all() == tmp:
-                indices.append(i)
-
-        print("test packet protocol:", len(X_test_normalized["protocol"]))
-        print("test packet indices:", len(indices))
-
-        X_test_filtered = {key: X_test_normalized[key][indices] for key in X_test_normalized}
+        return X_train_final, y_train, X_test_final
         
-        X_train_final = np.stack([np.array(X_train_filtered[key]) for key in X_train_filtered], axis=-1)
-        X_test_final = np.stack([np.array(X_test_filtered[key]) for key in X_test_filtered], axis=-1)
+        # X_train_final = np.stack([np.array(X_train_filtered[key]) for key in X_train_filtered], axis=-1)
+        # X_test_final = np.stack([np.array(X_test_filtered[key]) for key in X_test_filtered], axis=-1)
         
-        return X_train_final, y_train_filtered, X_test_final
+        # return X_train_final, y_train_filtered, X_test_final
 
 class EnsembleClassifier(BaseEstimator, ClassifierMixin):
     def __init__(self, models, mode):
