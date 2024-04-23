@@ -67,19 +67,19 @@ class PacketModel:
             if len(X["deltaTime"][i]) < 8:
                 X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
         return {
-            "rawLength": np.minimum(np.array(X["rawLength"]) * 0.001, 1),
-            "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.001, 1),
+            "rawLength": np.minimum(np.array(X["rawLength"]) * 0.04, 1),
+            "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.04, 1),
             "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
-            "deltaTime": np.minimum(np.array(X["deltaTime"]) * 0.5, 1),
+            "deltaTime": np.minimum(np.array(X["deltaTime"]), 1),
             "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
         }
     
     def preprocess(self, X_train, y_train, X_test):
-        X_train_preprocessed = self.rearrange(X_train)
-        X_test_preprocessed = self.rearrange(X_test)
+        # X_train_preprocessed = self.rearrange(X_train)
+        # X_test_preprocessed = self.rearrange(X_test)
 
-        X_train_normalized = self.normalize(X_train_preprocessed)
-        X_test_normalized = self.normalize(X_test_preprocessed)
+        X_train_normalized = self.normalize(X_train)
+        X_test_normalized = self.normalize(X_test)
 
         indices = []
         tmp = 1 if self.mode == 'botnet' else 0
