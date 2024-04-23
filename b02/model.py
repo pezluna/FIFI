@@ -91,6 +91,9 @@ class PacketModel:
             deltaTime = []
             protocol = []
 
+            print()
+            print(x)
+
             for i in range(8):
                 try:
                     print(x[i]["rawLength"] * 0.04)
