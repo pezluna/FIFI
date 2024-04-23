@@ -120,17 +120,17 @@ print(final_y_test.shape)
 
 print("-------------------")
 print("CNN")
-print("Accuracy: ", accuracy_score(final_y_test, predictions_cnn))
-print("Precision: ", precision_score(final_y_test, predictions_cnn))
-print("Recall: ", recall_score(final_y_test, predictions_cnn))
-print("F1: ", f1_score(final_y_test, predictions_cnn))
+print("Accuracy: ", accuracy_score(final_y_test, final_predictions_cnn))
+print("Precision: ", precision_score(final_y_test, final_predictions_cnn))
+print("Recall: ", recall_score(final_y_test, final_predictions_cnn))
+print("F1: ", f1_score(final_y_test, final_predictions_cnn))
 
 print("-------------------")
 print("LSTM")
-print("Accuracy: ", accuracy_score(final_y_test, predictions_lstm))
-print("Precision: ", precision_score(final_y_test, predictions_lstm))
-print("Recall: ", recall_score(final_y_test, predictions_lstm))
-print("F1: ", f1_score(final_y_test, predictions_lstm))
+print("Accuracy: ", accuracy_score(final_y_test, final_predictions_lstm))
+print("Precision: ", precision_score(final_y_test, final_predictions_lstm))
+print("Recall: ", recall_score(final_y_test, final_predictions_lstm))
+print("F1: ", f1_score(final_y_test, final_predictions_lstm))
 
 print("Evaluation completed.")
 
@@ -139,14 +139,14 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-cm_cnn = confusion_matrix(final_y_test, predictions_cnn)
+cm_cnn = confusion_matrix(final_y_test, final_predictions_cnn)
 plt.figure(figsize=(10, 7))
 sns.heatmap(cm_cnn, annot=True, fmt='d')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
 plt.savefig("cnn_confusion_matrix.png")
 
-cm_lstm = confusion_matrix(final_y_test, predictions_lstm)
+cm_lstm = confusion_matrix(final_y_test, final_predictions_lstm)
 plt.figure(figsize=(10, 7))
 sns.heatmap(cm_lstm, annot=True, fmt='d')
 plt.xlabel('Predicted')
