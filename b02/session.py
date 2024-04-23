@@ -273,11 +273,11 @@ class Sessions:
         x_test = []
         y_test = []
 
-        for i, body in enumerate(self.sessions["train"]["body"]):
+        for i, body in enumerate(self.sessions["train"]["packet"]):
             x_train.append(body)
             y_train.append(self.sessions["train"]["label"][i])
 
-        for i, body in enumerate(self.sessions["test"]["body"]):
+        for i, body in enumerate(self.sessions["test"]["packet"]):
             x_test.append(body)
             y_test.append(self.sessions["test"]["label"][i])
 
