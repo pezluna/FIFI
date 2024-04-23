@@ -43,10 +43,10 @@ class PacketModel:
                 loss='binary_crossentropy',
                 metrics=['accuracy']
             )
-        elif model == 'nn':
+        elif model == 'cnnlstm':
             self.model = Sequential([
-                Dense(64, activation='relu', input_shape=(8, 5)),
-                Flatten(),
+                Conv1D(filters=3, kernel_size=2, activation='relu', input_shape=(8, 5)),
+                LSTM(64),
                 Dense(1, activation='sigmoid')
             ])
             self.model.compile(
