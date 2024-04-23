@@ -61,7 +61,7 @@ class PacketModel:
 
         return X
 
-    def normalize(data):
+    def normalize(self, data):
         # 이 예제에서는 rawLength, capturedLength, direction, deltaTime을 사용합니다.
         # 각 특성에 대해 모든 샘플의 길이를 최대 길이에 맞추어 패딩을 적용합니다.
         max_length = max(len(d['rawLength']) for d in data)
