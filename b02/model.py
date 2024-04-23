@@ -28,7 +28,7 @@ class PacketModel:
                 Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
                 Flatten(),
                 Dense(64, activation='relu'),
-                Dense(num_classes, activation='sigmoid')
+                Dense(1, activation='sigmoid')
             ])
             self.model.compile(
                 optimizer='adam',
@@ -40,7 +40,7 @@ class PacketModel:
             self.model = Sequential([
                 LSTM(32, input_shape=(8, 5)),
                 Dense(16, activation='relu'),
-                Dense(num_classes, activation='sigmoid')
+                Dense(1, activation='sigmoid')
             ])
             self.model.compile(
                 optimizer='adam',
@@ -90,11 +90,8 @@ class PacketModel:
         print("train packet indices:", len(indices))
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
-        # y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
-        if self.mode == 'botnet':
-            y_train_filtered = np.array([embedding_botnet[y_train[i]] for i in indices])
-        else:
-            y_train_filtered = np.array([embedding_fingerprint[y_train[i]] for i in indices])
+
+        y_train_filtered = np.array([embedding_botnet[y_train[i]] for i in indices])
 
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
@@ -113,133 +110,6 @@ class PacketModel:
         X_train_final = np.stack([np.array(X_train_filtered[key]) for key in X_train_filtered], axis=-1)
         X_test_final = np.stack([np.array(X_test_filtered[key]) for key in X_test_filtered], axis=-1)
         
-        return X_train_final, y_train_filtered, X_test_final
-
-class StatsModel:
-    def __init__(self, mode, model='rf'):
-        self.mode = mode
-        if model == 'rf':
-            self.model = RandomForestClassifier(
-                n_estimators=300,
-                max_depth=10
-            )
-        elif model == 'xgb':
-            self.model = XGBClassifier(
-                n_estimators=300,
-                max_depth=10,
-                objective='multi:softmax',
-                num_class=4 if mode == 'botnet' else 13,
-            )
-        else:
-            raise Exception("Invalid model type.")
-        
-    def rearrange(self, X):
-        tmp = []
-        for x in X:
-            try:
-                tmp.append(x[0][0])
-            except:
-                tmp.append(x[0])
-        X = tmp
-
-        return X
-    
-    def normalize(self, X):
-        X = transpose(X)
-        return {
-            "sPackets": np.array(X["sPackets"]),
-            "rPackets": np.array(X["rPackets"]),
-            "sTotalSize": np.array(X["sTotalSize"]),
-            "rTotalSize": np.array(X["rTotalSize"]),
-            "sMinSize": np.array(X["sMinSize"]),
-            "rMinSize": np.array(X["rMinSize"]),
-            "sMaxSize": np.array(X["sMaxSize"]),
-            "rMaxSize": np.array(X["rMaxSize"]),
-            "sAvgSize": np.array(X["sAvgSize"]),
-            "rAvgSize": np.array(X["rAvgSize"]),
-            "sVarSize": np.array(X["sVarSize"]),
-            "rVarSize": np.array(X["rVarSize"]),
-            "sMinInterval": np.array(X["sMinInterval"]),
-            "rMinInterval": np.array(X["rMinInterval"]),
-            "sMaxInterval": np.array(X["sMaxInterval"]),
-            "rMaxInterval": np.array(X["rMaxInterval"]),
-            "sAvgInterval": np.array(X["sAvgInterval"]),
-            "rAvgInterval": np.array(X["rAvgInterval"]),
-            "sVarInterval": np.array(X["sVarInterval"]),
-            "rVarInterval": np.array(X["rVarInterval"]),
-            "sRatio": np.array(X["sRatio"]),
-        }
-    
-    def check_NaN(self, X):
-        for x in X:
-            for key, value in x.items():
-                if value is None:
-                    if key != "sRatio":
-                        x[key] = 0
-                    else:
-                        x[key] = 1 if x["sPackets"] > 0 else 0
-        
-        return X
-    
-    def preprocess(self, X_train, y_train, X_test):
-        X_train_preprocessed = self.rearrange(X_train)
-        X_test_preprocessed = self.rearrange(X_test)
-
-        # 결측치 처리
-        X_train_without_NaN = self.check_NaN(X_train_preprocessed)
-        X_test_without_NaN = self.check_NaN(X_test_preprocessed)
-
-        X_train_normalized = self.normalize(X_train_without_NaN)
-        X_test_normalized = self.normalize(X_test_without_NaN)
-
-        tmp = "TCP/IP" if self.mode == 'botnet' else "Zigbee"
-        indices = []
-
-        protocol = []
-        for x in X_train:
-            try:
-                protocol.append(x[0][1]["protocol"])
-            except:
-                protocol.append(x[1]["protocol"])
-
-        for i, x in enumerate(protocol):
-            if tmp in x:
-                indices.append(i)
-        
-        print("train stats protocol:", len(protocol))
-        print("train stats indices:", len(indices))
-
-        X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
-
-        if self.mode == 'botnet':
-            y_train_filtered = np.array([embedding_botnet[y_train[i]] for i in indices])
-        else:
-            y_train_filtered = np.array([embedding_fingerprint[y_train[i]] for i in indices])
-
-        protocol = []
-        for x in X_test:
-            try:
-                protocol.append(x[0][1]["protocol"])
-            except:
-                protocol.append(x[1]["protocol"])
-
-        indices = []
-        for i, x in enumerate(protocol):
-            if tmp in x:
-                indices.append(i)
-
-        print("test stats protocol:", len(protocol))
-        print("test stats indices:", len(indices))
-
-        X_test_filtered = {key: X_test_normalized[key][indices] for key in X_test_normalized}
-
-        if len(y_train_filtered) == 0:
-            print("No data found for the given mode. Check the mode and data.")
-            return
-        
-        X_train_final = np.array([X_train_filtered[key] for key in X_train_filtered]).transpose()
-        X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered]).transpose()
-
         return X_train_final, y_train_filtered, X_test_final
 
 class EnsembleClassifier(BaseEstimator, ClassifierMixin):
