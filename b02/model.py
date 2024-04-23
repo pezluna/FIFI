@@ -80,12 +80,12 @@ class PacketModel:
 
             for i in range(8):
                 try:
-                    rawLength.append(min(x["rawLength"][i] * 0.04, 1))
+                    rawLength.append(x["rawLength"][i])
                 except:
                     rawLength.append(0)
 
                 try:
-                    capturedLength.append(min(x["capturedLength"][i] * 0.04, 1))
+                    capturedLength.append(x["capturedLength"][i])
                 except:
                     capturedLength.append(0)
 
@@ -95,7 +95,7 @@ class PacketModel:
                     direction.append(0)
 
                 try:
-                    deltaTime.append(min(x["deltaTime"][i], 1))
+                    deltaTime.append(x["deltaTime"][i])
                 except:
                     deltaTime.append(0)
 

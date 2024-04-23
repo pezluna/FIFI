@@ -103,9 +103,6 @@ if final_y_test.dtype != predictions_cnn.dtype:
 
 print(set(final_y_test))
 
-print(set(predictions_cnn))
-print(set(predictions_lstm))
-
 print("-------------------")
 print("CNN")
 print("Accuracy: ", accuracy_score(final_y_test, predictions_cnn))
