@@ -97,23 +97,66 @@ final_predictions_cnn = []
 final_predictions_lstm = []
 final_predictions_cnnlstm = []
 
-for pred in predictions_cnn:
-    if pred[0] > 0.55:
+# Find best threshold
+from sklearn.metrics import roc_curve
+
+cnn_best_threshold = 0
+lstm_best_threshold = 0
+cnnlstm_best_threshold = 0
+
+cnn_fpr, cnn_tpr, cnn_thresholds = roc_curve(final_y_test, predictions_cnn)
+lstm_fpr, lstm_tpr, lstm_thresholds = roc_curve(final_y_test, predictions_lstm)
+cnnlstm_fpr, cnnlstm_tpr, cnnlstm_thresholds = roc_curve(final_y_test, predictions_cnnlstm)
+
+cnn_gmeans = np.sqrt(cnn_tpr * (1-cnn_fpr))
+lstm_gmeans = np.sqrt(lstm_tpr * (1-lstm_fpr))
+cnnlstm_gmeans = np.sqrt(cnnlstm_tpr * (1-cnnlstm_fpr))
+
+cnn_ix = np.argmax(cnn_gmeans)
+lstm_ix = np.argmax(lstm_gmeans)
+cnnlstm_ix = np.argmax(cnnlstm_gmeans)
+
+cnn_best_threshold = cnn_thresholds[cnn_ix]
+lstm_best_threshold = lstm_thresholds[lstm_ix]
+cnnlstm_best_threshold = cnnlstm_thresholds[cnnlstm_ix]
+
+print("Best Threshold for CNN: ", cnn_best_threshold)
+print("Best Threshold for LSTM: ", lstm_best_threshold)
+print("Best Threshold for CNNLSTM: ", cnnlstm_best_threshold)
+
+# save ROC curve
+import matplotlib.pyplot as plt
+
+plt.plot(cnn_fpr, cnn_tpr, label='CNN')
+plt.plot(lstm_fpr, lstm_tpr, label='LSTM')
+plt.plot(cnnlstm_fpr, cnnlstm_tpr, label='CNNLSTM')
+
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+
+plt.legend()
+plt.savefig('roc_curve.png')
+
+print("ROC curve saved.")
+
+for prediction in predictions_cnn:
+    if prediction >= cnn_best_threshold:
         final_predictions_cnn.append(1)
     else:
         final_predictions_cnn.append(0)
 
-for pred in predictions_lstm:
-    if pred[0] > 0.45:
+for prediction in predictions_lstm:
+    if prediction >= lstm_best_threshold:
         final_predictions_lstm.append(1)
     else:
         final_predictions_lstm.append(0)
 
-for pred in predictions_cnnlstm:
-    if pred[0] > 0.5:
+for prediction in predictions_cnnlstm:
+    if prediction >= cnnlstm_best_threshold:
         final_predictions_cnnlstm.append(1)
     else:
-        final_predictions_cnnlstm.append(0)
+        final_predictions_cnnlstm.append(0) 
+
 
 print("-------------------")
 print("CNN")
