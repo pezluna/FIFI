@@ -26,7 +26,7 @@ class PacketModel:
             self.model = Sequential([
                 Conv1D(filters=3, kernel_size=2, activation='relu', input_shape=(8, 5)),
                 Flatten(),
-                Dense(16, activation='relu'),
+                Dense(4, activation='relu'),
                 Dense(1, activation='sigmoid')
             ])
             self.model.compile(
