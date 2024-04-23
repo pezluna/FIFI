@@ -130,7 +130,7 @@ class PacketModel:
         
         return X_train_final, y_train, X_test_final
     
-    def check_lengths(data):
+    def check_lengths(self, data):
         lengths = {key: [] for key in data}  # Dictionary to store lengths of each list for each key
         inconsistent_lengths = {key: set() for key in data}  # Dictionary to store unique lengths that vary
 
