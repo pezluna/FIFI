@@ -64,14 +64,15 @@ class PacketModel:
     def normalize(self, data):
         # 이 예제에서는 rawLength, capturedLength, direction, deltaTime을 사용합니다.
         # 각 특성에 대해 모든 샘플의 길이를 최대 길이에 맞추어 패딩을 적용합니다.
-        max_length = max(len(d['rawLength']) for d in data)
+        max_length = 8
         
         # 데이터를 저장할 배열을 초기화합니다.
         feature_arrays = {
             'rawLength': [],
             'capturedLength': [],
             'direction': [],
-            'deltaTime': []
+            'deltaTime': [],
+            'protocol': []
         }
         
         # 데이터를 배열로 변환합니다.
@@ -85,7 +86,8 @@ class PacketModel:
             np.stack(feature_arrays['rawLength'], axis=0),
             np.stack(feature_arrays['capturedLength'], axis=0),
             np.stack(feature_arrays['direction'], axis=0),
-            np.stack(feature_arrays['deltaTime'], axis=0)
+            np.stack(feature_arrays['deltaTime'], axis=0),
+            np.stack(feature_arrays['protocol'], axis=0)
         ], axis=-1)  # 채널 마지막 방식(CNN에 적합)
         
         return stacked_features
