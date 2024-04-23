@@ -1,6 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.utils.class_weight import compute_class_weight
 from keras.models import Sequential
 from keras.layers import Dense, Conv1D, Flatten, Dropout, BatchNormalization, LSTM
 from xgboost import XGBClassifier
@@ -27,20 +26,6 @@ embedding_fingerprint = {
     "Aqara Temperature/Humidity Sensor": 11,
     "SmartThings Multipurpose Sensor": 12
 }
-
-class_weights_botnet = compute_class_weight(
-    'balanced',
-    classes=np.unique(list(embedding_botnet.values())),
-    y=list(embedding_botnet.values())
-)
-class_weights_fingerprint = compute_class_weight(
-    'balanced',
-    classes=np.unique(list(embedding_fingerprint.values())),
-    y=list(embedding_fingerprint.values())
-)
-
-class_weights_botnet_dict = {i: class_weights_botnet[i] for i in range(len(class_weights_botnet))}
-class_weights_fingerprint_dict = {i: class_weights_fingerprint[i] for i in range(len(class_weights_fingerprint))}
 
 def transpose(X):
     transposed_data = {key: [] for key in X[0]}
@@ -280,7 +265,7 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
     
     def fit(self, X, y):
         # 각 모델을 해당 데이터에 맞게 학습시킵니다.
-        self.models['packet'].fit(X['packet'], y, class_weight=class_weights_botnet_dict if self.mode == 'botnet' else class_weights_fingerprint_dict)
+        self.models['packet'].fit(X['packet'], y)
         self.models['stats'].fit(X['stats'], y)
         return self
     

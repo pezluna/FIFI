@@ -86,8 +86,6 @@ packet_y_train = np.array(packet_y_train)
 stats_X_train, stats_y_train, stats_X_test = rf_model.preprocess(X_train, y_train, X_test)
 stats_y_train = np.array(stats_y_train)
 
-class_weights = class_weights_botnet_dict if mode == "botnet" else class_weights_fingerprint_dict
-
 ensemble_rf_cnn.fit(
     {
         "packet": packet_X_train,
@@ -120,8 +118,8 @@ ensemble_xgb_lstm.fit(
     packet_y_train
 )
 
-lstm_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=2, class_weight=class_weights)
-cnn_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=2, class_weight=class_weights)
+lstm_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=2)
+cnn_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=2)
 rf_model.model.fit(stats_X_train, stats_y_train)
 xgb_model.model.fit(stats_X_train, stats_y_train)
 
