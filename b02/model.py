@@ -93,6 +93,12 @@ class PacketModel:
 
             for i in range(8):
                 try:
+                    print(x[i]["rawLength"] * 0.04)
+                    print(x[i]["capturedLength"] * 0.04)
+                    print(x[i]["direction"])
+                    print(x[i]["deltaTime"])
+                    print(x[i]["protocol"])
+
                     rawLength.append(np.minimum(x[i]["rawLength"] * 0.04, 1))
                     capturedLength.append(np.minimum(x[i]["capturedLength"] * 0.04, 1))
                     direction.append(0 if x[i]["direction"] == -1 else 1)
