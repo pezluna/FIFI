@@ -70,11 +70,6 @@ class PacketModel:
             'protocol': []
         }
 
-        for entry in X:
-            for key in feature_arrays:
-                padded_array = np.array(entry[key] + [0]*(8 - len(entry[key])))
-                feature_arrays[key].append(padded_array)
-
         stacked_arrays = np.stack([np.array(feature_arrays[key]) for key in feature_arrays], axis=-1)
 
         return stacked_arrays
