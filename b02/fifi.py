@@ -85,8 +85,11 @@ print("Evaluating the model...")
 predictions_lstm = lstm_model.model.predict(packet_X_test)
 predictions_cnn = cnn_model.model.predict(packet_X_test)
 
-print(predictions_lstm)
-print(predictions_cnn)
+for i in range(len(predictions_lstm)):
+    print(predictions_lstm[i], y_test[i])
+
+for i in range(len(predictions_cnn)):
+    print(predictions_cnn[i], y_test[i])
 print("Predictions completed.")
 
 final_y_test = []
