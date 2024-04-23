@@ -312,7 +312,7 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
     
     def predict(self, X):
         # 각 모델의 예측 확률을 가져옵니다.
-        packet_probs = self.models['packet'].predict_proba(X['packet'])
+        packet_probs = self.models['packet'].predict(X['packet'])
         stats_probs = self.models['stats'].predict_proba(X['stats'])
 
         # 예측 확률을 평균내어 최종 예측을 결정합니다.
