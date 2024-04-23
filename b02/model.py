@@ -61,30 +61,34 @@ class PacketModel:
 
         return X
 
-    def normalize(self, X):
+    def normalize(data):
+        # 이 예제에서는 rawLength, capturedLength, direction, deltaTime을 사용합니다.
+        # 각 특성에 대해 모든 샘플의 길이를 최대 길이에 맞추어 패딩을 적용합니다.
+        max_length = max(len(d['rawLength']) for d in data)
+        
+        # 데이터를 저장할 배열을 초기화합니다.
         feature_arrays = {
             'rawLength': [],
             'capturedLength': [],
             'direction': [],
-            'deltaTime': [],
-            'protocol': []
+            'deltaTime': []
         }
-
-        stacked_arrays = np.stack([np.array(feature_arrays[key]) for key in feature_arrays], axis=-1)
-
-        return stacked_arrays
-
-        # X = transpose(X)
-        # for i in range(len(X["deltaTime"])):
-        #     if len(X["deltaTime"][i]) < 8:
-        #         X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
-        # return {
-        #     "rawLength": np.minimum(np.array(X["rawLength"]) * 0.04, 1),
-        #     "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.04, 1),
-        #     "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
-        #     "deltaTime": np.minimum(np.array(X["deltaTime"]), 1),
-        #     "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
-        # }
+        
+        # 데이터를 배열로 변환합니다.
+        for entry in data:
+            for key in feature_arrays:
+                padded_array = np.array(entry[key] + [0]*(max_length - len(entry[key])))
+                feature_arrays[key].append(padded_array)
+        
+        # 각 특성 배열을 스택으로 합쳐 하나의 입력 데이터로 만듭니다.
+        stacked_features = np.stack([
+            np.stack(feature_arrays['rawLength'], axis=0),
+            np.stack(feature_arrays['capturedLength'], axis=0),
+            np.stack(feature_arrays['direction'], axis=0),
+            np.stack(feature_arrays['deltaTime'], axis=0)
+        ], axis=-1)  # 채널 마지막 방식(CNN에 적합)
+        
+        return stacked_features
     
     def preprocess(self, X_train, y_train, X_test):
         # X_train_preprocessed = self.rearrange(X_train)
