@@ -191,7 +191,10 @@ class Sessions:
 
             metadatas.append(metadata)
             packetDatas.append(packetData)
-            
+
+            print("Metadata: ", metadata)
+            print("Packet Data: ", packetData)
+            input()
 
         return metadatas, packetDatas
     
