@@ -71,9 +71,9 @@ print("Training the model...")
 
 packet_X_train, packet_y_train, packet_X_test = cnn_model.preprocess(X_train, y_train, X_test)
 
-lstm_model.model.fit(packet_X_train, packet_y_train, epochs=40, batch_size=4)
-cnn_model.model.fit(packet_X_train, packet_y_train, epochs=40, batch_size=4)
-cnnlstm_model.model.fit(packet_X_train, packet_y_train, epochs=40, batch_size=4)
+lstm_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=8)
+cnn_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=8)
+cnnlstm_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=8)
 
 print("Training completed.")
 
