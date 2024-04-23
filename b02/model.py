@@ -24,7 +24,7 @@ class PacketModel:
         self.mode = mode
         if model == 'cnn':
             self.model = Sequential([
-                Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
+                Conv1D(filters=64, kernel_size=2, activation='relu', input_shape=(8, 5)),
                 Flatten(),
                 Dense(128, activation='relu'),
                 Dense(1, activation='sigmoid')
