@@ -99,12 +99,20 @@ for y in y_test:
         pass
 
 final_y_test = np.array(final_y_test)
+final_predictions_cnn = []
+final_predictions_lstm = []
+
+for i in range(len(predictions_cnn)):
+    if predictions_cnn[i] > 0.5:
+        final_predictions_cnn.append(1)
+    else:
+        final_predictions_cnn.append(0)
 
 for i in range(len(predictions_lstm)):
     if predictions_lstm[i] > 0.5:
-        predictions_lstm[i] = 1
+        final_predictions_lstm.append(1)
     else:
-        predictions_lstm[i] = 0
+        final_predictions_lstm.append(0)
 
 if final_y_test.dtype != predictions_cnn.dtype:
     final_y_test = final_y_test.astype(predictions_cnn.dtype)
