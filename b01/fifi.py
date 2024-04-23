@@ -1,6 +1,6 @@
 import sys
 from session import Sessions
-from model import PacketModel, StatsModel, EnsembleClassifier, embedding_botnet, embedding_fingerprint, class_weights_botnet_dict, class_weights_fingerprint_dict
+from model import PacketModel, StatsModel, EnsembleClassifier, embedding_botnet, embedding_fingerprint
 import numpy as np
 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
