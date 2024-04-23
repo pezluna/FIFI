@@ -15,6 +15,16 @@ try:
             mode = "fingerprint"
         elif sys.argv[1] == "B" or sys.argv[1] == "b":
             mode = "botnet"
+    elif len(sys.argv) == 3:
+        if sys.argv[1] != "R" and sys.argv[1] != "r":
+            raise Exception("Invalid argument. Please provide a valid argument.")
+        isReset = True
+        if sys.argv[2] == "F" or sys.argv[2] == "f":
+            mode = "fingerprint"
+        elif sys.argv[2] == "B" or sys.argv[2] == "b":
+            mode = "botnet"
+        else:
+            raise Exception("Invalid argument. Please provide a valid argument.")
 except:
     raise Exception("Invalid argument. Please provide a valid argument.")
 
