@@ -169,6 +169,9 @@ final_y_test = np.array(final_y_test)
 if final_y_test.dtype != predictions_rf.dtype:
     final_y_test = final_y_test.astype(predictions_rf.dtype)
 
+predictions_cnn = np.argmax(predictions_cnn, axis=1)
+predictions_lstm = np.argmax(predictions_lstm, axis=1)
+
 print("-------------------")
 print("RF")
 print("Accuracy: ", accuracy_score(final_y_test, predictions_rf))
