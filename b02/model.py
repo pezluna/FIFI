@@ -110,7 +110,7 @@ class PacketModel:
             transposed_data["deltaTime"].append(deltaTime)
             transposed_data["protocol"].append(protocol)
 
-        return np.array(transposed_data)
+        return transposed_data
     
     def preprocess(self, X_train, y_train, X_test):
         # X_train_preprocessed = self.rearrange(X_train)
