@@ -98,6 +98,7 @@ class PacketModel:
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
             return
+        print("y_train_filtered:", set(y_train_filtered))
 
         indices = []        
         for i, x in enumerate(X_test_normalized["protocol"]):
