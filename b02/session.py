@@ -140,8 +140,12 @@ class Sessions:
                     
     def save(self, filename="sessions.json"):
         session_data = [session.to_dict() for session in self.sessions["session"]]
-        with open(os.path.join(self.sessions_path, filename), "w") as f:
-            json.dump({"session": session_data, "train":self.sessions["train"], "test":self.sessions["test"]}, f, indent=4)
+        try:
+            with open(os.path.join(self.sessions_path, filename), "w") as f:
+                json.dump({"session": session_data, "train":self.sessions["train"], "test":self.sessions["test"]}, f, indent=4)
+        except:
+            print("Error saving session data.")
+            raise Exception("Error saving session data.")
 
     def get_zigbee_metadata(self, pcap):
         metadata = {}
