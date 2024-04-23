@@ -179,6 +179,8 @@ final_y_test = np.array(final_y_test)
 if final_y_test.dtype != predictions_rf.dtype:
     final_y_test = final_y_test.astype(predictions_rf.dtype)
 
+print("y_test shape: ", final_y_test.shape)
+
 predictions_cnn = np.argmax(predictions_cnn, axis=1)
 predictions_lstm = np.argmax(predictions_lstm, axis=1)
 
