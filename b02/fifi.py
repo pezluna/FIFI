@@ -57,6 +57,11 @@ sessions.split_train_test()
 X_train, y_train, X_test, y_test = sessions.get_train_test_data()
 print("Train and test data split completed.")
 
+print("X Train: ", X_train)
+print("Y Train: ", y_train)
+print("X Test: ", X_test)
+print("Y Test: ", y_test)
+
 # Load the model
 print("Model loading...")
 
