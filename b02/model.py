@@ -24,12 +24,8 @@ class PacketModel:
         self.mode = mode
         if model == 'cnn':
             self.model = Sequential([
-                Conv1D(filters=64, kernel_size=2, activation='relu', input_shape=(8, 5)),
+                Conv1D(filters=3, kernel_size=2, activation='relu', input_shape=(8, 5)),
                 Flatten(),
-                Dense(128, activation='relu'),
-                Dropout(0.5),
-                Dense(64, activation='relu'),
-                Dropout(0.5),
                 Dense(1, activation='sigmoid')
             ])
             self.model.compile(
@@ -113,8 +109,6 @@ class PacketModel:
         return transposed_data
     
     def preprocess(self, X_train, y_train, X_test):
-        # X_train_preprocessed = self.rearrange(X_train)
-        # X_test_preprocessed = self.rearrange(X_test)
 
         X_train_normalized = self.normalize(X_train)
         X_test_normalized = self.normalize(X_test)
@@ -133,14 +127,14 @@ class PacketModel:
         return X_train_final, y_train_final, X_test_final
     
     def check_lengths(self, data):
-        lengths = {key: [] for key in data}  # Dictionary to store lengths of each list for each key
-        inconsistent_lengths = {key: set() for key in data}  # Dictionary to store unique lengths that vary
+        lengths = {key: [] for key in data}
+        inconsistent_lengths = {key: set() for key in data}
 
         for key, values in data.items():
             for value in values:
-                length = len(value)  # Get the length of each list
+                length = len(value)
                 lengths[key].append(length)
-                inconsistent_lengths[key].add(length)  # Add length to set for uniqueness
+                inconsistent_lengths[key].add(length) 
 
         # Print the lengths for each key and check for inconsistencies
         for key, length_set in inconsistent_lengths.items():
