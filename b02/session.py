@@ -231,39 +231,6 @@ class Sessions:
                     test["packet"].append(self.sessions["session"][idx]["packet"])
                     test["label"].append(label)
 
-            # if metadata["protocol"] == "TCP/IP":
-            #     idxs = []
-
-            #     if label not in labels:
-            #         labels.append(label)
-
-            #         for j, s in enumerate(self.sessions["session"]):
-            #             if s["label"] == label:
-            #                 idxs.append(j)
-
-            #         train_idxs = np.random.choice(idxs, round(len(idxs)*0.5), replace=False)
-            #         test_idxs = [j for j in idxs if j not in train_idxs]
-
-            #         for idx in train_idxs:
-            #             train["body"].append(self.sessions["session"][idx]["body"])
-            #             train["label"].append(label)
-            #         for idx in test_idxs:
-            #             test["body"].append(self.sessions["session"][idx]["body"])
-            #             test["label"].append(label)
-            #     else:
-            #         continue
-            # else:
-            #     idxs = [i for i in range(len(body))]
-            #     train_idxs = np.random.choice(idxs, round(len(idxs)*0.6), replace=False)
-            #     test_idxs = [i for i in idxs if i not in train_idxs]
-
-            #     for idx in train_idxs:
-            #         train["body"].append(body[idx])
-            #         train["label"].append(label)
-            #     for idx in test_idxs:
-            #         test["body"].append(body[idx])
-            #         test["label"].append(label)
-
         self.sessions["train"] = train
         self.sessions["test"] = test
 

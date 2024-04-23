@@ -74,8 +74,8 @@ packet_y_train = np.array(packet_y_train)
 print("Packet X Train: ", packet_X_train)
 print("Packet Y Train: ", packet_y_train)
 
-lstm_model.model.fit(packet_X_train, packet_y_train, epochs=5, batch_size=5)
-cnn_model.model.fit(packet_X_train, packet_y_train, epochs=5, batch_size=5)
+lstm_model.model.fit(packet_X_train, packet_y_train, epochs=500, batch_size=2)
+cnn_model.model.fit(packet_X_train, packet_y_train, epochs=500, batch_size=2)
 
 print("Training completed.")
 
