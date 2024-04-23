@@ -23,7 +23,7 @@ class Session:
 class Sessions:
     def __init__(self):
         self.sessions_path = "./sessions/"
-        self.zigbee_raw_path = "./raw/zigbee/"
+        # self.zigbee_raw_path = "./raw/zigbee/"
         self.cnc_raw_path = "./raw/cnc/"
         self.sessions = {
             "session": [],
@@ -48,62 +48,62 @@ class Sessions:
 
     def make(self):
         # Zigbee
-        label = Label()
-        label.load()
+        # label = Label()
+        # label.load()
 
-        for file in os.listdir(self.zigbee_raw_path):
-            if file.endswith(".pcapng") or file.endswith(".pcap"):
-                print("Processing " + file + "...")
-                with pyshark.FileCapture(os.path.join(self.zigbee_raw_path, file), include_raw=True, use_json=True) as pcap:
-                    metadata = self.get_zigbee_metadata(pcap)
-                    if metadata is None:
-                        continue
-                    bodydata = self.get_zigbee_bodydata(pcap)
-                    if bodydata is None:
-                        continue
+        # for file in os.listdir(self.zigbee_raw_path):
+        #     if file.endswith(".pcapng") or file.endswith(".pcap"):
+        #         print("Processing " + file + "...")
+        #         with pyshark.FileCapture(os.path.join(self.zigbee_raw_path, file), include_raw=True, use_json=True) as pcap:
+        #             metadata = self.get_zigbee_metadata(pcap)
+        #             if metadata is None:
+        #                 continue
+        #             bodydata = self.get_zigbee_bodydata(pcap)
+        #             if bodydata is None:
+        #                 continue
 
-                    # padding
-                    if len(bodydata[1]["rawTime"]) < 8:
-                        bodydata[1]["rawLength"].extend([0] * (8 - len(bodydata[1]["rawLength"])))
-                        bodydata[1]["direction"].extend([1] * (8 - len(bodydata[1]["direction"])))
-                        bodydata[1]["deltaTime"].extend([0] * (8 - len(bodydata[1]["deltaTime"])))
-                        bodydata[1]["protocol"].extend(["Zigbee"] * (8 - len(bodydata[1]["protocol"])))
-                        bodydata[1]["capturedLength"].extend([0] * (8 - len(bodydata[1]["capturedLength"])))
+        #             # padding
+        #             if len(bodydata[1]["rawTime"]) < 8:
+        #                 bodydata[1]["rawLength"].extend([0] * (8 - len(bodydata[1]["rawLength"])))
+        #                 bodydata[1]["direction"].extend([1] * (8 - len(bodydata[1]["direction"])))
+        #                 bodydata[1]["deltaTime"].extend([0] * (8 - len(bodydata[1]["deltaTime"])))
+        #                 bodydata[1]["protocol"].extend(["Zigbee"] * (8 - len(bodydata[1]["protocol"])))
+        #                 bodydata[1]["capturedLength"].extend([0] * (8 - len(bodydata[1]["capturedLength"])))
 
-                    reverse_metadata = {
-                        "srcId": metadata["dstId"],
-                        "dstId": metadata["srcId"],
-                        "protocol": metadata["protocol"],
-                        "remarks": metadata["remarks"]
-                    }
+        #             reverse_metadata = {
+        #                 "srcId": metadata["dstId"],
+        #                 "dstId": metadata["srcId"],
+        #                 "protocol": metadata["protocol"],
+        #                 "remarks": metadata["remarks"]
+        #             }
 
-                    for i in range(len(self.sessions["session"])):
-                        if metadata == self.sessions["session"][i].metadata or reverse_metadata == self.sessions["session"][i].metadata:
-                            self.sessions["session"][i].body.append(bodydata)
-                            break
-                    else:
-                        # map labels
-                        srcId = metadata["srcId"]
-                        dstId = metadata["dstId"]
-                        protocol = metadata["protocol"]
-                        remarks = metadata["remarks"]
-                        l = None
+        #             for i in range(len(self.sessions["session"])):
+        #                 if metadata == self.sessions["session"][i].metadata or reverse_metadata == self.sessions["session"][i].metadata:
+        #                     self.sessions["session"][i].body.append(bodydata)
+        #                     break
+        #             else:
+        #                 # map labels
+        #                 srcId = metadata["srcId"]
+        #                 dstId = metadata["dstId"]
+        #                 protocol = metadata["protocol"]
+        #                 remarks = metadata["remarks"]
+        #                 l = None
 
-                        for j in range(len(label.label["id"])):
-                            if srcId == label.label["id"][j] and protocol == label.label["protocol"][j] and remarks == label.label["remarks"][j]:
-                                l = label.label["label"][j]
-                                break
-                            elif dstId == label.label["id"][j] and protocol == label.label["protocol"][j] and remarks == label.label["remarks"][j]:
-                                l = label.label["label"][j]
-                                break
-                        else:
-                            print("srcId: " + srcId)
-                            print("dstId: " + dstId)
-                            print("protocol: " + protocol)
-                            print("remarks: " + remarks)
-                            raise Exception("Invalid metadata.")
+        #                 for j in range(len(label.label["id"])):
+        #                     if srcId == label.label["id"][j] and protocol == label.label["protocol"][j] and remarks == label.label["remarks"][j]:
+        #                         l = label.label["label"][j]
+        #                         break
+        #                     elif dstId == label.label["id"][j] and protocol == label.label["protocol"][j] and remarks == label.label["remarks"][j]:
+        #                         l = label.label["label"][j]
+        #                         break
+        #                 else:
+        #                     print("srcId: " + srcId)
+        #                     print("dstId: " + dstId)
+        #                     print("protocol: " + protocol)
+        #                     print("remarks: " + remarks)
+        #                     raise Exception("Invalid metadata.")
                         
-                        self.sessions["session"].append(Session(metadata, [bodydata], l))
+        #                 self.sessions["session"].append(Session(metadata, [bodydata], l))
         
         # CNC
         for file in os.listdir(self.cnc_raw_path):
