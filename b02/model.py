@@ -93,11 +93,11 @@ class PacketModel:
 
             for i in range(8):
                 try:
-                    rawLength.append(x[i]["rawLength"])
-                    capturedLength.append(x[i]["capturedLength"])
-                    direction.append(x[i]["direction"])
-                    deltaTime.append(x[i]["deltaTime"])
-                    protocol.append(x[i]["protocol"])
+                    rawLength.append(np.minimum(x[i]["rawLength"] * 0.04, 1))
+                    capturedLength.append(np.minimum(x[i]["capturedLength"] * 0.04, 1))
+                    direction.append(0 if x[i]["direction"] == -1 else 1)
+                    deltaTime.append(np.minimum(x[i]["deltaTime"], 1))
+                    protocol.append(1 if x[i]["protocol"] == "TCP/IP" else 0)
                 except:
                     rawLength.append(0)
                     capturedLength.append(0)
@@ -105,17 +105,11 @@ class PacketModel:
                     deltaTime.append(0)
                     protocol.append(0)
 
-            rawLength = np.minimum(np.array(rawLength) * 0.04, 1)
-            capturedLength = np.minimum(np.array(capturedLength) * 0.04, 1)
-            direction = np.where(np.array(direction) == -1, 0, 1)
-            deltaTime = np.minimum(np.array(deltaTime), 1)
-            protocol = np.where(np.array(protocol) == "TCP/IP", 1, 0)
-
-            transposed_data["rawLength"].append(rawLength)
-            transposed_data["capturedLength"].append(capturedLength)
-            transposed_data["direction"].append(direction)
-            transposed_data["deltaTime"].append(deltaTime)
-            transposed_data["protocol"].append(protocol)
+            transposed_data["rawLength"].append(np.array(rawLength))
+            transposed_data["capturedLength"].append(np.array(capturedLength))
+            transposed_data["direction"].append(np.array(direction))
+            transposed_data["deltaTime"].append(np.array(deltaTime))
+            transposed_data["protocol"].append(np.array(protocol))
 
         return transposed_data
     
