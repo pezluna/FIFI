@@ -1,6 +1,6 @@
 import sys
 from session import Sessions
-from model import PacketModel, StatsModel, EnsembleClassifier, embedding_botnet, embedding_fingerprint, class_weights_botnet, class_weights_fingerprint
+from model import PacketModel, StatsModel, EnsembleClassifier, embedding_botnet, embedding_fingerprint, class_weights_botnet_dict, class_weights_fingerprint_dict
 import numpy as np
 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
@@ -86,7 +86,7 @@ packet_y_train = np.array(packet_y_train)
 stats_X_train, stats_y_train, stats_X_test = rf_model.preprocess(X_train, y_train, X_test)
 stats_y_train = np.array(stats_y_train)
 
-class_weights = class_weights_botnet if mode == "botnet" else class_weights_fingerprint
+class_weights = class_weights_botnet_dict if mode == "botnet" else class_weights_fingerprint_dict
 
 ensemble_rf_cnn.fit(
     {
