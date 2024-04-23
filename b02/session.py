@@ -8,15 +8,15 @@ from datetime import datetime
 from label import Label
 
 class Session:
-    def __init__(self, metadata, body, label):
+    def __init__(self, metadata, packet, label):
         self.metadata = metadata
-        self.body = body
+        self.packet = packet
         self.label = label
     
     def to_dict(self):
         return {
             "metadata": self.metadata,
-            "body": self.body,
+            "packet": self.packet,
             "label": self.label
         }
 
@@ -52,7 +52,7 @@ class Sessions:
                 print("Processing " + file + "...")
 
                 with open(os.path.join(self.cnc_raw_path, file)) as f:
-                    metadatas, statisticsDatas, packetDatas = self.get_cnc_data(f)
+                    metadatas, packetDatas = self.get_cnc_data(f)
                     for i, metadata in enumerate(metadatas):
                         reverse_metadata = {
                             "srcId": metadata["dstId"],
@@ -63,7 +63,7 @@ class Sessions:
 
                         for j in range(len(self.sessions["session"])):
                             if metadata == self.sessions["session"][j].metadata or reverse_metadata == self.sessions["session"][j].metadata:
-                                self.sessions["session"][j].body.append((statisticsDatas[i], packetDatas[i]))
+                                self.sessions["session"][j].body.append(packetDatas[i])
                                 break
                         else:
                             if "benign" in file:
@@ -77,7 +77,7 @@ class Sessions:
                             else:
                                 raise Exception("Invalid file name")
                             
-                            self.sessions["session"].append(Session(metadata, [(statisticsDatas[i], packetDatas[i])], l))
+                            self.sessions["session"].append(Session(metadata, packetDatas[i], l))
                     
     def save(self, filename="sessions.json"):
         session_data = [session.to_dict() for session in self.sessions["session"]]
@@ -191,8 +191,9 @@ class Sessions:
 
             metadatas.append(metadata)
             packetDatas.append(packetData)
+            
 
-        return metadatas, statisticsDatas, packetDatas
+        return metadatas, packetDatas
     
     def split_train_test(self):
         # Splitting the data into train and test, 60% train and 40% test
