@@ -36,8 +36,6 @@ class PacketModel:
         elif model == 'lstm':
             self.model = Sequential([
                 LSTM(64, input_shape=(8, 5)),
-                Flatten(),
-                Dense(16, activation='relu'),
                 Dense(1, activation='sigmoid')
             ])
             self.model.compile(
@@ -45,17 +43,19 @@ class PacketModel:
                 loss='binary_crossentropy',
                 metrics=['accuracy']
             )
-
-    def rearrange(self, X):
-        tmp = []
-        for x in X:
-            try:
-                tmp.append(x[0][1])
-            except:
-                tmp.append(x[1])
-        X = tmp
-
-        return X
+        elif model == 'nn':
+            self.model = Sequential([
+                Dense(64, activation='relu', input_shape=(8, 5)),
+                Flatten(),
+                Dense(1, activation='sigmoid')
+            ])
+            self.model.compile(
+                optimizer='adam',
+                loss='binary_crossentropy',
+                metrics=['accuracy']
+            )
+        else:
+            raise ValueError("Invalid model type")
 
     def normalize(self, X):
         transposed_data = {
