@@ -32,7 +32,7 @@ class PacketModel:
             self.model.compile(
                 optimizer='adam',
                 loss='binary_crossentropy',
-                metrics=['accuracy']
+                metrics=['precision', 'recall', 'accuracy']
             )
         elif model == 'lstm':
             self.model = Sequential([
@@ -44,7 +44,7 @@ class PacketModel:
             self.model.compile(
                 optimizer='adam',
                 loss='binary_crossentropy',
-                metrics=['accuracy']
+                metrics=['precision', 'recall', 'accuracy']
             )
 
     def rearrange(self, X):
