@@ -1,7 +1,9 @@
 import sys
+import os
 from session import Sessions
 from model import PacketModel, StatsModel, EnsembleClassifier, embedding_botnet, embedding_fingerprint
 import numpy as np
+from datetime import datetime
 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
@@ -38,24 +40,31 @@ try:
         sessions.save()
     else:
         sessions.load()
-        print("Sessions loaded.")
-        print("Length of Session: ", len(sessions.sessions["session"]))
-
-        s = {}
-        for session in sessions.sessions["session"]:
-            if session["label"] in s:
-                s[session["label"]] += 1
-            else:
-                s[session["label"]] = 1
-        
-        print(s)
 except:
     raise Exception("Sessions file or raw files are not found or corrupted.")
+
+# Print current sessions information
+print("Current sessions information:")
+print("Length of Session: ", len(sessions.sessions["session"]))
+label_set = set()
+for session in sessions.sessions["session"]:
+    label_set.add(session.label)
+print("Label set: ", label_set)
+info = {k: 0 for k in label_set}
+
+for session in sessions.sessions["session"]:
+    info[session.label] += len(session.body)
+
+print(info)
     
 # Split sessions into train and test
 sessions.split_train_test()
 X_train, y_train, X_test, y_test = sessions.get_train_test_data()
 print("Train and test data split completed.")
+print("Train data length: ", len(X_train))
+print("Test data length: ", len(X_test))
+print("Train data label set: ", len(set(y_train)))
+print("Test data label set: ", len(set(y_test)))
 
 # Load the model
 print("Model loading...")
@@ -127,8 +136,8 @@ ensemble_xgb_lstm.fit(
     packet_y_train
 )
 
-lstm_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=2)
-cnn_model.model.fit(packet_X_train, packet_y_train, epochs=50, batch_size=2)
+lstm_model.history_lstm = lstm_model.model.fit(packet_X_train, packet_y_train, epochs=100, batch_size=4)
+cnn_model.history_cnn = cnn_model.model.fit(packet_X_train, packet_y_train, epochs=100, batch_size=4)
 rf_model.model.fit(stats_X_train, stats_y_train)
 xgb_model.model.fit(stats_X_train, stats_y_train)
 
@@ -264,62 +273,80 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+plt.rc('font', size=20)
+
+RESULT_PATH = f"results/{datetime.now().strftime('%Y%m%d%H%M%S')}-{mode}/"
+
+if not os.path.exists(RESULT_PATH):
+    os.makedirs(RESULT_PATH)
+
 cm_rf = confusion_matrix(final_y_test, predictions_rf)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_rf, annot=True, fmt='d')
+plt.figure(figsize=(20, 15))
+sns.heatmap(cm_rf, annot=True, fmt='d', cmap='YlOrBr')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-plt.savefig("rf_confusion_matrix.png")
+plt.savefig(RESULT_PATH + "rf_confusion_matrix.png")
 
 cm_xgb = confusion_matrix(final_y_test, predictions_xgb)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_xgb, annot=True, fmt='d')
+plt.figure(figsize=(20, 15))
+sns.heatmap(cm_xgb, annot=True, fmt='d', cmap='YlOrBr')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-plt.savefig("xgb_confusion_matrix.png")
+plt.savefig(RESULT_PATH + "xgb_confusion_matrix.png")
 
 cm_cnn = confusion_matrix(final_y_test, predictions_cnn)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_cnn, annot=True, fmt='d')
+plt.figure(figsize=(20, 15))
+sns.heatmap(cm_cnn, annot=True, fmt='d', cmap='YlOrBr')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-plt.savefig("cnn_confusion_matrix.png")
+plt.savefig(RESULT_PATH + "cnn_confusion_matrix.png")
 
 cm_lstm = confusion_matrix(final_y_test, predictions_lstm)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_lstm, annot=True, fmt='d')
+plt.figure(figsize=(20, 15))
+sns.heatmap(cm_lstm, annot=True, fmt='d', cmap='YlOrBr')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-plt.savefig("lstm_confusion_matrix.png")
+plt.savefig(RESULT_PATH + "lstm_confusion_matrix.png")
 
 cm_ensemble_rf = confusion_matrix(final_y_test, predictions_ensemble_rf_cnn)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_ensemble_rf, annot=True, fmt='d')
+plt.figure(figsize=(20, 15))
+sns.heatmap(cm_ensemble_rf, annot=True, fmt='d', cmap='YlOrBr')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-plt.savefig("ensemble_rf_cnn_confusion_matrix.png")
+plt.savefig(RESULT_PATH + "ensemble_rf_cnn_confusion_matrix.png")
 
 cm_ensemble_xgb = confusion_matrix(final_y_test, predictions_ensemble_xgb_cnn)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_ensemble_xgb, annot=True, fmt='d')
+plt.figure(figsize=(20, 15))
+sns.heatmap(cm_ensemble_xgb, annot=True, fmt='d', cmap='YlOrBr')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-plt.savefig("ensemble_xgb_cnn_confusion_matrix.png")
+plt.savefig(RESULT_PATH + "ensemble_xgb_cnn_confusion_matrix.png")
 
 cm_ensemble_rf_lstm = confusion_matrix(final_y_test, predictions_ensemble_rf_lstm)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_ensemble_rf_lstm, annot=True, fmt='d')
+plt.figure(figsize=(20, 15))
+sns.heatmap(cm_ensemble_rf_lstm, annot=True, fmt='d', cmap='YlOrBr')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-plt.savefig("ensemble_rf_lstm_confusion_matrix.png")
+plt.savefig(RESULT_PATH + "ensemble_rf_lstm_confusion_matrix.png")
 
 cm_ensemble_xgb_lstm = confusion_matrix(final_y_test, predictions_ensemble_xgb_lstm)
-plt.figure(figsize=(10, 7))
-sns.heatmap(cm_ensemble_xgb_lstm, annot=True, fmt='d')
+plt.figure(figsize=(20, 15))
+sns.heatmap(cm_ensemble_xgb_lstm, annot=True, fmt='d', cmap='YlOrBr')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-plt.savefig("ensemble_xgb_lstm_confusion_matrix.png")
+plt.savefig(RESULT_PATH + "ensemble_xgb_lstm_confusion_matrix.png")
 
 print("Confusion matrices saved.")
 
 # Save epoch-loss graph
+plt.figure(figsize=(10, 7))
+plt.plot(lstm_model.history_lstm.history['loss'], label='LSTM')
+plt.plot(cnn_model.history_cnn.history['loss'], label='CNN')
+plt.legend()
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+
+plt.savefig(RESULT_PATH + "epoch_loss.png")
+
+print("Epoch-loss graph saved.")
+

@@ -1,7 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.base import BaseEstimator, ClassifierMixin
 from keras.models import Sequential
-from keras.layers import Dense, Conv1D, Flatten, Dropout, BatchNormalization, LSTM
+from keras.layers import Dense, Conv1D, Flatten, LSTM, Input, Dropout
 from xgboost import XGBClassifier
 import numpy as np
 
@@ -37,12 +37,19 @@ def transpose(X):
 class PacketModel:
     def __init__(self, mode, model='cnn'):
         self.mode = mode
+        self.history_lstm = None
+        self.history_cnn = None
+        
         if model == 'cnn':
             num_classes = 4 if mode == 'botnet' else 13
             self.model = Sequential([
-                Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(8, 5)),
+                Input(shape=(8, 5)),
+                Conv1D(filters=32, kernel_size=3, activation='relu'),
                 Flatten(),
                 Dense(64, activation='relu'),
+                Dropout(0.3),
+                Dense(32, activation='relu'),
+                Dense(16, activation='relu'),
                 Dense(num_classes, activation='softmax')
             ])
             self.model.compile(
@@ -53,7 +60,10 @@ class PacketModel:
         elif model == 'lstm':
             num_classes = 4 if mode == 'botnet' else 13
             self.model = Sequential([
-                LSTM(32, input_shape=(8, 5)),
+                Input(shape=(8, 5)),
+                LSTM(8),
+                Dense(32, activation='relu'),
+                Dropout(0.3),
                 Dense(16, activation='relu'),
                 Dense(num_classes, activation='softmax')
             ])
@@ -106,10 +116,14 @@ class PacketModel:
 
         X_train_filtered = {key: X_train_normalized[key][indices] for key in X_train_normalized}
         # y_train_filtered = np.array([embedding[y_train[i]] for i in indices])
-        if self.mode == 'botnet':
-            y_train_filtered = np.array([embedding_botnet[y_train[i]] for i in indices])
-        else:
-            y_train_filtered = np.array([embedding_fingerprint[y_train[i]] for i in indices])
+        try:
+            if self.mode == 'botnet':
+                y_train_filtered = np.array([embedding_botnet[y_train[i]] for i in indices])
+            else:
+                y_train_filtered = np.array([embedding_fingerprint[y_train[i]] for i in indices])
+        except:
+            print("y_train:", y_train)
+            raise Exception("Invalid y_train data. Check the data.")
 
         if len(y_train_filtered) == 0:
             print("No data found for the given mode. Check the mode and data.")
@@ -135,13 +149,13 @@ class StatsModel:
         self.mode = mode
         if model == 'rf':
             self.model = RandomForestClassifier(
-                n_estimators=300,
-                max_depth=10
+                n_estimators=100,
+                max_depth=10,
+                class_weight='balanced'
             )
         elif model == 'xgb':
             self.model = XGBClassifier(
-                n_estimators=300,
-                max_depth=10,
+                n_estimators=100,
                 objective='multi:softmax',
                 num_class=4 if mode == 'botnet' else 13,
             )
@@ -273,9 +287,10 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         # 각 모델의 예측 확률을 가져옵니다.
         packet_probs = self.models['packet'].predict(X['packet'])
         stats_probs = self.models['stats'].predict_proba(X['stats'])
-
-        # 예측 확률을 평균내어 최종 예측을 결정합니다.
+        
         final_probs = (packet_probs + stats_probs) / 2
+
+        # 확률이 가장 높은 클래스를 예측값으로 반환합니다.
         final_predictions = np.argmax(final_probs, axis=1)
 
         return final_predictions

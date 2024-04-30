@@ -1,0 +1,1996 @@
+Processing AeoTecWaterLeakSensor_PHY_Wet3.pcapng...
+Processing SmartThingsSmartBulb3_Power2.pcapng...
+Processing SmartThingsSmartBulb4_LAN_Off3.pcapng...
+Processing SmartThingsButton_Power2.pcapng...
+Processing SmartThingsSmartBulb1_Power5.pcapng...
+Processing SmartThingsSmartBulb5_Power4.pcapng...
+Processing SmartThingsHub_Power2.pcapng...
+Processing PhilipsHueWhite2_Power2.pcapng...
+Processing SengledSmartPlug2_Power3.pcapng...
+Processing SmartThingsSmartBulb2_LAN_Increase2.pcapng...
+Processing SengledSmartPlug1_Association.pcapng...
+Processing AeoTecMultipurposeSensor_PHY_Open4.pcapng...
+Processing AeoTecMultipurposeSensor_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x6214', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing SmartThingsSmartBulb5_LAN_Decrease1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing SmartThingsSmartBulb3_LAN_Decrease4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing AeoTecMultipurposeSensor_PHY_Close5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SengledSmartPlug1_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing AeoTecMotionSensor_PHY_Motion1.pcapng...
+Processing SmartThingsSmartBulb3_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SmartThingsSmartBulb4_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing SonoffSmartPlug1_LAN_Off5.pcapng...
+Processing AeoTecMultipurposeSensor_PHY_Open1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing AeoTecMultipurposeSensor_PHY_move2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing PhilipsHueBridge_Power4.pcapng...
+Processing SonoffSmartPlug1_PHY_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing SmartThingsSmartBulb1_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 2
+Processing SmartThingsButton_PHY_Press2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing SmartThingsSmartBulb1_LAN_Decrease1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 3
+Processing SmartThingsSmartBulb5_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SmartThingsSmartBulb1_LAN_Increase3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 4
+Processing AeoTecMotionSensor_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x72db', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing SengledSmartPlug1_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SmartThingsSmartBulb4_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SmartThingsSmartBulb5_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing SonoffSmartPlug1_PHY_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SengledSmartPlug2_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing SmartThingsSmartBulb2_LAN_Decrease4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 2
+Processing SmartThingsSmartBulb2_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 3
+Processing PhilipsHueWhite2_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 2
+Processing SmartThingsSmartBulb5_LAN_Decrease5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing SmartThingsSmartBulb2_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 4
+Processing AeoTecMultipurposeSensor_PHY_Close1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SmartThingsButton_PHY_Press4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SmartThingsSmartBulb5_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SengledSmartPlug1_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing PhilipsHueBridge2_Power1.pcapng...
+Processing AeoTecMotionSensor_PHY_NoMotion5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing AeotecButton_Power4.pcapng...
+Processing SengledSmartPlug2_PHY_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing PhilipsHueWhite2_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe28a', 'dstId': '0x3990', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 3
+Processing SonoffSmartPlug2_PHY_On5.pcapng...
+Processing SmartThingsSmartBulb5_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing SengledSmartPlug1_PHY_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing SonoffSmartPlug2_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing SmartThingsSmartBulb5_LAN_Decrease3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SmartThingsSmartBulb4_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing PhilipsHueWhite1_LAN_Off2.pcapng...
+Processing PhilipsHueBridge2_Power5.pcapng...
+Processing SmartThingsSmartBulb1_LAN_Decrease3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 5
+Processing AeoTecMotionSensor_PHY_Motion4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing SengledSmartPlug2_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing AeotecMotionSensor_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing SonoffSmartPlug1_PHY_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing PhilipsHueWhite1_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 2
+Processing SmartThingsSmartBulb2_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 5
+Processing SengledSmartPlug2_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing SmartThingsSmartBulb2_LAN_Increase4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 6
+Processing SmartThingsSmartBulb5_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SmartThingsSmartBulb2_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 7
+Processing SonoffSmartPlug1_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x42e0', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing AeoTecMultipurposeSensor_PHY_move3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing AeoTecWaterLeakSensor_PHY_Dry3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing SmartThingsSmartBulb2_LAN_Increase1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 8
+Processing SmartThingsSmartBulb1_LAN_Decrease4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 6
+Processing PhilipsHueWhite1_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x02b0', 'dstId': '0x3990', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 3
+Processing SmartThingsSmartBulb4_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing AeoTecWaterLeakSensor_PHY_Wet2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SmartThingsSmartBulb5_LAN_Increase2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing SmartThingsSmartBulb4_LAN_Decrease3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SmartThingsSmartBulb3_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing SengledSmartPlug1_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing PhilipsHueWhite1_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 4
+Processing SonoffSmartPlug2_PHY_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SmartThingsSmartBulb4_LAN_Increase4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing PhilipsHueWhite2_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 4
+Processing SmartThingsButton_PHY_Press3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing SonoffSmartPlug1_PHY_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SengledSmartPlug2_PHY_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing PhilipsHueWhite1_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x02b0', 'dstId': '0x3990', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 5
+Processing AeoTecWaterLeakSensor_PHY_Dry2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing AeoTecMultipurposeSensor_PHY_move5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SmartThingsSmartBulb4_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing AeotecMultipurposeSensor_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SmartThingsSmartBulb5_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing AeoTecButton_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x16e2', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 2
+Processing AeoTecWaterLeakSensor_PHY_Wet4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing AeotecMotionSensor_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SmartThingsSmartBulb3_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing SengledSmartPlug2_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing SonoffSmartPlug2_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing SonoffSmartPlug2_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing SonoffSmartPlug1_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing PhilipsHueWhite2_LAN_Increase5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 5
+Processing SengledSmartPlug2_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SmartThingsSmartBulb3_LAN_Increase2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SmartThingsSmartBulb4_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SmartThingsSmartBulb3_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing SonoffSmartPlug2_PHY_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SmartThingsSmartBulb5_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing SmartThingsSmartBulb1_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0002', 'dstId': '0x0001', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 7
+Processing SmartThingsSmartBulb3_LAN_Increase1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SmartThingsSmartBulb5_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing SengledSmartPlug1_PHY_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing SmartThingsSmartBulb4_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing SmartThingsSmartBulb3_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing PhilipsHueWhite1_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x02b0', 'dstId': '0x3990', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 6
+Processing SmartThingsSmartBulb1_LAN_Increase4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 8
+Processing SmartThingsSmartBulb3_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing PhilipsHueBridge_Power5.pcapng...
+Processing SmartThingsSmartBulb5_LAN_Decrease4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing AeoTecWaterLeakSensor_PHY_Wet1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SmartThingsSmartBulb5_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing AeoTecMotionSensor_PHY_NoMotion4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing AeoTecButton_PHY_Press2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x16e2', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 3
+Processing SengledSmartPlug1_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SmartThingsSmartBulb2_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 9
+Processing SmartThingsSmartBulb4_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing SmartThingsSmartBulb5_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing PhilipsHueWhite1_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 7
+Processing SmartThingsSmartBulb1_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0002', 'dstId': '0x0001', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 9
+Processing AeotecMultipurposeSensor_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing SmartThingsSmartBulb1_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 10
+Processing SmartThingsSmartBulb2_LAN_Decrease2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 10
+Processing PhilipsHueWhite1_LAN_Decrease4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 8
+Processing SmartThingsSmartBulb4_LAN_Increase2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing SengledSmartPlug1_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SmartThingsSmartBulb1_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 11
+Processing SengledSmartPlug2_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SmartThingsSmartBulb1_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 12
+Processing SonoffSmartPlug2_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing SonoffSmartPlug2_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SmartThingsButton_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing PhilipsHueWhite2_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 6
+Processing SengledSmartPlug1_PHY_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing SengledSmartPlug1_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing SmartThingsSmartBulb3_LAN_Increase5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing SengledSmartPlug2_PHY_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing AeoteWaterLeakSensor_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing PhilipsHueWhite2_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 7
+Processing SmartThingsSmartBulb3_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing SonoffSmartPlug2_PHY_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing AeotecButton_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x16e2', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 4
+Processing SonoffSmartPlug1_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x42e0', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SmartThingsSmartBulb1_LAN_Increase5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 13
+Processing SmartThingsHub_Power4.pcapng...
+Processing SengledSmartPlug1_PHY_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing SmartThingsSmartBulb2_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 11
+Processing PhilipsHueWhite1_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 9
+Processing SengledSmartPlug1_PHY_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing SonoffSmartPlug1_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x42e0', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SmartThingsButton_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SmartThingsSmartBulb4_LAN_Decrease4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing SmartThingsSmartBulb4_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing SengledSmartPlug2_PHY_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing SonoffSmartPlug2_PHY_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing AeoTecWaterLeakSensor_PHY_Dry4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SmartThingsSmartBulb4_LAN_Decrease5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing SonoffSmartPlug2_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing SengledSmartPlug2_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing SmartThingsSmartBulb5_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 17
+Processing SmartThingsSmartBulb1_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 14
+Processing SengledSmartPlug2_PHY_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing SmartThingsButton_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing SmartThingsSmartBulb4_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing PhilipsHueWhite1_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 10
+Processing PhilipsHueWhite2_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe28a', 'dstId': '0x3990', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 8
+Processing SonoffSmartPlug1_PHY_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing SengledSmartPlug2_PHY_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing SmartThingsSmartBulb3_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing SengledSmartPlug2_PHY_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing PhilipsHueWhite1_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 11
+Processing SmartThingsSmartBulb5_LAN_Increase5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 18
+Processing PhilipsHueWhite1_LAN_Decrease1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 12
+Processing SonoffSmartPlug2_PHY_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing AeotecButton_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x16e2', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 5
+Processing PhilipsHueWhite2_LAN_Increase4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 9
+Processing AeoTecMotionSensor_PHY_NoMotion2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SonoffSmartPlug2_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing SmartThingsSmartBulb4_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 17
+Processing AeotecMotionSensor_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SonoffSmartPlug1_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing SmartThingsSmartBulb2_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 12
+Processing PhilipsHueWhite2_LAN_Increase2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 10
+Processing SengledSmartPlug1_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing SmartThingsSmartBulb3_LAN_Decrease5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing PhilipsHueBridge2_Power4.pcapng...
+Processing SonoffSmartPlug1_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x42e0', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing AeoteWaterLeakSensor_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SmartThingsButton_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SonoffSmartPlug2_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing SengledSmartPlug1_PHY_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing AeoTecWaterLeakSensor_PHY_Dry5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing SmartThingsSmartBulb4_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 18
+Processing SmartThingsSmartBulb2_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 13
+Processing AeoTecMotionSensor_PHY_Motion5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing AeoTecMultipurposeSensor_PHY_Close3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing SengledSmartPlug1_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing SmartThingsHub_Power1.pcapng...
+Processing SmartThingsSmartBulb5_LAN_Increase1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 19
+Processing AeoTecMotionSensor_PHY_Motion2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing SonoffSmartPlug2_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing SmartThingsSmartBulb4_LAN_Increase3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 19
+Processing PhilipsHueWhite2_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 11
+Processing SonoffSmartPlug1_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x42e0', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing SmartThingsSmartBulb1_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 15
+Processing SonoffSmartPlug2_PHY_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing SmartThingsSmartBulb1_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 16
+Processing SonoffSmartPlug2_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 17
+Processing AeoteWaterLeakSensor_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing PhilipsHueWhite1_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 13
+Processing PhilipsHueBridge2_Power3.pcapng...
+Processing SengledSmartPlug2_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing SengledSmartPlug2_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 17
+Processing SonoffSmartPlug2_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 18
+Processing PhilipsHueWhite2_LAN_Increase1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 12
+Processing SonoffSmartPlug1_PHY_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing SonoffSmartPlug1_PHY_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing SmartThingsSmartBulb3_LAN_Increase3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing SengledSmartPlug2_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 18
+Processing SmartThingsSmartBulb1_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 17
+Processing PhilipsHueBridge_Power3.pcapng...
+Processing SmartThingsSmartBulb3_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing SengledSmartPlug1_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 17
+Processing SengledSmartPlug2_PHY_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 19
+Processing PhilipsHueWhite1_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 14
+Processing AeotecButton_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x16e2', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 6
+Processing SengledSmartPlug2_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 20
+Processing PhilipsHueWhite1_LAN_Increase1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 15
+Processing SmartThingsSmartBulb5_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 20
+Processing SengledSmartPlug2_PHY_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 21
+Processing SonoffSmartPlug1_PHY_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing SonoffSmartPlug1_PHY_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 17
+Processing SonoffSmartPlug1_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x42e0', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 18
+Processing SonoffSmartPlug1_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 19
+Processing SmartThingsSmartBulb1_LAN_Increase1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 18
+Processing PhilipsHueWhite2_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 13
+Processing SmartThingsHub_Power3.pcapng...
+Processing AeoTecMultipurposeSensor_PHY_Close4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing PhilipsHueWhite2_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 14
+Processing AeotecMotionSensor_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing AeoTecButton_PHY_Press1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x16e2', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 7
+Processing SengledSmartPlug1_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 18
+Processing AeoTecButton_PHY_Press3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x16e2', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 8
+Processing SmartThingsSmartBulb4_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 20
+Processing SmartThingsSmartBulb1_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 19
+Processing SmartThingsSmartBulb3_LAN_Decrease2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 17
+Processing AeoTecButton_PHY_Press5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x16e2', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SonoffSmartPlug2_PHY_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 19
+Processing SmartThingsSmartBulb2_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 14
+Processing SmartThingsSmartBulb2_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 15
+Processing SmartThingsSmartBulb5_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 21
+Processing SmartThingsSmartBulb2_LAN_Decrease3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 16
+Processing PhilipsHueWhite1_LAN_Increase4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 16
+Processing AeoTecMotionSensor_PHY_Motion3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing SmartThingsButton_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 9
+Processing SmartThingsButton_PHY_Press5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing PhilipsHueWhite1_LAN_Increase2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 17
+Processing PhilipsHueWhite2_LAN_Increase3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 15
+Processing PhilipsHueWhite2_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 16
+Processing SmartThingsSmartBulb5_LAN_Decrease2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 22
+Processing PhilipsHueWhite2_LAN_Decrease4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 17
+Processing SmartThingsSmartBulb4_LAN_Increase5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 21
+Processing PhilipsHueWhite2_LAN_Decrease3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 18
+Processing SmartThingsSmartBulb1_LAN_Decrease2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 20
+Processing SmartThingsSmartBulb2_LAN_Increase3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 17
+Processing SengledSmartPlug2_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 22
+Processing AeoTecMultipurposeSensor_PHY_Close2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing SengledSmartPlug1_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 19
+Processing PhilipsHueWhite2_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 19
+Processing SmartThingsSmartBulb2_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0005', 'dstId': '0x0001', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 18
+Processing AeotecButton_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x16e2', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 10
+Processing AeoTecWaterLeakSensor_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 12
+Processing SmartThingsSmartBulb2_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 19
+Processing SmartThingsSmartBulb2_LAN_Increase5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 20
+Processing SmartThingsSmartBulb1_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 21
+Processing AeotecMultipurposeSensor_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing SengledSmartPlug2_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 23
+Processing SmartThingsButton_PHY_Press1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x33bc', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing PhilipsHueBridge2_Power2.pcapng...
+Processing SmartThingsSmartBulb2_LAN_Decrease5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 21
+Processing SmartThingsSmartBulb3_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 18
+Processing SmartThingsHub_Power5.pcapng...
+Processing SonoffSmartPlug1_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 20
+Processing PhilipsHueWhite1_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 18
+Processing PhilipsHueWhite2_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe28a', 'dstId': '0x3990', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 20
+Processing AeoTecMultipurposeSensor_PHY_Open3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing SonoffSmartPlug1_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x42e0', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 21
+Processing SmartThingsSmartBulb4_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 22
+Processing PhilipsHueWhite2_LAN_On1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 21
+Processing SengledSmartPlug2_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 24
+Processing AeoTecMotionSensor_PHY_NoMotion1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing AeotecMultipurposeSensor_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing SmartThingsSmartBulb3_LAN_Decrease3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 19
+Processing SmartThingsSmartBulb3_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 20
+Processing SmartThingsSmartBulb3_LAN_Increase4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 21
+Processing AeotecMultipurposeSensor_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 17
+Processing PhilipsHueWhite1_Power1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 19
+Processing AeoTecMultipurposeSensor_PHY_move1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 18
+Processing PhilipsHueWhite1_LAN_Decrease2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 20
+Processing SonoffSmartPlug2_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 20
+Processing PhilipsHueBridge_Power2.pcapng...
+Processing PhilipsHueWhite2_LAN_Decrease2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 22
+Processing SmartThingsSmartBulb3_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 22
+Processing SonoffSmartPlug1_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x42e0', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 22
+Processing PhilipsHueWhite1_LAN_Increase5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 21
+Processing SmartThingsSmartBulb1_LAN_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 22
+Processing SengledSmartPlug1_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 20
+Processing PhilipsHueBridge_Power1.pcapng...
+Processing SmartThingsSmartBulb2_LAN_Decrease1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 22
+Processing SmartThingsSmartBulb5_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 23
+Processing SmartThingsSmartBulb3_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 23
+Processing SengledSmartPlug1_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 21
+Processing SmartThingsSmartBulb4_LAN_Decrease1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 23
+Processing SonoffSmartPlug2_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 21
+Processing AeoTecWaterLeakSensor_PHY_Dry1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 13
+Processing PhilipsHueWhite1_LAN_Decrease3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 22
+Processing SonoffSmartPlug1_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 23
+Processing SmartThingsSmartBulb2_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 23
+Processing SmartThingsSmartBulb5_LAN_Increase3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 24
+Processing SmartThingsSmartBulb3_LAN_Decrease1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 24
+Processing PhilipsHueWhite1_LAN_Increase3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 23
+Processing SmartThingsSmartBulb1_LAN_Increase2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 23
+Processing SmartThingsSmartBulb1_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 24
+Processing AeoTecMultipurposeSensor_PHY_move4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 19
+Processing SmartThingsSmartBulb2_LAN_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 24
+Processing SonoffSmartPlug1_PHY_On5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 24
+Processing SonoffSmartPlug2_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x3331', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 22
+Processing SmartThingsSmartBulb3_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 25
+Processing PhilipsHueWhite1_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 24
+Processing SmartThingsSmartBulb5_LAN_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 25
+Processing PhilipsHueWhite2_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 23
+Processing SonoffSmartPlug2_PHY_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 23
+Processing SmartThingsSmartBulb4_LAN_Decrease2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 24
+Processing SmartThingsSmartBulb4_LAN_Increase1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 25
+Processing SmartThingsSmartBulb4_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x1c67', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 26
+Processing SonoffSmartPlug2_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 24
+Processing PhilipsHueWhite1_Association.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x02b0', 'dstId': '0x3990', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 25
+Processing SmartThingsSmartBulb2_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 25
+Processing AeoteWaterLeakSensor_Power5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 14
+Processing PhilipsHueWhite2_LAN_Decrease5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 24
+Processing SengledSmartPlug2_LAN_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0xe4ff', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 25
+Processing AeoTecMotionSensor_PHY_NoMotion3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing SonoffSmartPlug2_Power4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 25
+Processing SengledSmartPlug1_PHY_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 22
+Processing SengledSmartPlug1_PHY_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 23
+Processing SonoffSmartPlug1_Power2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x42e0', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 25
+Processing AeoteWaterLeakSensor_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 15
+Processing SengledSmartPlug1_PHY_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 24
+Processing AeoTecWaterLeakSensor_PHY_Wet5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xde1d', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing SmartThingsSmartBulb2_LAN_On2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0005', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 26
+Processing SengledSmartPlug1_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x0a5b', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 25
+Processing AeoTecButton_PHY_Press4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x16e2', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 11
+Processing AeotecMotionSensor_Power3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x72db', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 16
+Processing SonoffSmartPlug2_PHY_Off4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3331', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 26
+Processing PhilipsHueWhite1_LAN_Decrease5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0x02b0', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 26
+Processing PhilipsHueWhite2_LAN_Decrease1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 25
+Processing SonoffSmartPlug1_LAN_Off2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x42e0', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 26
+Processing AeoTecMultipurposeSensor_PHY_Open5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 20
+Processing AeoTecMultipurposeSensor_PHY_Open2.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x6214', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 21
+Processing PhilipsHueWhite2_LAN_On4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x3990', 'dstId': '0xe28a', 'protocol': 'Zigbee', 'remarks': '0x8fbd'}
+Length: 26
+Processing SengledSmartPlug1_PHY_On3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0a5b', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 26
+Processing SmartThingsSmartBulb3_LAN_Off5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x2c0a', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 26
+Processing SengledSmartPlug2_PHY_Off3.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0xe4ff', 'dstId': '0x0000', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 26
+Processing SmartThingsSmartBulb1_LAN_Decrease5.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 25
+Processing SmartThingsSmartBulb1_LAN_Off1.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0001', 'dstId': '0x0002', 'protocol': 'Zigbee', 'remarks': '0x1101'}
+Length: 26
+Processing SmartThingsSmartBulb5_LAN_Increase4.pcapng...
+Appended to existing session.
+Metadata: {'srcId': '0x0000', 'dstId': '0x93d7', 'protocol': 'Zigbee', 'remarks': '0x8c9a'}
+Length: 26
+Processing qbot (1).csv...
+Processing line 10...
+Processing line 20...
+Processing line 30...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 6
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 7
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 8
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 9
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 10
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 11
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 12
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 13
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 14
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 15
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 16
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 17
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 18
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 19
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 20
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 21
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 22
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 23
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 24
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 25
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 26
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 27
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 28
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('53018', '4242')}
+Length: 29
+Processing benign_3.csv...
+Processing line 10...
+Processing line 20...
+Processing line 30...
+Processing mirai (3).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35472')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35472')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35472')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35472')}
+Length: 5
+Processing kaiten (3).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 4
+Processing mirai (9).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35544')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35544')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35544')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35544')}
+Length: 5
+Processing mirai (6).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35480')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35480')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35480')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35480')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35480')}
+Length: 6
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35480')}
+Length: 7
+Processing kaiten (1).csv...
+Processing line 10...
+Processing line 20...
+Processing line 30...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 6
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 7
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 8
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 9
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 10
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 11
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 12
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 13
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 14
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 15
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 16
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 17
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 18
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 19
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 20
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 21
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 22
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 23
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 24
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 25
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 26
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 27
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 28
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 29
+Processing benign_2.csv...
+Processing line 10...
+Processing line 20...
+Processing line 30...
+Processing kaiten (7).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 6
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 7
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 8
+Processing qbot (5).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40246', '4242')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40246', '4242')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40246', '4242')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40246', '4242')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40246', '4242')}
+Length: 6
+Processing benign_1.csv...
+Processing line 10...
+Processing line 20...
+Processing line 30...
+Processing kaiten (5).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 9
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 10
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 11
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 12
+Processing kaiten (4).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 13
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 14
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 15
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 16
+Processing qbot (4).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40244', '4242')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40244', '4242')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40244', '4242')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40244', '4242')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40244', '4242')}
+Length: 6
+Processing mirai (4).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35474')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35474')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35474')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35474')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35474')}
+Length: 6
+Processing mirai (8).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35484')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35484')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35484')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35484')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35484')}
+Length: 6
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35484')}
+Length: 7
+Processing mirai (7).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35482')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35482')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35482')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35482')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35482')}
+Length: 6
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35482')}
+Length: 7
+Processing kaiten (2).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 30
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 31
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 32
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52368', '6667')}
+Length: 33
+Processing kaiten (8).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 17
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 18
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 19
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 20
+Processing qbot (3).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40242', '4242')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40242', '4242')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40242', '4242')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40242', '4242')}
+Length: 5
+Processing qbot (2).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40238', '4242')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40238', '4242')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40238', '4242')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40238', '4242')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('40238', '4242')}
+Length: 6
+Processing kaiten (9).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 21
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 22
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 23
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 24
+Processing mirai (2).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35468')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35468')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35468')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35468')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35468')}
+Length: 6
+Processing kaiten (6).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 25
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 26
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 27
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.10', 'dstId': '10.0.42.155', 'protocol': 'TCP/IP', 'remarks': ('52414', '6667')}
+Length: 28
+Processing mirai (1).csv...
+Processing line 10...
+Processing line 20...
+Processing line 30...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 6
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 7
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 8
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 9
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 10
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 11
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 12
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 13
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 14
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 15
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 16
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 17
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 18
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 19
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 20
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 21
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 22
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 23
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 24
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 25
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 26
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 27
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 28
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 29
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '56754')}
+Length: 30
+Processing benign_5.csv...
+Processing line 10...
+Processing line 20...
+Processing line 30...
+Processing benign_4.csv...
+Processing line 10...
+Processing line 20...
+Processing line 30...
+Processing mirai (5).csv...
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35478')}
+Length: 2
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35478')}
+Length: 3
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35478')}
+Length: 4
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35478')}
+Length: 5
+Appended to existing session.
+Metadata: {'srcId': '10.0.42.155', 'dstId': '10.0.42.10', 'protocol': 'TCP/IP', 'remarks': ('4242', '35478')}
+Length: 6
+Current sessions information:
+Length of Session:  207
+List of labels: 
+{'AeoTec Water Leak Sensor', 'SmartThings Smart Bulb', 'Sengled Smart Plug', 'benign', 'SmartThings Button', 'Philips Hue White', 'qbot', 'AeoTec Motion Sensor', 'kaiten', 'Sonoff Smart Plug', 'AeoTec Multipurpose Sensor', 'mirai', 'Aeotec Button'}
+Current sessions information printed.

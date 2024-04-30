@@ -5,7 +5,18 @@ import numpy as np
 import pyshark
 from datetime import datetime
 
+
 from label import Label
+
+def meta_eq(meta1, meta2):
+    cond = [
+        meta1["srcId"] == meta2["srcId"],
+        meta1["dstId"] == meta2["dstId"],
+        meta1["protocol"] == meta2["protocol"],
+        meta1["remarks"] == meta2["remarks"]
+    ]
+
+    return all(cond)
 
 class Session:
     def __init__(self, metadata, body, label):
@@ -19,6 +30,11 @@ class Session:
             "body": self.body,
             "label": self.label
         }
+    
+    def to_class(self, data):
+        self.metadata = data["metadata"]
+        self.body = data["body"]
+        self.label = data["label"]
 
 class Sessions:
     def __init__(self):
@@ -41,7 +57,11 @@ class Sessions:
         if os.path.exists(self.sessions_path + "sessions.json"):
             with open(os.path.join(self.sessions_path, "sessions.json")) as f:
                 data = json.load(f)
-                self.sessions = data
+
+            for session in data["session"]:
+                s = Session(None, None, None)
+                s.to_class(session)
+                self.sessions["session"].append(s)
         else:
             self.make()
             self.save()
@@ -55,6 +75,7 @@ class Sessions:
             if file.endswith(".pcapng") or file.endswith(".pcap"):
                 print("Processing " + file + "...")
                 with pyshark.FileCapture(os.path.join(self.zigbee_raw_path, file), include_raw=True, use_json=True) as pcap:
+                    # pcap.set_debug(True)
                     metadata = self.get_zigbee_metadata(pcap)
                     if metadata is None:
                         continue
@@ -78,8 +99,10 @@ class Sessions:
                     }
 
                     for i in range(len(self.sessions["session"])):
-                        if metadata == self.sessions["session"][i].metadata or reverse_metadata == self.sessions["session"][i].metadata:
+                        # if metadata == self.sessions["session"][i].metadata or reverse_metadata == self.sessions["session"][i].metadata:
+                        if meta_eq(metadata, self.sessions["session"][i].metadata) or meta_eq(reverse_metadata, self.sessions["session"][i].metadata):
                             self.sessions["session"][i].body.append(bodydata)
+                            self.sessions["session"][i].metadata["count"] += 1
                             break
                     else:
                         # map labels
@@ -87,6 +110,7 @@ class Sessions:
                         dstId = metadata["dstId"]
                         protocol = metadata["protocol"]
                         remarks = metadata["remarks"]
+                        metadata.update({"count": 1})
                         l = None
 
                         for j in range(len(label.label["id"])):
@@ -104,7 +128,9 @@ class Sessions:
                             raise Exception("Invalid metadata.")
                         
                         self.sessions["session"].append(Session(metadata, [bodydata], l))
-        
+                        # self.sessions["session"].append(Session(metadata, [bodydata], l))
+
+
         # CNC
         for file in os.listdir(self.cnc_raw_path):
             if file.endswith(".csv"):
@@ -121,8 +147,12 @@ class Sessions:
                         }
 
                         for j in range(len(self.sessions["session"])):
-                            if metadata == self.sessions["session"][j].metadata or reverse_metadata == self.sessions["session"][j].metadata:
+                            # if metadata == self.sessions["session"][j].metadata or reverse_metadata == self.sessions["session"][j].metadata:
+                            if meta_eq(metadata, self.sessions["session"][j].metadata) or meta_eq(reverse_metadata, self.sessions["session"][j].metadata):
                                 self.sessions["session"][j].body.append((statisticsDatas[i], packetDatas[i]))
+                                print("Appended to existing session.")
+                                print("Metadata: " + str(metadata))
+                                print("Length: " + str(len(self.sessions["session"][j].body)))
                                 break
                         else:
                             if "benign" in file:
@@ -447,9 +477,9 @@ class Sessions:
         for i, session in enumerate(self.sessions["session"]):
             # print("Processing session " + str(i) + "...")
 
-            metadata = session["metadata"]
-            body = session["body"]
-            label = session["label"]
+            metadata = session.metadata
+            body = session.body
+            label = session.label
 
             if metadata["protocol"] == "TCP/IP":
                 idxs = []
@@ -458,18 +488,18 @@ class Sessions:
                     labels.append(label)
 
                     for j, s in enumerate(self.sessions["session"]):
-                        if s["label"] == label:
+                        if s.label == label:
                             idxs.append(j)
 
                     train_idxs = np.random.choice(idxs, round(len(idxs)*0.5), replace=False)
                     test_idxs = [j for j in idxs if j not in train_idxs]
 
                     for idx in train_idxs:
-                        train["body"].append(self.sessions["session"][idx]["body"])
-                        train["label"].append(label)
+                        train["body"].extend(self.sessions["session"][idx].body)
+                        train["label"].extend([label] * len(self.sessions["session"][idx].body))
                     for idx in test_idxs:
-                        test["body"].append(self.sessions["session"][idx]["body"])
-                        test["label"].append(label)
+                        test["body"].extend(self.sessions["session"][idx].body)
+                        test["label"].extend([label] * len(self.sessions["session"][idx].body))
                 else:
                     continue
             else:
@@ -493,9 +523,14 @@ class Sessions:
         x_test = []
         y_test = []
 
-        for i, body in enumerate(self.sessions["train"]["body"]):
-            x_train.append(body)
-            y_train.append(self.sessions["train"]["label"][i])
+        try:
+            for i, body in enumerate(self.sessions["train"]["body"]):
+                x_train.append(body)
+                y_train.append(self.sessions["train"]["label"][i])
+        except:
+            print(len(self.sessions["train"]["body"]))
+            print(len(self.sessions["train"]["label"]))
+            raise(Exception("Error in train data"))
 
         for i, body in enumerate(self.sessions["test"]["body"]):
             x_test.append(body)
