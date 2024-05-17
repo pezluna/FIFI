@@ -75,24 +75,24 @@ cnn_model = PacketModel(mode=mode, model='cnn')
 lstm_model = PacketModel(mode=mode, model='lstm')
 
 ensemble_rf_cnn = EnsembleClassifier(models={
-    'packet': cnn_model.model,
-    'stats': rf_model.model
-}, mode=mode)
+    'packet': PacketModel(mode=mode, model='cnn').model,
+    'stats': StatsModel(mode=mode, model='rf').model
+}, mode=mode, model='rf_cnn')
 
 ensemble_xgb_cnn = EnsembleClassifier(models={
-    'packet': cnn_model.model,
-    'stats': xgb_model.model
-}, mode=mode)
+    'packet': PacketModel(mode=mode, model='cnn').model,
+    'stats': StatsModel(mode=mode, model='xgb').model
+}, mode=mode, model='xgb_cnn')
 
 ensemble_rf_lstm = EnsembleClassifier(models={
-    'packet': lstm_model.model,
-    'stats': rf_model.model
-}, mode=mode)
+    'packet': PacketModel(mode=mode, model='lstm').model,
+    'stats': StatsModel(mode=mode, model='rf').model
+}, mode=mode, model='rf_lstm')
 
 ensemble_xgb_lstm = EnsembleClassifier(models={
-    'packet': lstm_model.model,
-    'stats': xgb_model.model
-}, mode=mode)
+    'packet': PacketModel(mode=mode, model='lstm').model,
+    'stats': StatsModel(mode=mode, model='xgb').model
+}, mode=mode, model='xgb_lstm')
 
 print("Model loaded.")
 
@@ -142,6 +142,18 @@ rf_model.model.fit(stats_X_train, stats_y_train)
 xgb_model.model.fit(stats_X_train, stats_y_train)
 
 print("Training completed.")
+
+# Save the model
+print("Saving the model...")
+rf_model.save()
+xgb_model.save()
+cnn_model.save()
+lstm_model.save()
+ensemble_rf_cnn.save()
+ensemble_xgb_cnn.save()
+ensemble_rf_lstm.save()
+ensemble_xgb_lstm.save()
+print("Model saved.")
 
 # Evaluate the model
 print("Evaluating the model...")

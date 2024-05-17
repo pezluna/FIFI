@@ -4,6 +4,9 @@ from keras.models import Sequential
 from keras.layers import Dense, Conv1D, Flatten, LSTM, Input, Dropout
 from xgboost import XGBClassifier
 import numpy as np
+import pickle
+
+MODEL_SAVE_PATH = "models/"
 
 embedding_botnet = {
     "benign": 0,
@@ -143,6 +146,10 @@ class PacketModel:
         X_test_final = np.stack([np.array(X_test_filtered[key]) for key in X_test_filtered], axis=-1)
         
         return X_train_final, y_train_filtered, X_test_final
+    
+    def save(self):
+        with open(f"{MODEL_SAVE_PATH}{self.mode}_packet.pkl", "wb") as f:
+            pickle.dump(self, f)
 
 class StatsModel:
     def __init__(self, mode, model='rf'):
@@ -270,11 +277,16 @@ class StatsModel:
         X_test_final = np.array([X_test_filtered[key] for key in X_test_filtered]).transpose()
 
         return X_train_final, y_train_filtered, X_test_final
+    
+    def save(self):
+        with open(f"{MODEL_SAVE_PATH}{self.mode}_stats.pkl", "wb") as f:
+            pickle.dump(self, f)
 
 class EnsembleClassifier(BaseEstimator, ClassifierMixin):
-    def __init__(self, models, mode):
+    def __init__(self, models, mode, model):
         self.models = models
         self.mode = mode
+        self.model = model
         self.num_classes = 4 if mode == 'botnet' else 13
     
     def fit(self, X, y):
@@ -303,3 +315,8 @@ class EnsembleClassifier(BaseEstimator, ClassifierMixin):
         # 예측 확률을 평균냅니다.
         final_probs = (packet_probs + stats_probs) / 2
         return final_probs
+    
+    def save(self):
+        # 모델을 저장합니다.
+        with open(f"{MODEL_SAVE_PATH}{self.mode}_{self.model}_ensemble.pkl", "wb") as f:
+            pickle.dump(self, f)
