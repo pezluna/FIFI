@@ -5,8 +5,23 @@ import numpy as np
 import pyshark
 from datetime import datetime
 
-
 from label import Label
+
+embedding_fingerprint = {
+    "Philips Hue White": 0,
+    "SmartThings Smart Bulb": 1,
+    "Aeotec Button": 2,
+    "AeoTec Motion Sensor": 3,
+    "AeoTec Multipurpose Sensor": 4,
+    "AeoTec Water Leak Sensor": 5,
+    "Sengled Smart Plug": 6,
+    "SmartThings Button": 7,
+    "Sonoff Smart Plug": 8,
+    "Aqara Door Sensor": 9,
+    "Aqara Switch": 10,
+    "Aqara Temperature/Humidity Sensor": 11,
+    "SmartThings Multipurpose Sensor": 12
+}
 
 def meta_eq(meta1, meta2):
     cond = [
@@ -537,3 +552,69 @@ class Sessions:
             y_test.append(self.sessions["test"]["label"][i])
 
         return x_train, y_train, x_test, y_test
+    
+    def save_boxplot(self):
+        import matplotlib.pyplot as plt
+
+        plt.rc('font', size=20)
+        plt.rcParams['font.family'] = 'Times New Roman'
+
+        directions = {}
+        lengths = {}
+        capturedlengths = {}
+        deltatimes = {}
+
+        for session in self.sessions["session"]:
+            label = session.label
+
+            for body in session.body:
+                if label not in directions.keys():
+                    directions[label] = []
+                    lengths[label] = []
+                    capturedlengths[label] = []
+                    deltatimes[label] = []
+
+                directions[label].extend(body[1]["direction"])
+                lengths[label].extend(body[1]["rawLength"])
+                capturedlengths[label].extend(body[1]["capturedLength"])
+                deltatimes[label].extend(body[1]["deltaTime"])
+
+        plt.figure(figsize=(10, 5))
+        plt.boxplot([directions["mirai"], directions["qbot"], directions["kaiten"], directions["benign"]], labels=["mirai", "qbot", "kaiten", "benign"])
+        plt.title("Direction")
+        plt.savefig("./boxplot/b/direction.png")
+
+        plt.figure(figsize=(10, 5))
+        plt.boxplot([lengths["mirai"], lengths["qbot"], lengths["kaiten"], lengths["benign"]], labels=["mirai", "qbot", "kaiten", "benign"])
+        plt.title("Length")
+        plt.savefig("./boxplot/b/length.png")
+
+        plt.figure(figsize=(10, 5))
+        plt.boxplot([capturedlengths["mirai"], capturedlengths["qbot"], capturedlengths["kaiten"], capturedlengths["benign"]], labels=["mirai", "qbot", "kaiten", "benign"])
+        plt.title("Captured Length")
+        plt.savefig("./boxplot/b/capturedlength.png")
+
+        plt.figure(figsize=(10, 5))
+        plt.boxplot([deltatimes["mirai"], deltatimes["qbot"], deltatimes["kaiten"], deltatimes["benign"]], labels=["mirai", "qbot", "kaiten", "benign"])
+        plt.title("Delta Time")
+        plt.savefig("./boxplot/b/deltatime.png")
+
+        plt.figure(figsize=(10, 5))
+        plt.boxplot([directions[l] for l in embedding_fingerprint], labels=[embedding_fingerprint[l] for l in embedding_fingerprint])
+        plt.title("Direction")
+        plt.savefig("./boxplot/f/direction.png")
+
+        plt.figure(figsize=(10, 5))
+        plt.boxplot([lengths[l] for l in embedding_fingerprint], labels=[embedding_fingerprint[l] for l in embedding_fingerprint])
+        plt.title("Length")
+        plt.savefig("./boxplot/f/length.png")
+
+        plt.figure(figsize=(10, 5))
+        plt.boxplot([capturedlengths[l] for l in embedding_fingerprint], labels=[embedding_fingerprint[l] for l in embedding_fingerprint])
+        plt.title("Captured Length")
+        plt.savefig("./boxplot/f/capturedlength.png")
+
+        plt.figure(figsize=(10, 5))
+        plt.boxplot([deltatimes[l] for l in embedding_fingerprint], labels=[embedding_fingerprint[l] for l in embedding_fingerprint])
+        plt.title("Delta Time")
+        plt.savefig("./boxplot/f/deltatime.png")

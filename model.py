@@ -1,10 +1,14 @@
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
 from sklearn.base import BaseEstimator, ClassifierMixin
+import keras_tuner as kt
 from keras.models import Sequential
+from keras.optimizers import Adam
 from keras.layers import Dense, Conv1D, Flatten, LSTM, Input, Dropout
 from xgboost import XGBClassifier
 import numpy as np
 import pickle
+import datetime
 
 MODEL_SAVE_PATH = "models/"
 
@@ -42,39 +46,78 @@ class PacketModel:
         self.mode = mode
         self.history_lstm = None
         self.history_cnn = None
-        
+
         if model == 'cnn':
-            num_classes = 4 if mode == 'botnet' else 13
-            self.model = Sequential([
-                Input(shape=(8, 5)),
-                Conv1D(filters=32, kernel_size=3, activation='relu'),
-                Flatten(),
-                Dense(64, activation='relu'),
-                Dropout(0.3),
-                Dense(32, activation='relu'),
-                Dense(16, activation='relu'),
-                Dense(num_classes, activation='softmax')
-            ])
-            self.model.compile(
-                optimizer='adam',
-                loss='sparse_categorical_crossentropy',
-                metrics=['accuracy']
+            num_classes = 4 if mode == 'botnet' else 13 
+
+            def model_builder(hp):
+                model = Sequential()
+                model.add(Input(shape=(8, 5)))
+                model.add(Conv1D(filters=hp.Int('filters_1', min_value=4, max_value=64, step=4), kernel_size=3, activation='relu'))
+                model.add(Conv1D(filters=hp.Int('filters_2', min_value=4, max_value=64, step=4), kernel_size=2, activation='relu'))
+                model.add(Flatten())
+                model.add(Dense(hp.Int('units', min_value=8, max_value=32, step=4), activation='relu'))
+                model.add(Dense(num_classes, activation='softmax'))
+
+                optimizer = Adam(learning_rate=hp.Float('learning_rate', min_value=1e-4, max_value=1e-1, sampling='LOG'))
+                
+                model.compile(
+                    optimizer=optimizer,
+                    loss='sparse_categorical_crossentropy',
+                    metrics=['accuracy']
+                )
+                return model
+
+            tuner = kt.Hyperband(
+                model_builder,
+                objective='val_accuracy',
+                max_epochs=10,
+                factor=3,
+                directory=f'kt_dir_{mode}_{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}',
+                project_name='packet'
             )
+
+            X = np.random.rand(100, 8, 5)
+            y = np.random.randint(0, num_classes, 100)
+            tuner.search(X, y, epochs=10, validation_split=0.2)
+            best_hps = tuner.get_best_hyperparameters(num_trials=1)[0]
+            self.model = tuner.hypermodel.build(best_hps)
         elif model == 'lstm':
             num_classes = 4 if mode == 'botnet' else 13
-            self.model = Sequential([
-                Input(shape=(8, 5)),
-                LSTM(8),
-                Dense(32, activation='relu'),
-                Dropout(0.3),
-                Dense(16, activation='relu'),
-                Dense(num_classes, activation='softmax')
-            ])
-            self.model.compile(
-                optimizer='adam',
-                loss='sparse_categorical_crossentropy',
-                metrics=['accuracy']
+
+            def model_builder(hp):
+                model = Sequential()
+                model.add(Input(shape=(8, 5)))
+                model.add(LSTM(hp.Int('units', min_value=8, max_value=32, step=1)))
+                model.add(Dense(hp.Int('units', min_value=4, max_value=32, step=4), activation='relu'))
+                model.add(Dropout(hp.Float('dropout', min_value=0.2, max_value=0.5, step=0.1)))
+                model.add(Dense(num_classes, activation='softmax'))
+
+                optimizer = Adam(learning_rate=hp.Float('learning_rate', min_value=1e-4, max_value=1e-1, sampling='LOG'))
+
+                model.compile(
+                    optimizer=optimizer,
+                    loss='sparse_categorical_crossentropy',
+                    metrics=['accuracy']
+                )
+                return model
+            
+            tuner = kt.Hyperband(
+                model_builder,
+                objective='val_accuracy',
+                max_epochs=10,
+                factor=3,
+                directory=f'kt_dir_{mode}_{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}',
+                project_name='packet'
             )
+
+            X = np.random.rand(100, 8, 5)
+            y = np.random.randint(0, num_classes, 100)
+            tuner.search(X, y, epochs=10, validation_split=0.2)
+            best_hps = tuner.get_best_hyperparameters(num_trials=1)[0]
+            self.model = tuner.hypermodel.build(best_hps)
+        else:
+            raise Exception("Invalid model type.")
 
     def rearrange(self, X):
         tmp = []
@@ -93,10 +136,10 @@ class PacketModel:
             if len(X["deltaTime"][i]) < 8:
                 X["deltaTime"][i] += [0] * (8 - len(X["deltaTime"][i]))
         return {
-            "rawLength": np.minimum(np.array(X["rawLength"]) * 0.001, 1),
-            "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.001, 1),
+            "rawLength": np.minimum(np.array(X["rawLength"]) * 0.005, 1),
+            "capturedLength": np.minimum(np.array(X["capturedLength"]) * 0.005, 1),
             "direction": np.where(np.array(X["direction"]) == -1, 0, 1),
-            "deltaTime": np.minimum(np.array(X["deltaTime"]) * 0.5, 1),
+            "deltaTime": np.minimum(np.array(X["deltaTime"]) * 0.1, 1),
             "protocol": np.where(np.array(X["protocol"]) == "TCP/IP", 1, 0)
         }
     
@@ -155,16 +198,29 @@ class StatsModel:
     def __init__(self, mode, model='rf'):
         self.mode = mode
         if model == 'rf':
-            self.model = RandomForestClassifier(
-                n_estimators=100,
-                max_depth=10,
-                class_weight='balanced'
+            self.model = GridSearchCV(
+                RandomForestClassifier(),
+                param_grid={
+                    'n_estimators': [100, 200, 300],
+                    'max_depth': [None, 10, 20, 30],
+                    'min_samples_split': [2, 4, 6],
+                    'min_samples_leaf': [1, 2, 4]
+                },
+                cv=5,
+                n_jobs=-1,
+                verbose=1
             )
         elif model == 'xgb':
-            self.model = XGBClassifier(
-                n_estimators=100,
-                objective='multi:softmax',
-                num_class=4 if mode == 'botnet' else 13,
+            self.model = GridSearchCV(
+                XGBClassifier(),
+                param_grid={
+                    'n_estimators': [100, 200, 300],
+                    'max_depth': [3, 5, 7],
+                    'learning_rate': [0.01, 0.1, 0.3]
+                },
+                cv=5,
+                n_jobs=-1,
+                verbose=1
             )
         else:
             raise Exception("Invalid model type.")

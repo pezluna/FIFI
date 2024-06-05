@@ -55,7 +55,7 @@ info = {k: 0 for k in label_set}
 for session in sessions.sessions["session"]:
     info[session.label] += len(session.body)
 
-print(info)
+sessions.save_boxplot()
     
 # Split sessions into train and test
 sessions.split_train_test()
@@ -286,11 +286,71 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 plt.rc('font', size=20)
+plt.rcParams['font.family'] = 'Times New Roman'
 
 RESULT_PATH = f"results/{datetime.now().strftime('%Y%m%d%H%M%S')}-{mode}/"
 
 if not os.path.exists(RESULT_PATH):
     os.makedirs(RESULT_PATH)
+
+with open(RESULT_PATH + "result.txt", "w") as f:
+    f.write("-------------------\n")
+    f.write("RF\n")
+    f.write("Accuracy: " + str(accuracy_score(final_y_test, predictions_rf)) + "\n")
+    f.write("Precision: " + str(precision_score(final_y_test, predictions_rf, average='macro')) + "\n")
+    f.write("Recall: " + str(recall_score(final_y_test, predictions_rf, average='macro')) + "\n")
+    f.write("F1: " + str(f1_score(final_y_test, predictions_rf, average='macro')) + "\n")
+
+    f.write("-------------------\n")
+    f.write("XGB\n")
+    f.write("Accuracy: " + str(accuracy_score(final_y_test, predictions_xgb)) + "\n")
+    f.write("Precision: " + str(precision_score(final_y_test, predictions_xgb, average='macro')) + "\n")
+    f.write("Recall: " + str(recall_score(final_y_test, predictions_xgb, average='macro')) + "\n")
+    f.write("F1: " + str(f1_score(final_y_test, predictions_xgb, average='macro')) + "\n")
+
+    f.write("-------------------\n")
+    f.write("CNN\n")
+    f.write("Accuracy: " + str(accuracy_score(final_y_test, predictions_cnn)) + "\n")
+    f.write("Precision: " + str(precision_score(final_y_test, predictions_cnn, average='macro')) + "\n")
+    f.write("Recall: " + str(recall_score(final_y_test, predictions_cnn, average='macro')) + "\n")
+    f.write("F1: " + str(f1_score(final_y_test, predictions_cnn, average='macro')) + "\n")
+
+    f.write("-------------------\n")
+    f.write("LSTM\n")
+    f.write("Accuracy: " + str(accuracy_score(final_y_test, predictions_lstm)) + "\n")
+    f.write("Precision: " + str(precision_score(final_y_test, predictions_lstm, average='macro')) + "\n")
+    f.write("Recall: " + str(recall_score(final_y_test, predictions_lstm, average='macro')) + "\n")
+    f.write("F1: " + str(f1_score(final_y_test, predictions_lstm, average='macro')) + "\n")
+
+    f.write("-------------------")
+    f.write("Ensemble RF-CNN\n")
+    f.write("Accuracy: " + str(accuracy_score(final_y_test, predictions_ensemble_rf_cnn)) + "\n")
+    f.write("Precision: " + str(precision_score(final_y_test, predictions_ensemble_rf_cnn, average='macro')) + "\n")
+    f.write("Recall: " + str(recall_score(final_y_test, predictions_ensemble_rf_cnn, average='macro')) + "\n")
+    f.write("F1: " + str(f1_score(final_y_test, predictions_ensemble_rf_cnn, average='macro')) + "\n")
+
+    f.write("-------------------")
+    f.write("Ensemble XGB-CNN\n")
+    f.write("Accuracy: " + str(accuracy_score(final_y_test, predictions_ensemble_xgb_cnn)) + "\n")
+    f.write("Precision: " + str(precision_score(final_y_test, predictions_ensemble_xgb_cnn, average='macro')) + "\n")
+    f.write("Recall: " + str(recall_score(final_y_test, predictions_ensemble_xgb_cnn, average='macro')) + "\n")
+    f.write("F1: " + str(f1_score(final_y_test, predictions_ensemble_xgb_cnn, average='macro')) + "\n")
+
+    f.write("-------------------")
+    f.write("Ensemble RF-LSTM\n")
+    f.write("Accuracy: " + str(accuracy_score(final_y_test, predictions_ensemble_rf_lstm)) + "\n")
+    f.write("Precision: " + str(precision_score(final_y_test, predictions_ensemble_rf_lstm, average='macro')) + "\n")
+    f.write("Recall: " + str(recall_score(final_y_test, predictions_ensemble_rf_lstm, average='macro')) + "\n")
+    f.write("F1: " + str(f1_score(final_y_test, predictions_ensemble_rf_lstm, average='macro')) + "\n")
+
+    f.write("-------------------")
+    f.write("Ensemble XGB-LSTM\n")
+    f.write("Accuracy: " + str(accuracy_score(final_y_test, predictions_ensemble_xgb_lstm)) + "\n")
+    f.write("Precision: " + str(precision_score(final_y_test, predictions_ensemble_xgb_lstm, average='macro')) + "\n")
+    f.write("Recall: " + str(recall_score(final_y_test, predictions_ensemble_xgb_lstm, average='macro')) + "\n")
+    f.write("F1: " + str(f1_score(final_y_test, predictions_ensemble_xgb_lstm, average='macro')) + "\n")
+
+print("Result saved.")
 
 cm_rf = confusion_matrix(final_y_test, predictions_rf)
 plt.figure(figsize=(20, 15))
